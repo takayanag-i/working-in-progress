@@ -2,3 +2,5 @@ env/
 qiita_sample/
 testdata.xlsx
 ~$*
+.DS_Store
+*__pycache__/
