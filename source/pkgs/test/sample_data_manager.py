@@ -1,6 +1,6 @@
 import pandas as pd
 
-class TestDataManager:
+class SampleDataManager:
     """
     Excelファイルからテストデータを読み込み，
     辞書を生成するクラス
@@ -15,7 +15,7 @@ class TestDataManager:
         """
         self.excel_path = excel_path
 
-    def getSampleDict(self):
+    def getLessonDict(self):
         """
         指定されたExcelファイルからデータを読み込み、クラスカリキュラムを表現する
         ネストされた辞書構造を生成する
