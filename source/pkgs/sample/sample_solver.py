@@ -1,45 +1,60 @@
 import pandas as pd
 import pulp
-from collections import defaultdict
 
-from pkgs.test.sample_data_manager import SampleDataManager
+from pkgs.sample.sample_data_manager import SampleDataManager
+from pkgs.const.constants import TimetableConstants
 
 class SampleSolver:
     """
-    テストデータを用いて問題を解くクラス
+    与えられたサンプルデータで問題を解くクラス
     """
 
-    def __init__(self, excel_path):
+    def __init__(self, sm: SampleDataManager):
         """
-        コンストラクタ
+        イニシャライザ
 
         Arguments:
-            excel_path -- xlsファイルへのパス
+            xls_path -- Excelファイルへのパス
         """
-        self.sm = SampleDataManager(excel_path)
-        self.homeroom_list = self.sm.get_homeroom_list()
-        self.schedule = self.sm.get_schedule()
-        self.course_list = self.sm.get_course_list()
-        self.teacher_list = self.sm.get_teacher_list()
-        self.day_of_week = ["Mon", "Tue", "Wed", "Thu", "Fri"]
-        self.curriculum_dict = self.sm.get_curriculum_dict()
-        self.course_teacher_dict = self.sm.get_course_teacher_dict()
-        self.teacher_course_dict = self.reverse_dict(self.course_teacher_dict)
 
+        # 学級リスト
+        self.homeroom_list = sm.get_homeroom_list()
+
+        # 曜日リスト
+        self.day_of_week = sm.get_day_of_week_list()
+
+        # 日課表
+        self.schedule = sm.get_schedule_dict()
+
+        # 講座リスト
+        self.course_list = sm.get_course_list()
+
+        # 教員リスト
+        self.teacher_list = sm.get_teacher_list()
+
+        # {学級: カリキュラム}辞書
+        self.curriculum_dict = sm.get_curriculum_dict()
+
+        # {講座: 教員リスト}辞書
+        self.course_teacher_dict = sm.get_course_teacher_dict()
+
+        # LPモデル
         self.model = pulp.LpProblem("sample", pulp.LpMinimize)
 
-        self.define_variables()
+        # x_{学級, 曜日, 時限, 講座}
+        self.x = {}
 
-    def define_variables(self):
+        # y_{曜日, 時限, 教員}
+        self.y = {}
+
+        self.define_variables() # 変数の定義
+
+    def define_variables(self) -> None:
         """
         変数を定義する
         """
 
-        self.x = {}
-        self.y = {}
-        self.z = {}
-
-        # x_HR_曜日_時限_講座
+        # xの定義
         for h in self.homeroom_list:
             for d in self.day_of_week:
                 for p in self.schedule[h][d]:
@@ -47,13 +62,13 @@ class SampleSolver:
                         for lane in block:
                             for c in lane:
                                 self.x[h,d,p,c] = pulp.LpVariable(name=f"x_{h}_{d}_{p}_{c}", cat="Binary")
-        # y_曜日_時限_教員
+        # yの定義
         for d in self.day_of_week:
             for p in range(1,8):
                 for t in self.teacher_list:
                     self.y[d,p,t] = pulp.LpVariable(name=f"y_{d}_{p}_{t}", cat="Binary")
 
-        # yをxの関数として定義
+        # yをxの関数として表す
         for t in self.teacher_list:
             first_hcs = []
             for h in self.homeroom_list:
@@ -66,9 +81,12 @@ class SampleSolver:
                 for p in range(1, 8):
                     self.y[d, p, t] = pulp.lpSum([self.x[h, d, p, c] for (h, c) in first_hcs if (h, d, p, c) in self.x])
 
-    def display_result(self, h: str):
+    def display_result_by_homeroom(self, h: str) -> pd.DataFrame:
         """
-        結果を表示する
+        学級を指定して結果を表示する
+
+        Arguments:
+            h -- 学級名
         """
 
         result_df = pd.DataFrame(columns=[i for i in range(1,8)], index=self.day_of_week)
@@ -88,17 +106,3 @@ class SampleSolver:
                     result_df.at[d, p] = '/'.join(courses_in_period)
 
         return result_df
-
-    def reverse_dict(self, d):
-        """
-        辞書のキーと値を逆にする
-        """
-        reversed_dict = defaultdict(list)
-
-        for k, vs in d.items():
-            for v in vs:
-                reversed_dict[v].append(k)
-
-        # 結果を辞書に変換（defaultdictから通常のdictへ）
-
-        return dict(reversed_dict)
