@@ -5,7 +5,7 @@ from pkgs.const.constants import TimetableConstants
 class SampleDataManager:
     """
     Excelファイルからテストデータを読み込み，
-    必要な構造を生成するクラス
+    DataFrameやコレクションを生成するクラス
     """
 
     def __init__(self, xls_path):
