@@ -1,6 +1,6 @@
 import pulp
 
-from pkgs.sample.sample_model import SampleModel
+from pkgs.optmdl.sample_model import SampleModel
 
 def add_homeroom_constraints(model: SampleModel) -> SampleModel:
     for h in model.dto.homeroom_list:

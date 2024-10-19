@@ -1,6 +1,6 @@
 import pandas as pd
 
-from pkgs.sample.sample_model import SampleModel
+from pkgs.optmdl.sample_model import SampleModel
 
 def display_result_by_homeroom(model: SampleModel, h: str) -> pd.DataFrame:
     """

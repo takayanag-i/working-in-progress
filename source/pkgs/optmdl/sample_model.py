@@ -1,7 +1,7 @@
 import pandas as pd
 import pulp
 
-from pkgs.sample.sample_data_manager import SampleDataManager
+from pkgs.optmdl.sample_data_manager import SampleDataManager
 from pkgs.dto.anual_data import AnualData
 
 class SampleModel:
