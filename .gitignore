@@ -5,3 +5,4 @@ testdata.xlsx
 .DS_Store
 *__pycache__/
 *.ipynb
+pyproject.toml
