@@ -1,10 +1,8 @@
-import pandas as pd
 import pulp
 
-from pkgs.optmdl.sample_data_manager import SampleDataManager
 from pkgs.dto.anual_data import AnualData
 
-class SampleModel:
+class LpModel:
     """
     与えられたサンプルデータで問題を解くクラス
     """

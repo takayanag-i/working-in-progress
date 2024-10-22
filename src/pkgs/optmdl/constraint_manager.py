@@ -1,8 +1,8 @@
 import pulp
 
-from pkgs.optmdl.sample_model import SampleModel
+from pkgs.optmdl.lp_model import LpModel
 
-def add_homeroom_constraints(model: SampleModel) -> SampleModel:
+def add_homeroom_constraints(model: LpModel) -> LpModel:
     """
     学級制約を追加する
 
@@ -21,8 +21,8 @@ def add_homeroom_constraints(model: SampleModel) -> SampleModel:
     return model
 
 def add_course_credit_constraints(
-    model: SampleModel, course_credit_dict: dict
-) -> SampleModel:
+    model: LpModel, course_credit_dict: dict
+) -> LpModel:
     """
     単位数制約を追加する
 
@@ -45,7 +45,7 @@ def add_course_credit_constraints(
     return model
 
 
-def add_block_constraints(model: SampleModel) -> SampleModel:
+def add_block_constraints(model: LpModel) -> LpModel:
     """
     ブロック制約を追加する
 
@@ -67,7 +67,7 @@ def add_block_constraints(model: SampleModel) -> SampleModel:
                             model.prob += sums_of_x_in_lanes[0] == sums_of_x_in_lanes[i]
     return model
 
-def add_teacher_constraints(model: SampleModel) -> SampleModel:
+def add_teacher_constraints(model: LpModel) -> LpModel:
     """
     教員制約を追加する
 
@@ -80,7 +80,37 @@ def add_teacher_constraints(model: SampleModel) -> SampleModel:
         SampleModel -- 制約を追加したモデル
     """
     for d in model.dto.day_of_week:
-        for p in [i for i in range(1,8)]:
+        for p in range(1, 8):
             for t in model.dto.teacher_list:
                 model.prob += model.y[d,p,t] <= 1
+    return model
+
+def add_course_constraints(model: LpModel) -> LpModel:
+    """
+    講座制約を追加する
+
+    任意の講座について，任意の曜日・時限で，講座の開講変数xはその講座を受講する学級どうしで互いに等しい。
+
+    Arguments:
+        model (SampleModel) -- モデル
+
+    Returns:
+        SampleModel -- 制約を追加したモデル
+    """
+    for c in model.dto.course_list:
+        for d in model.dto.day_of_week:
+            for p in range(1, 8):  # 各時限で
+                # 講座cに関連するすべての学級の開講変数が一致するよう制約を追加
+                related_classes = [
+                    h for h in model.dto.homeroom_list
+                    if (h, d, p, c) in model.x  # 変数が定義されている学級のみ対象
+                ]
+
+                # すべての関連する学級の開講変数が等しいことを制約
+                if len(related_classes) > 1:
+                    first_class = related_classes[0]
+                    for h in related_classes[1:]:
+                        model.prob += (
+                            model.x[first_class, d, p, c] == model.x[h, d, p, c]
+                        )
     return model
