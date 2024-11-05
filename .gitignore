@@ -6,3 +6,4 @@ testdata.xlsx
 *__pycache__/
 *.ipynb
 pyproject.toml
+emulatorcert.crt

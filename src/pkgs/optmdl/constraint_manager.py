@@ -1,4 +1,5 @@
 import pulp
+import math
 
 from pkgs.optmdl.lp_model import LpModel
 
@@ -114,3 +115,42 @@ def add_course_constraints(model: LpModel) -> LpModel:
                             model.x[first_class, d, p, c] == model.x[h, d, p, c]
                         )
     return model
+
+def add_consective_period_constraints(model: LpModel, course: str, credit: int) -> LpModel:
+    """
+    2コマ連続制約を追加する
+
+    Arguments:
+        model (SampleModel) -- モデル
+        course (str) -- 講座名
+
+    Returns:
+        SampleModel -- 制約を追加したモデル
+    """
+
+    for h in model.dto.homeroom_list:
+        consecutive_list = []  # 2コマ連続の補助変数を保存する
+
+        for d in model.dto.day_of_week:
+            periods = sorted(model.dto.schedule[h][d])  # 時限を取得・ソート
+
+            # 2コマ連続の補助変数を定義
+            for i in range(len(periods) - 1):
+                p1, p2 = periods[i], periods[i + 1]
+
+                consective = pulp.LpVariable(f"consecutive_{h}_{d}_{p1}_{p2}_{course}", cat="Binary")
+                consecutive_list.append(consective)
+
+                # consective := min(x[h, d, p1, course], x[h, d, p2, course])
+                model.prob += consective <= model.x[h, d, p1, course]
+                model.prob += consective <= model.x[h, d, p2, course]
+                model.prob += model.x[h, d, p1, course] + model.x[h, d, p2, course] - 1 <= consective
+
+            for i in range(len(periods) - 2):
+                p1, p2, p3 = periods[i], periods[i + 1], periods[i + 2]
+
+                # 3コマ連続は無効
+                model.prob += model.x[h, d, p1, course] + model.x[h, d, p2, course] + model.x[h, d, p3, course] <= 2
+
+            # 可能な限り2コマ連続にする
+            model.prob += pulp.lpSum(consecutive_list) == math.floor(credit / 2)
