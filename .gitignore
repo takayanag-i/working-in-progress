@@ -7,3 +7,4 @@ testdata.xlsx
 *.ipynb
 pyproject.toml
 emulatorcert.crt
+.vscode/
