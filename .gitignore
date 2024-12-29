@@ -1,13 +1,25 @@
-env/
-qiita_sample/
+# KJ
 testdata.xlsx
+
+# jupyter notebook
+*.ipynb
+
+# system
 ~$*
 .DS_Store
 *__pycache__/
-*.ipynb
-pyproject.toml
+
+# poetry
+poetry.lock
+.venv/
+
+# cosmos
 emulatorcert.crt
+
+# vscode
 .vscode/
+
+# pytest
 .coverage
 coverage.xml
 .pytest_cache/
