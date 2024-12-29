@@ -8,3 +8,5 @@ testdata.xlsx
 pyproject.toml
 emulatorcert.crt
 .vscode/
+.coverage
+coverage.xml
