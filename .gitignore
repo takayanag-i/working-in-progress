@@ -10,3 +10,4 @@ emulatorcert.crt
 .vscode/
 .coverage
 coverage.xml
+.pytest_cache/
