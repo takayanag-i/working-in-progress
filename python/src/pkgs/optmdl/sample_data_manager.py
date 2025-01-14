@@ -4,7 +4,7 @@ from pkgs.const.constants import TimetableConstants
 
 class SampleDataManager:
     """
-    Excelファイルからテストデータを読み込み，
+    Excelファイルからテストデータを読み込み、
     DataFrameやコレクションを生成するクラス
     """
 
@@ -73,7 +73,7 @@ class SampleDataManager:
         日課表を表す辞書構造を生成する
 
         Returns:
-            schedule_dict -- 学級名をキーとし，値として{曜日 -> 時限リスト}辞書を持つ辞書
+            schedule_dict -- 学級名をキーとし、値として{曜日 -> 時限リスト}辞書を持つ辞書
         """
 
         # 普通　月7・火6・水6・木6・金6
@@ -172,7 +172,7 @@ class SampleDataManager:
         """講座担当教員の辞書を生成する
 
         Returns:
-            course_teacher_dict -- 講座名をキーとし，値として教員名のリスト持つ辞書
+            course_teacher_dict -- 講座名をキーとし、値として教員名のリスト持つ辞書
         """
         course_teacher_room_df  = pd.merge(self.course_teacher_room_df, self.teacher_df, on='教員ID', how='left')
         course_teacher_room_df = course_teacher_room_df.merge(self.course_df, on='講座ID', how='left')

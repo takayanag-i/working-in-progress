@@ -7,7 +7,7 @@ def add_homeroom_constraints(model: LpModel) -> LpModel:
     """
     学級制約を追加する
 
-    任意の学級の任意の曜日・時限に対して，その学級のカリキュラムに含まれる講座の開講変数xの総和は1以上である。
+    任意の学級の任意の曜日・時限に対して、その学級のカリキュラムに含まれる講座の開講変数xの総和は1以上である。
 
     Arguments:
         model (SampleModel) -- モデル
@@ -27,7 +27,7 @@ def add_course_credit_constraints(
     """
     単位数制約を追加する
 
-    任意の学級の任意の講座に対して，講座の開講変数xの曜日・時限に関する総和は，科目の単位数に等しい。
+    任意の学級の任意の講座に対して、講座の開講変数xの曜日・時限に関する総和は、科目の単位数に等しい。
 
     Arguments:
         model (SampleModel) -- モデル
@@ -39,7 +39,7 @@ def add_course_credit_constraints(
         for block in model.dto.curriculum_dict[h]:
             for lane in block:
                 for c in lane:
-                    credit = course_credit_dict.get(c, 0)  # 単位数を取得，見つからなければ0
+                    credit = course_credit_dict.get(c, 0)  # 単位数を取得、見つからなければ0
                     model.prob += pulp.lpSum(
                         [model.x[h, d, p, c] for d in model.dto.day_of_week for p in model.dto.schedule[h][d]]
                     ) == credit
@@ -50,7 +50,7 @@ def add_block_constraints(model: LpModel) -> LpModel:
     """
     ブロック制約を追加する
 
-    任意の学級について，任意の曜日・時限で，任意のブロックに対して，レーンに含まれる講座の開講変数xの総和はすべて等しい。
+    任意の学級について、任意の曜日・時限で、任意のブロックに対して、レーンに含まれる講座の開講変数xの総和はすべて等しい。
 
     Arguments:
         model (SampleModel) -- モデル
@@ -72,7 +72,7 @@ def add_teacher_constraints(model: LpModel) -> LpModel:
     """
     教員制約を追加する
 
-    任意の曜日・時限で，任意の教員に対して，教員の授業実施変数yは1以下である。
+    任意の曜日・時限で、任意の教員に対して、教員の授業実施変数yは1以下である。
 
     Arguments:
         model (SampleModel) -- モデル
@@ -90,7 +90,7 @@ def add_course_constraints(model: LpModel) -> LpModel:
     """
     講座制約を追加する
 
-    任意の講座について，任意の曜日・時限で，講座の開講変数xはその講座を受講する学級どうしで互いに等しい。
+    任意の講座について、任意の曜日・時限で、講座の開講変数xはその講座を受講する学級どうしで互いに等しい。
 
     Arguments:
         model (SampleModel) -- モデル
