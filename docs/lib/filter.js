@@ -28,7 +28,7 @@ const tFilterInit = (oeconomicas) =>{
   //==============================================================
   //  テーブルの初期設定
   //==============================================================
-  var wTABLE = document.getElementById(gTabldID);
+  var wTABLE = document.getElementsByTagName("table")[0];
   var wTR = wTABLE.rows;
   var wAddBtn = '';
   setOeconomicas(oeconomicas); //セッター
@@ -41,7 +41,7 @@ const tFilterInit = (oeconomicas) =>{
     for(var j=0; j < wTD.length; j++){
       
       // --- 「cmanFilterBtn」の定義があるセルを対象とする ------
-      if(wTD[j].getAttribute('cmanFilterBtn') !== null){
+    //   if(wTD[j].getAttribute('cmanFilterBtn') !== null){
   
         // --- フィルタ対象はボタンの次の行から -----------------
         gTfStartRow = i + 1;
@@ -57,7 +57,7 @@ const tFilterInit = (oeconomicas) =>{
   
         // --- フィルタボタンなる列を保存 -----------------------
         gTfColList.push(j);
-      }
+    //   }
     }
      // --- ボタンを付けたら以降の行は無視する -------------------
      if(wAddBtn != ''){
