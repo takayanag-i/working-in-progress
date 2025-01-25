@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>API一覧 | working-in-progress</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="API一覧" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="学習用リポジトリ" />
+<meta property="og:description" content="学習用リポジトリ" />
+<link rel="canonical" href="https://takayanag-i.github.io/working-in-progress/03_%E8%A6%81%E4%BB%B6%E5%AE%9A%E7%BE%A9/API%E4%B8%80%E8%A6%A7.html" />
+<meta property="og:url" content="https://takayanag-i.github.io/working-in-progress/03_%E8%A6%81%E4%BB%B6%E5%AE%9A%E7%BE%A9/API%E4%B8%80%E8%A6%A7.html" />
+<meta property="og:site_name" content="working-in-progress" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="API一覧" />
+<style type="text/css">
+  tr[cmanFilterNone] {
+    display: none;
+  }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"学習用リポジトリ","headline":"API一覧","url":"https://takayanag-i.github.io/working-in-progress/03_%E8%A6%81%E4%BB%B6%E5%AE%9A%E7%BE%A9/API%E4%B8%80%E8%A6%A7.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/working-in-progress/assets/css/style.css?v=1187d0319204f74d929048f91844cb75a53b9619">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/working-in-progress/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://takayanag-i.github.io/working-in-progress/">working-in-progress</a></h1>
+      
+
+      <h1 id="api一覧">API一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>番号</th>
+      <th>API名</th>
+      <th>エンドポイント</th>
+      <th>HTTPメソッド</th>
+      <th>リクエスト概要</th>
+      <th>レスポンス概要</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AP001</td>
+      <td>曜日時限を設定する</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/schedule</code></td>
+      <td>POST</td>
+      <td>曜日と各曜日のコマ数を設定する。</td>
+      <td>スケジュールが正常に更新されたことを示すメッセージ。</td>
+    </tr>
+    <tr>
+      <td>AP002</td>
+      <td>教員情報を登録する</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/teachers</code></td>
+      <td>POST</td>
+      <td>教員の情報（教科、名前、持ちコマ数）を登録する。</td>
+      <td>教員情報が正常に追加されたことを示すメッセージ。</td>
+    </tr>
+    <tr>
+      <td>AP003</td>
+      <td>教員の勤怠を登録する</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/teachers/attendance</code></td>
+      <td>POST</td>
+      <td>教員の勤怠情報（教員ID、利用不可のコマ）を登録する。</td>
+      <td>勤怠情報が正常に登録されたことを示すメッセージ。</td>
+    </tr>
+    <tr>
+      <td>AP004</td>
+      <td>科目を登録する</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/subjects</code></td>
+      <td>POST</td>
+      <td>科目の情報（名前、学年、単位数）を登録する。</td>
+      <td>科目が正常に追加されたことを示すメッセージ。</td>
+    </tr>
+    <tr>
+      <td>AP005</td>
+      <td>カリキュラムを登録する</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/curriculums</code></td>
+      <td>GET</td>
+      <td>学級ごとのカリキュラム情報を登録する。</td>
+      <td>カリキュラムが正常に追加されたことを示すメッセージ。</td>
+    </tr>
+    <tr>
+      <td>AP006</td>
+      <td>学級を登録する</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/homerooms</code></td>
+      <td>GET</td>
+      <td>学級の情報（名前、担任、曜日、コマ数）を追加する。</td>
+      <td>学級が正常に追加されたことを示すメッセージ。</td>
+    </tr>
+  </tbody>
+</table>
+
+<script src="filter.js"></script>
+
+
+
+      
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. <a href="https://github.com/takayanag-i/working-in-progress/edit/main/docs/03_%E8%A6%81%E4%BB%B6%E5%AE%9A%E7%BE%A9/API%E4%B8%80%E8%A6%A7.md">Improve this page</a>.
+      </div>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
