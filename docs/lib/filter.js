@@ -1,150 +1,425 @@
 //===============================================================
-// フィルタテーブルの共通変数
+//  フィルタテーブルの共通変数　設定要！
 //===============================================================
-var gTfColList = []; // フィルタを適用する列のリスト
-var varOeconomicas = []; // テーブルデータを格納する配列
+var gTfStartRow = 0;
+var gTfColList  = [];             // ボタンが配置されている列番号
+var gTfListSave = {};             // フィルタリストの保存状態
+var varOeconomicas = '';
+var colObj = {};
 
 //===============================================================
-// オンロードでテーブル初期設定関数をCALL
+//  オンロードでテーブル初期設定関数をCALL
 //===============================================================
-window.onload = function () {
-    tFilterInit();
-  };
+window.onload = function() {
+  colObj = createColObj();
+  varOeconomicas = tableToVarOeconomicas();
+  tFilterInit(varOeconomicas);
+}
+
+function createColObj() {
+  // テーブル要素を取得
+  var table = document.getElementsByTagName("table")[0];
+  if (!table) {
+    console.error("Table element not found.");
+    return {};
+  }
+
+  var colObj = {};
+  var rows = table.rows;
+
+  // ヘッダー行を取得して colObj を作成
+  if (rows.length > 0) {
+    var headerCells = rows[0].cells;
+    for (var i = 0; i < headerCells.length; i++) {
+      colObj[i] = "col" + (i + 1); // 列番号をキーに "col1", "col2" のように設定
+    }
+  }
+  return colObj;
+}
+
+const setOeconomicas = (oeconomicas) => {
+  varOeconomicas = oeconomicas;
+}
+
+function tableToVarOeconomicas() {
+  // テーブル要素を取得
+  var table = document.getElementsByTagName("table")[0];
+  if (!table) {
+    console.error("Table element not found.");
+    return [];
+  }
+
+  var varOeconomicas = [];
+  var rows = table.rows;
+
+  // ヘッダー行を取得してキーを作成
+  var headers = [];
+  if (rows.length > 0) {
+    var headerCells = rows[0].cells;
+    for (var i = 0; i < headerCells.length; i++) {
+      headers.push("col" + (i + 1)); // キー名を col1, col2 のように設定
+    }
+  }
+
+  // データ行を取得して varOeconomicas に変換
+  for (var i = 1; i < rows.length; i++) { // ヘッダー行をスキップ
+    var row = rows[i];
+    var cells = row.cells;
+    var rowData = {};
+
+    for (var j = 0; j < cells.length; j++) {
+      rowData[headers[j]] = cells[j].innerText.trim();
+    }
+
+    varOeconomicas.push(rowData);
+  }
+
+  return varOeconomicas;
+}
+
+const tFilterInit = (oeconomicas) =>{
   
-  const tFilterInit = () => {
-    // テーブルと必要な要素を取得
-    const wTABLE = document.querySelector("table");
-    if (!wTABLE) return;
+  //==============================================================
+  //  テーブルの初期設定
+  //==============================================================
+  var wTABLE = document.getElementsByTagName("table")[0];
+  var wTR = wTABLE.rows;
+  var wAddBtn = '';
+  setOeconomicas(oeconomicas); //セッター
+  // ------------------------------------------------------------
+  //   テーブル内にフィルタボタンを付ける
+  // ------------------------------------------------------------
+  for(var i=0; i < wTR.length; i++){
+    var wTD = wTABLE.rows[i].cells;
+
+    for(var j=0; j < wTD.length; j++){
+      
+      // --- 「cmanFilterBtn」の定義があるセルを対象とする ------
+      // if(wTD[j].getAttribute('cmanFilterBtn') !== null){
   
-    const wTH = wTABLE.querySelectorAll("th"); // <th> をすべて取得
-    const wTR = wTABLE.querySelectorAll("tbody tr"); // <tbody> の行をすべて取得
+        // --- フィルタ対象はボタンの次の行から -----------------
+        gTfStartRow = i + 1;
   
-    // 各列にフィルタボタンを追加
-    wTH.forEach((th, colIndex) => {
-      const wAddBtn = createFilterButton(colIndex); // ボタン生成
-      th.innerHTML += wAddBtn; // ボタンを追加
-      gTfColList.push(colIndex); // フィルタ対象列に追加
-    });
+        // --- ボタンを追加（画像はsvgを使用） ------------------
+        wAddBtn  = '<div class="tfArea">';
+        wAddBtn += '<svg class="tfImg" id="tsBtn_'+j+'" onclick="tFilterCloseOpen('+j+')"><path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path></svg>';
+        wAddBtn += '<div class="tfList" id="tfList_'+j+'" style="display:none">';
+        wAddBtn += tFilterCreate(j);
+        wAddBtn += '</div>';
+        wAddBtn += '</div>';
+        wTD[j].innerHTML = wTD[j].innerHTML+wAddBtn;
   
-    // 各列のデータを準備
-    varOeconomicas = Array.from(wTR).map((tr) => {
-      const cells = tr.querySelectorAll("td");
-      const rowData = {};
-      cells.forEach((cell, index) => {
-        rowData[index] = cell.innerText.trim(); // 列インデックスをキーにデータを保存
-      });
-      return rowData;
-    });
-  };
+        // --- フィルタボタンなる列を保存 -----------------------
+        gTfColList.push(j);
+      // }
+    }
+     // --- ボタンを付けたら以降の行は無視する -------------------
+     if(wAddBtn != ''){
+       var gSortBtnRow = i;
+       break;
+    }
+  }
+}
+ 
+ function tFilterCreate(argCol){
+  //==============================================================
+  //  指定列のフィルタリスト作成
+  //==============================================================
+  var wItem     = [];              // クリックされた列の値
+  var wNotNum   = 0;               // 1 : 数字でない
+  var wItemSave = {};              // フィルタに設定した値がキー
+  var rcList    = '';              // 返すフィルタリスト
+  var wVal = '';
+  // ------------------------------------------------------------
+  //  クリックされた列の値を取得する
+  //------------------------------------------------------------
+  for(var i=gTfStartRow; i < varOeconomicas.length; i++){
+    var j = i - gTfStartRow;
+    wItem[j] = varOeconomicas[i][colObj[argCol]];
+    if(wItem[j].match(/^[-]?[0-9,\.]+$/)){
+    }else{
+      wNotNum = 1;
+    }
+  }
+   
+   // ------------------------------------------------------------
+   //  列の値でソートを実行
+   // ------------------------------------------------------------
+     if(wNotNum == 0){
+       wItem.sort(sortNumA);           // 数値で昇順
+     }else{
+       wItem.sort(sortStrA);           // 文字で昇順
+     }
+   
+   // ------------------------------------------------------------
+   //  「すべて」のチェックボックス作成
+   // ------------------------------------------------------------
+   var wItemId = 'tfData_ALL_'+argCol;
+   rcList += '<div class="tfMeisai">';
+   rcList += '<input type="checkbox" id="'+wItemId+'" checked onclick="tFilterAllSet('+argCol+')">';
+   rcList += '<label for="'+wItemId+'">(すべて)</label>';
+   rcList += '</div>';
   
-  const createFilterButton = (colIndex) => {
-    // フィルタボタンを生成するHTML
-    return `
-      <div class="tfArea">
-        <svg class="tfImg" id="tsBtn_${colIndex}" style="cursor: pointer;" onclick="tFilterCloseOpen(${colIndex})">
-          <path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path>
-        </svg>
-        <div class="tfList" id="tfList_${colIndex}" style="display:none">
-          ${tFilterCreate(colIndex)}
-        </div>
-      </div>`;
-  };
+   // ------------------------------------------------------------
+   //  列の値でフィルタのチェックボックスを作成する
+   //    チェックボックスはformで囲む
+   // ------------------------------------------------------------
+   rcList += '<form name="tfForm_'+argCol+'">';
   
-  const tFilterCreate = (argCol) => {
-    // 指定列のフィルタリスト作成
-    const uniqueValues = Array.from(new Set(varOeconomicas.map((row) => row[argCol] || ""))).sort();
-    let rcList = "";
+   for(var i=0; i < wItem.length; i++){
   
-    // 「すべて」チェックボックス
-    rcList += `
-      <div class="tfMeisai">
-        <input type="checkbox" id="tfData_ALL_${argCol}" checked onclick="tFilterAllSet(${argCol})">
-        <label for="tfData_ALL_${argCol}">(すべて)</label>
-      </div>
-      <form name="tfForm_${argCol}">`;
+     wVal = trim(wItem[i]);
+     
+     if(wVal in wItemSave){
+       // ---値でチェックボックスが作成されている(重複) ----------
+     }else{  
+       // ---チェックボックスの作成 ------------------------------
+       wItemId = 'tfData_'+argCol+'_r'+i;
+       rcList += '<div class="tfMeisai">';
+       rcList += '<input type="checkbox" id="'+wItemId+'" value="'+wVal+'" checked onclick="tFilterClick('+argCol+')">';
+       rcList += '<label for="'+wItemId+'">'+( wVal=='' ? '(空白)' : wVal )+'</label>';
+       rcList += '</div>';
   
-    // 各値のチェックボックス
-    uniqueValues.forEach((value, i) => {
-      const wItemId = `tfData_${argCol}_r${i}`;
-      rcList += `
-        <div class="tfMeisai">
-          <input type="checkbox" id="${wItemId}" value="${value}" checked onclick="tFilterClick(${argCol})">
-          <label for="${wItemId}">${value || "(空白)"}</label>
-        </div>`;
-    });
+       // ---重複判定用にチェックボックスの値を保存 --------------
+       wItemSave[wVal]='1';
+     }
+   }
+   rcList += '</form>';
+   
+   // ------------------------------------------------------------
+   //  文字抽出のinputを作成
+   // ------------------------------------------------------------
+   rcList += '<div class="tfInStr">';
+   rcList += '<input type="text" placeholder="含む文字抽出" id="tfInStr_'+argCol+'">';
+   rcList += '</div>';
   
-    rcList += `</form>`;
+   // ------------------------------------------------------------
+   //  「OK」「Cancel」ボタンの作成
+   // ------------------------------------------------------------
+   rcList += '<div class="tfBtnArea">';
+   rcList += '<input type="button" value="OK" onclick="tFilterGo()">';
+   rcList += '<input type="button" value="Cancel" onclick="tFilterCancel('+argCol+')">';
+   rcList += '</div>';
+   // ------------------------------------------------------------
+   //  作成したhtmlを返す
+   // ------------------------------------------------------------
+   return rcList;
+ }
+ 
+ function tFilterClick(argCol){
+  //==============================================================
+  //  フィルタリストのチェックボックスクリック
+  //    「すべて」のチェックボックスと整合性を合わせる
+  //==============================================================
+   var wForm   = document.forms['tfForm_'+argCol];
+   var wCntOn  = 0;
+   var wCntOff = 0;
+   var wAll    = document.getElementById('tfData_ALL_'+argCol);   // 「すべて」のチェックボックス
   
-    // フィルタ用文字入力フィールド
-    rcList += `
-      <div class="tfInStr">
-        <input type="text" placeholder="含む文字抽出" id="tfInStr_${argCol}">
-      </div>`;
+   // --- 各チェックボックスの状態を集計する ---------------------
+   for (var i = 0; i < wForm.elements.length; i++){
+     if(wForm.elements[i].type == 'checkbox'){
+       if (wForm.elements[i].checked) { wCntOn++;  }
+       else                           { wCntOff++; }
+     }
+   }
   
-    // OK・Cancel ボタン
-    rcList += `
-      <div class="tfBtnArea">
-        <input type="button" value="OK" onclick="tFilterGo()">
-        <input type="button" value="Cancel" onclick="tFilterCancel(${argCol})">
-      </div>`;
-    return rcList;
-  };
+   // --- 各チェックボックス集計で「すべて」を整備する -----------
+   if((wCntOn == 0)||(wCntOff == 0)){
+     wAll.checked = true;             // 「すべて」をチェックする
+     tFilterAllSet(argCol);           // 各フィルタのチェックする
+   }else{
+      wAll.checked = false;           // 「すべて」をチェックを外す
+   }
+ }
+ 
+ function tFilterCancel(argCol){
+  //==============================================================
+  //  キャンセルボタン押下
+  //==============================================================
+   tFilterSave(argCol, 'load');    // フィルタ条件の復元
+   tFilterCloseOpen('');           // フィルタリストを閉じる
   
-  const tFilterClick = (argCol) => {
-    // フィルタリストのチェックボックスクリック時の処理
-    const wForm = document.forms[`tfForm_${argCol}`];
-    const wAll = document.getElementById(`tfData_ALL_${argCol}`);
-    const checkedCount = Array.from(wForm.elements).filter((el) => el.checked).length;
+ }
+ 
+function tFilterGo(){
+  //===============================================================
+  //  フィルタの実行
+  //===============================================================
+  var wTABLE  = document.getElementsByTagName("table")[0];
+  var wTR     = wTABLE.rows;
   
-    wAll.checked = checkedCount === wForm.elements.length;
-  };
-  
-  const tFilterAllSet = (argCol) => {
-    // 「すべて」のチェックボックスに応じて全てのチェックをON/OFF
-    const wForm = document.forms[`tfForm_${argCol}`];
-    const isChecked = document.getElementById(`tfData_ALL_${argCol}`).checked;
-  
-    Array.from(wForm.elements).forEach((el) => {
-      if (el.type === "checkbox") el.checked = isChecked;
-    });
-  };
-  
-  const tFilterGo = () => {
-    // フィルタを適用
-    const wTABLE = document.querySelector("table");
-    const wTR = wTABLE.querySelectorAll("tbody tr");
-  
-    // 一旦すべて表示
-    wTR.forEach((tr) => (tr.style.display = ""));
-  
-    gTfColList.forEach((colIndex) => {
-      const wAll = document.getElementById(`tfData_ALL_${colIndex}`);
-      const wFilterStr = document.getElementById(`tfInStr_${colIndex}`).value.trim();
-      const wForm = document.forms[`tfForm_${colIndex}`];
-  
-      if (!wAll.checked || wFilterStr) {
-        const checkedValues = Array.from(wForm.elements)
-          .filter((el) => el.checked)
-          .map((el) => el.value);
-  
-        wTR.forEach((tr, rowIndex) => {
-          const cellValue = varOeconomicas[rowIndex][colIndex] || "";
-          if (!checkedValues.includes(cellValue) && !cellValue.includes(wFilterStr)) {
-            tr.style.display = "none";
-          }
-        });
+  // ------------------------------------------------------------
+  //  全ての非表示を一旦クリア
+  // ------------------------------------------------------------
+  for(var i = 0; i < wTR.length; i++){
+    if(wTR[i].getAttribute('cmanFilterNone') !== null){
+      wTR[i].removeAttribute('cmanFilterNone');
+    }
+  }
+  // ------------------------------------------------------------
+  //  フィルタボタンのある列を繰り返す
+  // ------------------------------------------------------------
+  for(var wColList = 0; wColList < gTfColList.length; wColList++){
+    var wCol       = gTfColList[wColList];
+    var wAll       = document.getElementById('tfData_ALL_'+wCol);     // 「すべて」のチェックボックス
+    var wItemSave  = {};
+    var wFilterBtn =  document.getElementById('tsBtn_'+wCol);
+    var wFilterStr =  document.getElementById('tfInStr_'+wCol);
+    var wForm      = document.forms['tfForm_'+wCol];
+    var wVal = '';
+
+    // -----------------------------------------------------------
+    //  チェックボックスの整備（「すべて」の整合性）
+    // -----------------------------------------------------------
+    for (var i = 0; i < wForm.elements.length; i++){
+      if(wForm.elements[i].type == 'checkbox'){
+        if (wForm.elements[i].checked) {
+          wItemSave[wForm.elements[i].value] = 1;      // チェックされている値を保存
+        }
       }
-    });
-  };
+    }
+     // -----------------------------------------------------------
+     //  フィルタ（非表示）の設定
+     // -----------------------------------------------------------
+    if((wAll.checked)&&(trim(wFilterStr.value) == '')){
+      wFilterBtn.style.backgroundColor = '';              // フィルタなし色
+    }
+    else{
+      wFilterBtn.style.backgroundColor = '#ffff00';       // フィルタあり色
   
-  const tFilterCloseOpen = (argCol) => {
-    // フィルタリストの開閉
-    gTfColList.forEach((colIndex) => {
-      document.getElementById(`tfList_${colIndex}`).style.display = colIndex === argCol ? "block" : "none";
-    });
-  };
+      for(var i=gTfStartRow; i < wTR.length; i++){
+        wVal = trim(varOeconomicas[i-1][colObj[wCol]]);
+        // --- チェックボックス選択によるフィルタ ----------------
+        if(!wAll.checked){
+          if(wVal in wItemSave){
+          }
+          else{
+            wTR[i].setAttribute('cmanFilterNone','');
+          }
+        }
   
-  const tFilterCancel = (argCol) => {
-    // フィルタリストを閉じる
-    tFilterCloseOpen(null);
-  };
+         // --- 抽出文字によるフィルタ ----------------------------
+        if(wFilterStr.value != ''){
+          reg = new RegExp(wFilterStr.value);
+          if(wVal.match(reg)){
+          }
+          else{
+            wTR[i].setAttribute('cmanFilterNone','');
+          }
+        }
+      }
+    }
+  }
+  tFilterCloseOpen('');
+ }
+ 
+ function tFilterSave(argCol, argFunc){
+  //==============================================================
+  //  フィルタリストの保存または復元
+  //==============================================================
+   // ---「すべて」のチェックボックス値を保存 ------------------
+   var wAllCheck = document.getElementById('tfData_ALL_'+argCol);
+   if(argFunc == 'save'){
+     gTfListSave[wAllCheck.id] = wAllCheck.checked;
+   }else{
+     wAllCheck.checked = gTfListSave[wAllCheck.id];
+   }
+  
+   // --- 各チェックボックス値を保存 ---------------------------
+   var wForm    = document.forms['tfForm_'+argCol];
+   for (var i = 0; i < wForm.elements.length; i++){
+     if(wForm.elements[i].type == 'checkbox'){
+       if(argFunc == 'save'){
+         gTfListSave[wForm.elements[i].id] = wForm.elements[i].checked;
+       }else{
+         wForm.elements[i].checked = gTfListSave[wForm.elements[i].id];
+       }
+     }
+   }
+  
+   // --- 含む文字の入力を保存 ---------------------------------
+   var wStrInput = document.getElementById('tfInStr_'+argCol);
+   if(argFunc == 'save'){
+     gTfListSave[wStrInput.id] = wStrInput.value;
+   }else{
+     wStrInput.value = gTfListSave[wStrInput.id];
+   }
+ }
+ 
+const tFilterCloseOpen = (argCol) => {
+  //==============================================================
+  //  フィルタを閉じて開く
+  //==============================================================
+  // --- フィルタリストを一旦すべて閉じる -----------------------
+  for(var i=0; i < gTfColList.length; i++){
+    document.getElementById("tfList_"+gTfColList[i]).style.display = 'none';
+  }
+  // --- 指定された列のフィルタリストを開く ---------------------
+  if(argCol != ''){
+    document.getElementById("tfList_"+argCol).style.display = '';
+    // --- フィルタ条件の保存（キャンセル時に復元するため） -----
+    tFilterSave(argCol, 'save');
+  
+  }
+}
+
+function tFilterAllSet(argCol){
+//==============================================================
+//  「すべて」のチェック状態に合わせて、各チェックをON/OFF
+//==============================================================
+  var wChecked = false;
+  var wForm    = document.forms['tfForm_'+argCol];
+
+  if(document.getElementById('tfData_ALL_'+argCol).checked){
+    wChecked = true;
+  }
+
+  for (var i = 0; i < wForm.elements.length; i++){
+    if(wForm.elements[i].type == 'checkbox'){
+      wForm.elements[i].checked = wChecked;
+    }
+  }
+}
+
+function tFilterReset(){
+  //==============================================================
+  //  フィルタを削除する
+  //==============================================================
+  let elements = document.querySelectorAll('.tfArea');
+  elements.forEach((element) => {
+    element.remove();
+  });
+}
+  
+ function sortNumA(a, b) {
+  //==============================================================
+  //  数字のソート関数（昇順）
+  //==============================================================
+   a = parseInt(a.replace(/,/g, ''));
+   b = parseInt(b.replace(/,/g, ''));
+  
+   return a - b;
+ }
+ 
+ function sortStrA(a, b){
+  //==============================================================
+  //  文字のソート関数（昇順）
+  //==============================================================
+   a = a.toString().toLowerCase();  // 英大文字小文字を区別しない
+   b = b.toString().toLowerCase();
+  
+   if     (a < b){ return -1; }
+   else if(a > b){ return  1; }
+   return 0;
+ }
+ 
+ function trim(argStr){
+  //==============================================================
+  //  trim
+  //==============================================================
+   var rcStr = argStr;
+   rcStr	= rcStr.replace(/^[ 　\r\n]+/g, '');
+   rcStr	= rcStr.replace(/[ 　\r\n]+$/g, '');
+   return rcStr;
+ }
