@@ -43,13 +43,13 @@
   overflow   : auto;
 }
 /* === フィルタリスト内のチェックボックス ======== */
-.tfMeisai{
+.filterOptionWrapper{
   display: flex;
   text-align : left;
   padding    : 2px;
 }
 /* === フィルタリスト内の文字位置合わせ ========== */
-.tfMeisai label{
+.filterOptionWrapper label{
   padding    : 0 10px 0 3px;
   font-size  : 12pt;
 }
