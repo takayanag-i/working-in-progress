@@ -65,7 +65,20 @@ const createFilterButton = (colIndex) => {
   tfList.className = 'tfList';
   tfList.id = `tfList_${colIndex}`;
   tfList.style.display = 'none';
-  tfList.innerHTML = tFilterCreate(colIndex);
+
+  const items = [];
+
+  for (let i = 0; i < tableData.length - 1; i++) {
+    items[i] = tableData[i+1][colIndex]; // todo
+  }
+
+  const hasNumeric = items.some(item => item.match(/^[-]?[0-9,.]+$/));
+  items.sort(hasNumeric ? sortNumA : sortStrA);
+
+  tfList.appendChild(createTfMeisaiForAll(colIndex, ''));
+  tfList.appendChild(createForm(colIndex, items));
+  tfList.appendChild(createTextArea(colIndex));
+  tfList.appendChild(createButtonArea(colIndex));
 
   div.appendChild(svg);
   div.appendChild(tfList);
@@ -73,53 +86,101 @@ const createFilterButton = (colIndex) => {
   return div;
 }
 
-function tFilterCreate(argCol) {
-  const items = [];
+const createTfMeisaiForAll = (argCol, item) => {
+  const div = document.createElement('div');
+  div.className = 'tfMeisai';
+
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  input.id = `tfData_ALL_${argCol}`;
+  input.value = item;
+  input.checked = true;
+  input.addEventListener('click', () => {
+    tFilterAllSet(argCol);
+  });
+
+  const label = document.createElement('label');
+  label.htmlFor = input.id;
+  label.textContent = '(すべて)';
+
+  div.appendChild(input);
+  div.appendChild(label);
+
+  return div;
+}
+
+const createForm = (argCol, items) => {
   const uniqueItems = {};
-  let dropDown = '';
-  let item = '';
 
-  for (let i = 0; i < tableData.length - 1; i++) {
-    items[i] = tableData[i+1][argCol]; // todo
-  }
+  const form = document.createElement('form');
+  form.name = `tfForm_${argCol}`;
 
-  const hasNumeric = items.some(item => item.match(/^[-]?[0-9,.]+$/));
-  items.sort(hasNumeric ? sortNumA : sortStrA);
+  for(let i = 0; i < items.length; i++) {
+    const div = document.createElement('div');
+    div.className = 'tfMeisai';
+    const item = trim(items[i]);
 
+    if(!(item in uniqueItems)) {
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.id = `tfData_${argCol}_r${i}`;
+      input.value = item;
+      input.checked = true;
+      input.addEventListener('click', () => {
+        tFilterClick(argCol);
+      });
 
-  const wItemId = 'tfData_ALL_' + argCol;
-  dropDown += '<div class="tfMeisai">';
-  dropDown += '<input type="checkbox" id="' + wItemId + '" checked onclick="tFilterAllSet(' + argCol + ')">';
-  dropDown += '<label for="' + wItemId + '">(すべて)</label>';
-  dropDown += '</div>';
+      const label = document.createElement('label');
+      label.htmlFor = input.id;
+      label.textContent = item === '' ? '(空白)' : item;
 
-  dropDown += '<form name="tfForm_' + argCol + '">';
+      div.appendChild(input);
+      div.appendChild(label);
 
-  for (let i = 0; i < items.length; i++) {
-    item = trim(items[i]);
-
-    if (!(item in uniqueItems)) {
-      const wItemId = 'tfData_' + argCol + '_r' + i;
-      dropDown += '<div class="tfMeisai">';
-      dropDown += '<input type="checkbox" id="' + wItemId + '" value="' + item + '" checked onclick="tFilterClick(' + argCol + ')">';
-      dropDown += '<label for="' + wItemId + '">' + (item == '' ? '(空白)' : item) + '</label>';
-      dropDown += '</div>';
+      form.appendChild(div);
 
       uniqueItems[item] = '1';
     }
+
   }
-  dropDown += '</form>';
 
-  dropDown += '<div class="tfInStr">';
-  dropDown += '<input type="text" placeholder="含む文字抽出" id="tfInStr_' + argCol + '">';
-  dropDown += '</div>';
+  return form;  
+}
 
-  dropDown += '<div class="tfBtnArea">';
-  dropDown += '<input type="button" value="OK" onclick="tFilterGo()">';
-  dropDown += '<input type="button" value="Cancel" onclick="tFilterCancel(' + argCol + ')">';
-  dropDown += '</div>';
+const createTextArea = (argCol) => {
+  const div = document.createElement('div');
+  div.className = 'tfInStr';
 
-  return dropDown;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = '含む文字抽出';
+  input.id = `tfInStr_${argCol}`;
+
+  div.appendChild(input);
+
+  return div;
+}
+
+const createButtonArea = (argCol) => {
+  const div = document.createElement('div');
+  div.className = 'tfBtnArea';
+
+  const okButton = document.createElement('input');
+  okButton.type = 'button';
+  okButton.value = 'OK';
+  okButton.addEventListener('click', tFilterGo);
+
+  const cancelButton = document.createElement('input');
+  cancelButton.type = 'button';
+  cancelButton.value = 'Cancel';
+  cancelButton.addEventListener('click', () => {
+    tFilterCancel(argCol);
+  });
+
+  div.appendChild(okButton);
+  div.appendChild(cancelButton);
+
+  return div;
 }
 
 function tFilterClick(argCol) {
