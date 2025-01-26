@@ -13,6 +13,7 @@
   margin     : 1px 3px;
   padding    : 3px;
   cursor     : pointer;
+  box-sizing: content-box !important;
 }
   /* === フィルタボタン（カーソルオーバー時）======= */
 .tfImg:hover{
