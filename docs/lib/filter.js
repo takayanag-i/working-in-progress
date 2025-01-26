@@ -330,7 +330,7 @@ function tFilterSave(argCol, argFunc) {
 }
 
 const tFilterCloseOpen = (argCol) => {
-  for (let i = 0; i < tableData.length; i++) {
+  for (let i = 0; i < tableData[0].length; i++) { // todo
     document.getElementById("tfList_" + i).style.display = 'none';
   }
 
