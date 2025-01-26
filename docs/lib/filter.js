@@ -261,7 +261,7 @@ function tFilterGo() {
     }
   }
 
-  for (let wCol = 0; wCol < tableData.length; wCol++) {
+  for (let wCol = 0; wCol < tableData[0].length; wCol++) {
     const wAll = document.getElementById('filterOptionAll_' + wCol);
     const wItemSave = {};
     const wFilterBtn = document.getElementById('tsBtn_' + wCol);
