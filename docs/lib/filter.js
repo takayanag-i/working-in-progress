@@ -27,6 +27,7 @@ const tFilterInit = () => {
   }
 
   tableData = getTableData(table);
+  console.log(tableData);
 
   const headers = Array.from(table.tHead.rows[0].cells);
 
@@ -70,8 +71,8 @@ const createDropDown = (colIndex) => {
 
   const items = [];
 
-  for (let i = 0; i < tableData.length - 1; i++) {
-    items[i] = tableData[i+1][colIndex]; // todo
+  for (let rowIndex = 0; rowIndex < tableData.length; rowIndex++) {
+    items[rowIndex] = tableData[rowIndex][colIndex]; // todo
   }
 
   const hasNumeric = items.some(item => item.match(/^[-]?[0-9,.]+$/));
