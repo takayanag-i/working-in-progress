@@ -40,88 +40,86 @@ function tFilterInit(oeconomicas) {
   let addBtn = '';
   tableData = oeconomicas;
 
-  for (let i = 0; i < rows.length; i++) {
-    const cells = table.rows[i].cells;
+  const cells = rows[0].cells;
 
-    for (let j = 0; j < cells.length; j++) {
-      startRow = i + 1;
-      addBtn = createFilterButton(j);
-      cells[j].innerHTML += addBtn;
-    }
-
-    if (addBtn != '') {
-      break;
-    }
+  for (let j = 0; j < cells.length; j++) {
+    startRow = 1;
+    addBtn = createFilterButton(j);
+    cells[j].appendChild(addBtn);
   }
 }
 
-function createFilterButton(colIndex) {
-  return `
-    <div class="tfArea">
-      <svg class="tfImg" id="tsBtn_${colIndex}" onclick="tFilterCloseOpen(${colIndex})">
-        <path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path>
-      </svg>
-      <div class="tfList" id="tfList_${colIndex}" style="display:none">
-        ${tFilterCreate(colIndex)}
-      </div>
-    </div>
-  `;
+const createFilterButton = (colIndex) => {
+  const div = document.createElement('div');
+  div.className = 'tfArea';
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.classList.add('tfImg');
+  svg.id = `tsBtn_${colIndex}`;
+  svg.innerHTML = '<path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path>';
+  svg.addEventListener('click', () => {
+    tFilterCloseOpen(colIndex);
+  });
+
+  const tfList = document.createElement('div');
+  tfList.className = 'tfList';
+  tfList.id = `tfList_${colIndex}`;
+  tfList.style.display = 'none';
+  tfList.innerHTML = tFilterCreate(colIndex);
+
+  div.appendChild(svg);
+  div.appendChild(tfList);
+
+  return div;
 }
 
 function tFilterCreate(argCol) {
-  const wItem = [];
-  let wNotNum = 0;
-  const wItemSave = {};
-  let rcList = '';
-  let wVal = '';
+  const items = [];
+  const uniqueItems = {};
+  let dropDown = '';
+  let item = '';
 
-  for (let i = startRow; i < tableData.length; i++) {
-    const j = i - startRow;
-    wItem[j] = tableData[i][argCol]; // todo
-    if (!wItem[j].match(/^[-]?[0-9,.]+$/)) {
-      wNotNum = 1;
-    }
+  for (let i = 0; i < tableData.length - 1; i++) {
+    items[i] = tableData[i+1][argCol]; // todo
   }
 
-  if (wNotNum == 0) {
-    wItem.sort(sortNumA);
-  } else {
-    wItem.sort(sortStrA);
-  }
+  const hasNumeric = items.some(item => item.match(/^[-]?[0-9,.]+$/));
+  items.sort(hasNumeric ? sortNumA : sortStrA);
+
 
   const wItemId = 'tfData_ALL_' + argCol;
-  rcList += '<div class="tfMeisai">';
-  rcList += '<input type="checkbox" id="' + wItemId + '" checked onclick="tFilterAllSet(' + argCol + ')">';
-  rcList += '<label for="' + wItemId + '">(すべて)</label>';
-  rcList += '</div>';
+  dropDown += '<div class="tfMeisai">';
+  dropDown += '<input type="checkbox" id="' + wItemId + '" checked onclick="tFilterAllSet(' + argCol + ')">';
+  dropDown += '<label for="' + wItemId + '">(すべて)</label>';
+  dropDown += '</div>';
 
-  rcList += '<form name="tfForm_' + argCol + '">';
+  dropDown += '<form name="tfForm_' + argCol + '">';
 
-  for (let i = 0; i < wItem.length; i++) {
-    wVal = trim(wItem[i]);
+  for (let i = 0; i < items.length; i++) {
+    item = trim(items[i]);
 
-    if (!(wVal in wItemSave)) {
+    if (!(item in uniqueItems)) {
       const wItemId = 'tfData_' + argCol + '_r' + i;
-      rcList += '<div class="tfMeisai">';
-      rcList += '<input type="checkbox" id="' + wItemId + '" value="' + wVal + '" checked onclick="tFilterClick(' + argCol + ')">';
-      rcList += '<label for="' + wItemId + '">' + (wVal == '' ? '(空白)' : wVal) + '</label>';
-      rcList += '</div>';
+      dropDown += '<div class="tfMeisai">';
+      dropDown += '<input type="checkbox" id="' + wItemId + '" value="' + item + '" checked onclick="tFilterClick(' + argCol + ')">';
+      dropDown += '<label for="' + wItemId + '">' + (item == '' ? '(空白)' : item) + '</label>';
+      dropDown += '</div>';
 
-      wItemSave[wVal] = '1';
+      uniqueItems[item] = '1';
     }
   }
-  rcList += '</form>';
+  dropDown += '</form>';
 
-  rcList += '<div class="tfInStr">';
-  rcList += '<input type="text" placeholder="含む文字抽出" id="tfInStr_' + argCol + '">';
-  rcList += '</div>';
+  dropDown += '<div class="tfInStr">';
+  dropDown += '<input type="text" placeholder="含む文字抽出" id="tfInStr_' + argCol + '">';
+  dropDown += '</div>';
 
-  rcList += '<div class="tfBtnArea">';
-  rcList += '<input type="button" value="OK" onclick="tFilterGo()">';
-  rcList += '<input type="button" value="Cancel" onclick="tFilterCancel(' + argCol + ')">';
-  rcList += '</div>';
+  dropDown += '<div class="tfBtnArea">';
+  dropDown += '<input type="button" value="OK" onclick="tFilterGo()">';
+  dropDown += '<input type="button" value="Cancel" onclick="tFilterCancel(' + argCol + ')">';
+  dropDown += '</div>';
 
-  return rcList;
+  return dropDown;
 }
 
 function tFilterClick(argCol) {
