@@ -261,7 +261,7 @@ function tFilterGo() {
     }
   }
 
-  for (let wCol = 0; wCol < tableData[0].length; wCol++) {
+  for (let wCol = 0; wCol < Object.keys(tableData[0]).length; wCol++) {
     const wAll = document.getElementById('filterOptionAll_' + wCol);
     const wItemSave = {};
     const wFilterBtn = document.getElementById('tsBtn_' + wCol);
@@ -330,7 +330,7 @@ function tFilterSave(argCol, argFunc) {
 }
 
 const tFilterCloseOpen = (argCol) => {
-  for (let i = 0; i < tableData[0].length; i++) { // todo
+  for (let i = 0; i < Object.keys(tableData[0]).length; i++) { // todo
     document.getElementById("tfList_" + i).style.display = 'none';
   }
 
