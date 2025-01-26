@@ -1,104 +1,71 @@
 //===============================================================
-//  フィルタテーブルの共通変数　設定要！
+//  グローバル定数・変数
 //===============================================================
-let gTfStartRow = 0;
-const gTfColList = [];             // ボタンが配置されている列番号
-const gTfListSave = {};            // フィルタリストの保存状態
-let varOeconomicas = '';
-let colObj = {};
+let startRow = 0;
+const filterState = {}; // フィルタリストの保存状態
+let tableData = [];
 
 //===============================================================
 //  オンロードでテーブル初期設定関数をCALL
 //===============================================================
-window.onload = function() {
-  colObj = createColObj();
-  console.log(colObj);
-  varOeconomicas = tableToVarOeconomicas();
-  console.log(varOeconomicas);
-  tFilterInit(varOeconomicas);
+window.onload = () => {
+  tableData = getTableData();
+  console.log(tableData);
+  tFilterInit(tableData);
 }
 
-function createColObj() {
-  // テーブル要素を取得
-  const table = document.getElementsByTagName("table")[0];
+const getTableData = () => {
+  const table = document.querySelector("table");
   if (!table) {
-    console.error("Table element not found.");
-    return {};
-  }
-
-  const colObj = {};
-  const rows = table.rows;
-
-  if (rows.length > 0) {
-    const headerCells = rows[0].cells;
-    for (let i = 0; i < headerCells.length; i++) {
-      colObj[i] = "col" + (i + 1);
-    }
-  }
-  return colObj;
-}
-
-function tableToVarOeconomicas() {
-  // テーブル要素を取得
-  const table = document.getElementsByTagName("table")[0];
-  if (!table) {
-    console.error("Table element not found.");
+    console.error("テーブル要素がありません");
     return [];
   }
 
-  const varOeconomicas = [];
-  const rows = table.rows;
-  const headers = [];
+  const rows = Array.from(table.rows);
+  if (rows.length === 0) return [];
 
-  if (rows.length > 0) {
-    const headerCells = rows[0].cells;
-    for (let i = 0; i < headerCells.length; i++) {
-      headers.push("col" + (i + 1));
-    }
-  }
-
-  for (let i = 1; i < rows.length; i++) {
-    const row = rows[i];
-    const cells = row.cells;
+  return rows.slice(1).map(row => {
+    const cells = Array.from(row.cells);
     const rowData = {};
-
-    for (let j = 0; j < cells.length; j++) {
-      rowData[headers[j]] = cells[j].innerText.trim();
-    }
-
-    varOeconomicas.push(rowData);
-  }
-
-  return varOeconomicas;
+    cells.forEach((cell, index) => {
+      rowData[index] = cell.innerText.trim();
+    });
+    return rowData;
+  });
 }
 
 function tFilterInit(oeconomicas) {
-  const table = document.getElementsByTagName("table")[0];
+  const table = document.querySelector("table");
   const rows = table.rows;
   let addBtn = '';
-  varOeconomicas = oeconomicas;
+  tableData = oeconomicas;
 
   for (let i = 0; i < rows.length; i++) {
     const cells = table.rows[i].cells;
 
     for (let j = 0; j < cells.length; j++) {
-      gTfStartRow = i + 1;
-
-      addBtn = '<div class="tfArea">';
-      addBtn += '<svg class="tfImg" id="tsBtn_' + j + '" onclick="tFilterCloseOpen(' + j + ')"><path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path></svg>';
-      addBtn += '<div class="tfList" id="tfList_' + j + '" style="display:none">';
-      addBtn += tFilterCreate(j);
-      addBtn += '</div>';
-      addBtn += '</div>';
+      startRow = i + 1;
+      addBtn = createFilterButton(j);
       cells[j].innerHTML += addBtn;
-
-      gTfColList.push(j);
     }
 
     if (addBtn != '') {
       break;
     }
   }
+}
+
+function createFilterButton(colIndex) {
+  return `
+    <div class="tfArea">
+      <svg class="tfImg" id="tsBtn_${colIndex}" onclick="tFilterCloseOpen(${colIndex})">
+        <path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path>
+      </svg>
+      <div class="tfList" id="tfList_${colIndex}" style="display:none">
+        ${tFilterCreate(colIndex)}
+      </div>
+    </div>
+  `;
 }
 
 function tFilterCreate(argCol) {
@@ -108,10 +75,10 @@ function tFilterCreate(argCol) {
   let rcList = '';
   let wVal = '';
 
-  for (let i = gTfStartRow; i < varOeconomicas.length; i++) {
-    const j = i - gTfStartRow;
-    wItem[j] = varOeconomicas[i][colObj[argCol]];
-    if (!wItem[j].match(/^[-]?[0-9,\.]+$/)) {
+  for (let i = startRow; i < tableData.length; i++) {
+    const j = i - startRow;
+    wItem[j] = tableData[i][argCol]; // todo
+    if (!wItem[j].match(/^[-]?[0-9,.]+$/)) {
       wNotNum = 1;
     }
   }
@@ -196,8 +163,7 @@ function tFilterGo() {
     }
   }
 
-  for (let wColList = 0; wColList < gTfColList.length; wColList++) {
-    const wCol = gTfColList[wColList];
+  for (let wCol = 0; wCol < tableData.length; wCol++) {
     const wAll = document.getElementById('tfData_ALL_' + wCol);
     const wItemSave = {};
     const wFilterBtn = document.getElementById('tsBtn_' + wCol);
@@ -218,8 +184,8 @@ function tFilterGo() {
     } else {
       wFilterBtn.style.backgroundColor = '#ffff00';
 
-      for (let i = gTfStartRow; i < rows.length; i++) {
-        wVal = trim(varOeconomicas[i - 1][colObj[wCol]]);
+      for (let i = startRow; i < rows.length; i++) {
+        wVal = trim(tableData[i - 1][wCol]); // todo
         if (!wAll.checked) {
           if (!(wVal in wItemSave)) {
             rows[i].setAttribute('cmanFilterNone', '');
@@ -241,33 +207,33 @@ function tFilterGo() {
 function tFilterSave(argCol, argFunc) {
   const wAllCheck = document.getElementById('tfData_ALL_' + argCol);
   if (argFunc == 'save') {
-    gTfListSave[wAllCheck.id] = wAllCheck.checked;
+    filterState[wAllCheck.id] = wAllCheck.checked;
   } else {
-    wAllCheck.checked = gTfListSave[wAllCheck.id];
+    wAllCheck.checked = filterState[wAllCheck.id];
   }
 
   const wForm = document.forms['tfForm_' + argCol];
   for (let i = 0; i < wForm.elements.length; i++) {
     if (wForm.elements[i].type == 'checkbox') {
       if (argFunc == 'save') {
-        gTfListSave[wForm.elements[i].id] = wForm.elements[i].checked;
+        filterState[wForm.elements[i].id] = wForm.elements[i].checked;
       } else {
-        wForm.elements[i].checked = gTfListSave[wForm.elements[i].id];
+        wForm.elements[i].checked = filterState[wForm.elements[i].id];
       }
     }
   }
 
   const wStrInput = document.getElementById('tfInStr_' + argCol);
   if (argFunc == 'save') {
-    gTfListSave[wStrInput.id] = wStrInput.value;
+    filterState[wStrInput.id] = wStrInput.value;
   } else {
-    wStrInput.value = gTfListSave[wStrInput.id];
+    wStrInput.value = filterState[wStrInput.id];
   }
 }
 
-function tFilterCloseOpen(argCol) {
-  for (let i = 0; i < gTfColList.length; i++) {
-    document.getElementById("tfList_" + gTfColList[i]).style.display = 'none';
+const tFilterCloseOpen = (argCol) => {
+  for (let i = 0; i < tableData.length; i++) {
+    document.getElementById("tfList_" + i).style.display = 'none';
   }
 
   if (argCol !== '') {
@@ -276,7 +242,7 @@ function tFilterCloseOpen(argCol) {
   }
 }
 
-function tFilterAllSet(argCol) {
+const tFilterAllSet = (argCol) => {
   const wChecked = document.getElementById('tfData_ALL_' + argCol).checked;
   const wForm = document.forms['tfForm_' + argCol];
 
@@ -287,20 +253,20 @@ function tFilterAllSet(argCol) {
   }
 }
 
-function tFilterReset() {
+const  tFilterReset = () => {
   const elements = document.querySelectorAll('.tfArea');
   elements.forEach((element) => {
     element.remove();
   });
 }
 
-function sortNumA(a, b) {
+const sortNumA = (a, b) => {
   a = parseInt(a.replace(/,/g, ''));
   b = parseInt(b.replace(/,/g, ''));
   return a - b;
 }
 
-function sortStrA(a, b) {
+const sortStrA = (a, b) => {
   a = a.toString().toLowerCase();
   b = b.toString().toLowerCase();
   if (a < b) return -1;
@@ -308,9 +274,9 @@ function sortStrA(a, b) {
   return 0;
 }
 
-function trim(argStr) {
+const trim = (argStr) => {
   let rcStr = argStr;
-  rcStr = rcStr.replace(/^[ 　\r\n]+/g, '');
-  rcStr = rcStr.replace(/[ 　\r\n]+$/g, '');
+  rcStr = rcStr.replace(/^[\s\u3000\r\n]+/g, '');
+  rcStr = rcStr.replace(/[\s\u3000\r\n]+$/g, '');
   return rcStr;
 }
