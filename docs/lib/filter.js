@@ -123,7 +123,7 @@ const createfilterOptionForAll = (colIndex) => {
   input.id = `filterOptionAll_${colIndex}`;
   input.checked = true;
   input.addEventListener('click', () => {
-    tFilterAllSet(colIndex);
+    checkAll(colIndex);
   });
 
   const label = document.createElement('label');
@@ -157,7 +157,7 @@ const createFormsForOptions = (colIndex, items) => {
     input.value = item;
     input.checked = true;
     input.addEventListener('click', () => {
-      tFilterClick(colIndex);
+      updataFilterOptions(colIndex);
     });
 
     const label = document.createElement('label');
@@ -222,44 +222,52 @@ const createButtonArea = (colIndex) => {
 //===============================================================
 //  イベント
 //===============================================================
-function tFilterClick(argCol) {
-  const wForm = document.forms['form_' + argCol];
-  let wCntOn = 0;
+/**
+ * フィルタオプションのチェック状態を更新する関数
+ * @param {Number} colIndex 列番号
+ */
+const updataFilterOptions = (colIndex) => {
+  const options = Array.from(document.forms[`form_${colIndex}`].elements);
+  const allOption = document.querySelector(`#filterOptionAll_${colIndex}`);
+
   let wCntOff = 0;
-  const wAll = document.getElementById('filterOptionAll_' + argCol);
 
-  for (let i = 0; i < wForm.elements.length; i++) {
-    if (wForm.elements[i].type == 'checkbox') {
-      if (wForm.elements[i].checked) {
-        wCntOn++;
-      } else {
-        wCntOff++;
-      }
+  options.forEach(option => {
+    if (option.type === 'checkbox') {
+      if (option.checked) {;} else { wCntOff++; }
     }
-  }
+  });
 
-  if ((wCntOn == 0) || (wCntOff == 0)) {
-    wAll.checked = true;
-    tFilterAllSet(argCol);
+  if (wCntOff === 0) {
+    allOption.checked = true;
+    checkAll(colIndex);
   } else {
-    wAll.checked = false;
+    allOption.checked = false;
   }
 }
 
+/**
+ * キャンセル押下時の処理を行う関数
+ * @param {Number} colIndex 列番号
+ */
 function tFilterCancel(argCol) {
   tFilterSave(argCol, 'load');
   tFilterCloseOpen('');
 }
 
 function tFilterGo() {
-  const table = document.getElementsByTagName("table")[0];
-  const rows = table.rows;
-
-  for (let i = 0; i < rows.length; i++) {
-    if (rows[i].getAttribute('cmanFilterNone') !== null) {
-      rows[i].removeAttribute('cmanFilterNone');
-    }
+  const table = document.querySelector("table");
+  if (!table) {
+    console.error("テーブル要素がありません");
+    return;
   }
+  const rows = Array.from(table.rows);
+
+  rows.forEach(row => {
+    if (row.getAttribute('cmanFilterNone') !== null) {
+      row.removeAttribute('cmanFilterNone');
+    }
+  });
 
   for (let wCol = 0; wCol < Object.keys(tableData[0]).length; wCol++) {
     const wAll = document.getElementById('filterOptionAll_' + wCol);
@@ -342,7 +350,7 @@ const tFilterCloseOpen = (argCol) => {
   }
 }
 
-const tFilterAllSet = (argCol) => {
+const checkAll = (argCol) => {
   const wChecked = document.getElementById('filterOptionAll_' + argCol).checked;
   const wForm = document.forms['form_' + argCol];
 
