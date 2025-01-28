@@ -1,8 +1,6 @@
 //===============================================================
 //  グローバル定数・変数
 //===============================================================
-let startRow = 1;
-
 /** @type {Object} */
 const filterState = {}; // フィルタリストの保存状態
 
@@ -57,33 +55,33 @@ const getTableData = (table) => {
 
 /**
  * フィルタ用のドロップダウンを生成する関数
- * @param {Number} colIndex 
+ * @param {Number} columnIndex 
  * @returns {HTMLDivElement} ドロップダウンDOM
  */
-const createDropDown = (colIndex) => {
+const createDropDown = (columnIndex) => {
   const div = document.createElement('div');
   div.className = 'tfArea';
 
   const tfList = document.createElement('div');
   tfList.className = 'tfList';
-  tfList.id = `tfList_${colIndex}`;
+  tfList.id = `tfList_${columnIndex}`;
   tfList.style.display = 'none';
 
   const items = [];
 
   for (let rowIndex = 0; rowIndex < tableData.length; rowIndex++) {
-    items[rowIndex] = tableData[rowIndex][colIndex]; // todo
+    items[rowIndex] = tableData[rowIndex][columnIndex]; // todo
   }
 
   const hasNumeric = items.some(item => item.match(/^[-]?[0-9,.]+$/));
   items.sort(hasNumeric ? sortNumA : sortStrA);
 
-  tfList.appendChild(createfilterOptionForAll(colIndex));
-  tfList.appendChild(createFormsForOptions(colIndex, items));
-  tfList.appendChild(createTextArea(colIndex));
-  tfList.appendChild(createButtonArea(colIndex));
+  tfList.appendChild(createfilterOptionForAll(columnIndex));
+  tfList.appendChild(createFormsForOptions(columnIndex, items));
+  tfList.appendChild(createTextArea(columnIndex));
+  tfList.appendChild(createButtonArea(columnIndex));
 
-  div.appendChild(createSvgButton(colIndex));
+  div.appendChild(createSvgButton(columnIndex));
   div.appendChild(tfList);
 
   return div;
@@ -94,16 +92,16 @@ const createDropDown = (colIndex) => {
 //===============================================================
 /**
  * フィルタボタンを生成する
- * @param {Number} colIndex 列番号
+ * @param {Number} columnIndex 列番号
  * @returns {SVGSVGElement} SVG要素
  */
-const createSvgButton = (colIndex) => {
+const createSvgButton = (columnIndex) => {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.classList.add('tfImg');
-  svg.id = `tsBtn_${colIndex}`;
+  svg.id = `filterButton_${columnIndex}`;
   svg.innerHTML = '<path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path>';
   svg.addEventListener('click', () => {
-    tFilterCloseOpen(colIndex);
+    tFilterCloseOpen(columnIndex);
   });
 
   return svg;
@@ -111,19 +109,19 @@ const createSvgButton = (colIndex) => {
 
 /**
  * 一括変更用のフィルタオプションを生成する
- * @param {Number} colIndex 列番号 
+ * @param {Number} columnIndex 列番号 
  * @returns {HTMLDivElement} div要素
  */
-const createfilterOptionForAll = (colIndex) => {
+const createfilterOptionForAll = (columnIndex) => {
   const div = document.createElement('div');
   div.classList.add('filterOptionWrapper');
 
   const input = document.createElement('input');
   input.type = 'checkbox';
-  input.id = `filterOptionAll_${colIndex}`;
+  input.id = `filterOptionAll_${columnIndex}`;
   input.checked = true;
   input.addEventListener('click', () => {
-    checkAll(colIndex);
+    checkAll(columnIndex);
   });
 
   const label = document.createElement('label');
@@ -138,13 +136,13 @@ const createfilterOptionForAll = (colIndex) => {
 
 /**
  * フィルタオプション群を生成する
- * @param {Number} colIndex 
+ * @param {Number} columnIndex 
  * @param {Array<String|Number>} items 
  * @returns {HTMLFormElement} form要素(子要素に各フィルタオプションを持つ)
  */
-const createFormsForOptions = (colIndex, items) => {
+const createFormsForOptions = (columnIndex, items) => {
   const form = document.createElement('form');
-  form.name = `form_${colIndex}`;
+  form.name = `form_${columnIndex}`;
 
   const uniqueItems = Array.from(new Set(items.map(item => trim(item)))); // 重複を除く
   uniqueItems.forEach((item, itemIndex) => {
@@ -153,11 +151,11 @@ const createFormsForOptions = (colIndex, items) => {
 
     const input = document.createElement('input');
     input.type = 'checkbox';
-    input.id = `option_${colIndex}_${itemIndex}`;
+    input.id = `option_${columnIndex}_${itemIndex}`;
     input.value = item;
     input.checked = true;
     input.addEventListener('click', () => {
-      updataFilterOptions(colIndex);
+      updataFilterOptions(columnIndex);
     });
 
     const label = document.createElement('label');
@@ -175,17 +173,17 @@ const createFormsForOptions = (colIndex, items) => {
 
 /**
  * 文字列抽出用のテキストエリアを生成する
- * @param {Number} colIndex 
+ * @param {Number} columnIndex 
  * @returns {HTMLDivElement} div要素
  */
-const createTextArea = (colIndex) => {
+const createTextArea = (columnIndex) => {
   const div = document.createElement('div');
-  div.className = 'tfInStr';
+  div.className = 'textArea';
 
   const input = document.createElement('input');
   input.type = 'text';
   input.placeholder = 'By Text';
-  input.id = `tfInStr_${colIndex}`;
+  input.id = `textArea_${columnIndex}`;
 
   div.appendChild(input);
 
@@ -194,23 +192,23 @@ const createTextArea = (colIndex) => {
 
 /**
  * Applyボタンを生成する
- * @param {Number} colIndex 
+ * @param {Number} columnIndex 
  * @returns {HTMLDivElement} div要素
  */
-const createButtonArea = (colIndex) => {
+const createButtonArea = (columnIndex) => {
   const div = document.createElement('div');
   div.classList.add('tfBtnArea');
 
   const okButton = document.createElement('input');
   okButton.type = 'button';
   okButton.value = 'Apply';
-  okButton.addEventListener('click', tFilterGo);
+  okButton.addEventListener('click', applyFilter);
 
   const cancelButton = document.createElement('input');
   cancelButton.type = 'button';
   cancelButton.value = 'Cancel';
   cancelButton.addEventListener('click', () => {
-    tFilterCancel(colIndex);
+    closeDropdown(columnIndex);
   });
 
   div.appendChild(okButton);
@@ -224,44 +222,45 @@ const createButtonArea = (colIndex) => {
 //===============================================================
 /**
  * フィルタオプションのチェック状態を更新する関数
- * @param {Number} colIndex 列番号
+ * @param {Number} columnIndex 列番号
  */
-const updataFilterOptions = (colIndex) => {
-  const options = Array.from(document.forms[`form_${colIndex}`].elements);
-  const allOption = document.querySelector(`#filterOptionAll_${colIndex}`);
+const updataFilterOptions = (columnIndex) => {
+  const options = Array.from(document.forms[`form_${columnIndex}`].elements);
+  const allOption = document.querySelector(`#filterOptionAll_${columnIndex}`);
 
-  let wCntOff = 0;
+  let uncheckedCount = 0;
 
   options.forEach(option => {
     if (option.type === 'checkbox') {
-      if (option.checked) {;} else { wCntOff++; }
+      if (option.checked) {;} else { uncheckedCount++; }
     }
   });
 
-  if (wCntOff === 0) {
+  if (uncheckedCount === 0) {
     allOption.checked = true;
-    checkAll(colIndex);
+    checkAll(columnIndex);
   } else {
     allOption.checked = false;
   }
 }
 
 /**
- * キャンセル押下時の処理を行う関数
- * @param {Number} colIndex 列番号
+ * ドロップダウンを閉じる際の処理を行う関数
+ * @param {Number} columnIndex 列番号
  */
-function tFilterCancel(argCol) {
-  tFilterSave(argCol, 'load');
+const closeDropdown = (columnIndex) => {
+  tFilterSave(columnIndex, 'load');
   tFilterCloseOpen('');
 }
 
-function tFilterGo() {
+function applyFilter() {
   const table = document.querySelector("table");
   if (!table) {
     console.error("テーブル要素がありません");
     return;
   }
   const rows = Array.from(table.rows);
+  const startRow = 1
 
   rows.forEach(row => {
     if (row.getAttribute('cmanFilterNone') !== null) {
@@ -269,56 +268,53 @@ function tFilterGo() {
     }
   });
 
-  for (let wCol = 0; wCol < Object.keys(tableData[0]).length; wCol++) {
-    const wAll = document.getElementById('filterOptionAll_' + wCol);
-    const wItemSave = {};
-    const wFilterBtn = document.getElementById('tsBtn_' + wCol);
-    const wFilterStr = document.getElementById('tfInStr_' + wCol);
-    const wForm = document.forms['form_' + wCol];
-    let wVal = '';
+  // 列をループ
+  for (let columnIndex = 0; columnIndex < Object.keys(tableData[0]).length; columnIndex++) {
+    const allOption = document.querySelector(`#filterOptionAll_${columnIndex}`);
+    const checkedOptions = new Set();
+    const filterButton = document.querySelector(`#filterButton_${columnIndex}`);
+    const textArea = document.querySelector(`#textArea_${columnIndex}`);
+    const forms = document.forms[`form_${columnIndex}`];
 
-    for (let i = 0; i < wForm.elements.length; i++) {
-      if (wForm.elements[i].type == 'checkbox') {
-        if (wForm.elements[i].checked) {
-          wItemSave[wForm.elements[i].value] = 1;
+    Array.from(forms.elements).forEach(element => {
+      if (element.type === 'checkbox' && element.checked) {
+        checkedOptions.add(element.value);
+      }
+    });
+
+    if ((allOption.checked) && (trim(textArea.value) == '')) {
+      filterButton.style.backgroundColor = '';
+      continue; // 次の列の処理へ
+    }
+
+    // 行をループ
+    for (let rowIndex = startRow; rowIndex < rows.length; rowIndex++) {
+      const cellValue = trim(tableData[rowIndex - 1][columnIndex]); // todo
+      if (!allOption.checked && !(checkedOptions.has(cellValue))) {
+          rows[rowIndex].setAttribute('cmanFilterNone', '');
+      }
+
+      if (textArea.value != '') {
+        const reg = new RegExp(textArea.value);
+        if (!cellValue.match(reg)) {
+          rows[rowIndex].setAttribute('cmanFilterNone', '');
         }
       }
     }
-
-    if ((wAll.checked) && (trim(wFilterStr.value) == '')) {
-      wFilterBtn.style.backgroundColor = '';
-    } else {
-      wFilterBtn.style.backgroundColor = '#ffff00';
-
-      for (let i = startRow; i < rows.length; i++) {
-        wVal = trim(tableData[i - 1][wCol]); // todo
-        if (!wAll.checked) {
-          if (!(wVal in wItemSave)) {
-            rows[i].setAttribute('cmanFilterNone', '');
-          }
-        }
-
-        if (wFilterStr.value != '') {
-          const reg = new RegExp(wFilterStr.value);
-          if (!wVal.match(reg)) {
-            rows[i].setAttribute('cmanFilterNone', '');
-          }
-        }
-      }
-    }
+    filterButton.style.backgroundColor = '#ffff00';
   }
   tFilterCloseOpen('');
 }
 
 function tFilterSave(argCol, argFunc) {
-  const wAllCheck = document.getElementById('filterOptionAll_' + argCol);
+  const wAllCheck = document.getElementById(`filterOptionAll_${argCol}`);
   if (argFunc == 'save') {
     filterState[wAllCheck.id] = wAllCheck.checked;
   } else {
     wAllCheck.checked = filterState[wAllCheck.id];
   }
 
-  const wForm = document.forms['form_' + argCol];
+  const wForm = document.forms[`form_${argCol}`];
   for (let i = 0; i < wForm.elements.length; i++) {
     if (wForm.elements[i].type == 'checkbox') {
       if (argFunc == 'save') {
@@ -329,7 +325,7 @@ function tFilterSave(argCol, argFunc) {
     }
   }
 
-  const wStrInput = document.getElementById('tfInStr_' + argCol);
+  const wStrInput = document.getElementById(`textArea_${argCol}`);
   if (argFunc == 'save') {
     filterState[wStrInput.id] = wStrInput.value;
   } else {
@@ -343,7 +339,7 @@ const tFilterCloseOpen = (argCol) => {
   }
 
   if (argCol !== '') {
-    const dropDown = document.getElementById("tfList_" + argCol);
+    const dropDown = document.getElementById(`tfList_${argCol}`);
     dropDown.style.display = '';
 
     tFilterSave(argCol, 'save');
@@ -351,8 +347,8 @@ const tFilterCloseOpen = (argCol) => {
 }
 
 const checkAll = (argCol) => {
-  const wChecked = document.getElementById('filterOptionAll_' + argCol).checked;
-  const wForm = document.forms['form_' + argCol];
+  const wChecked = document.getElementById(`filterOptionAll_${argCol}`).checked;
+  const wForm = document.forms[`form_${argCol}`];
 
   for (let i = 0; i < wForm.elements.length; i++) {
     if (wForm.elements[i].type == 'checkbox') {

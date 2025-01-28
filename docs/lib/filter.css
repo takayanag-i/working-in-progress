@@ -65,12 +65,12 @@
   margin     : 0 5px;
 }
 /* === 含むボタンの入力エリア ==================== */
-.tfInStr{
+.textArea{
   padding    : 5px 3px;
   border-top : 1px solid #999;
   border-bottom: 1px solid #999;
 }
-.tfInStr input{
+.textArea input{
   box-sizing : border-box;
   width      : 100%;
   padding    : 1px 3px;
