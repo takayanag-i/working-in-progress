@@ -1,10 +1,10 @@
 /* === フィルタボタン ============================ */
-.tfArea{
+.drop-down-wrapper{
   /* display    : inline-block; */
   position   : relative;
   text-align: right;
 }
-.tfImg{
+.svg-button{
   display    : inline-block;
   width      : 8px;
   height     : 8px;
@@ -16,15 +16,15 @@
   box-sizing: content-box !important;
 }
   /* === フィルタボタン（カーソルオーバー時）======= */
-.tfImg:hover{
+.svg-button:hover{
   background : #FFD700;
 }
   /* === フィルタボタン内の画像色（SVG）============ */
-.tfImg path{
+.svg-button path{
   fill       : #777;
 }
   /* === フィルタリスト ============================ */
-.tfList{
+.drop-down{
   display    : inline-block;
   position   : absolute;
   max-width  : 250px;
@@ -37,40 +37,40 @@
   font-weight: normal;
 }
 /* === フィルタリスト内のform ==================== */
-.tfList form{
+.drop-down form{
   max-height : 150px;           /* 縦幅 */
   overflow   : scroll;
   overflow   : overflow-y;
   overflow   : auto;
 }
 /* === フィルタリスト内のチェックボックス ======== */
-.filterOptionWrapper{
+.filter-option-wrapper{
   display: flex;
   text-align : left;
   padding    : 2px;
 }
 /* === フィルタリスト内の文字位置合わせ ========== */
-.filterOptionWrapper label{
+.filter-option-wrapper label{
   padding    : 0 10px 0 3px;
   font-size  : 12pt;
 }
   /* === OK/CANCELボタン =========================== */
-.tfBtnArea{
+.svg-button-wrapper{
   text-align : center;
   font-size  : 8pt;
   padding    : 3px 5px;
 }
-.tfBtnArea input{
+.svg-button-wrapper input{
   display    : inline-block;
   margin     : 0 5px;
 }
 /* === 含むボタンの入力エリア ==================== */
-.textArea{
+.text-area{
   padding    : 5px 3px;
   border-top : 1px solid #999;
   border-bottom: 1px solid #999;
 }
-.textArea input{
+.text-area input{
   box-sizing : border-box;
   width      : 100%;
   padding    : 1px 3px;
@@ -79,10 +79,10 @@
   border     : 1px solid #ccc;
 }
 /* === フィルタ非表示 ============================ */
-tr[cmanFilterNone]{
+tr[unvisible]{
   display    : none;
 }
 /* === フィルタ非表示行と次行の間を二重線にする == */
-tr[cmanFilterNone] + tr td{
+tr[unvisible] + tr td{
   border-top : 3px double #777;
 }

@@ -2,22 +2,22 @@
 //  グローバル定数・変数
 //===============================================================
 /** @type {Object} */
-const filterState = {}; // フィルタリストの保存状態
+const filterState = {}; // フィルタリストの状態
 
 /** @type {Array<Object>} */
 let tableData = [];
 
 //===============================================================
-//  オンロードでテーブル初期設定関数をCALL
+//  オンロードでフィルタ機能を初期化
 //===============================================================
 window.onload = () => {
-  tFilterInit();
+  initFilter();
 }
 
 /**
  * フィルターの初期化関数
  */
-const tFilterInit = () => {
+const initFilter = () => {
   const table = document.querySelector("table");
   if (!table) {
     console.error("テーブル要素がありません");
@@ -59,30 +59,26 @@ const getTableData = (table) => {
  * @returns {HTMLDivElement} ドロップダウンDOM
  */
 const createDropDown = (columnIndex) => {
-  const div = document.createElement('div');
-  div.className = 'tfArea';
+  const div = document.createElement("div");
+  div.className = "drop-down-wrapper";
 
-  const tfList = document.createElement('div');
-  tfList.className = 'tfList';
-  tfList.id = `tfList_${columnIndex}`;
-  tfList.style.display = 'none';
+  const dropDown = document.createElement("div");
+  dropDown.className = "drop-down";
+  dropDown.id = `drop-down_${columnIndex}`;
+  dropDown.style.display = "none";
 
-  const items = [];
-
-  for (let rowIndex = 0; rowIndex < tableData.length; rowIndex++) {
-    items[rowIndex] = tableData[rowIndex][columnIndex]; // todo
-  }
+  const items = tableData.map(row => row[columnIndex]);
 
   const hasNumeric = items.some(item => item.match(/^[-]?[0-9,.]+$/));
-  items.sort(hasNumeric ? sortNumA : sortStrA);
+  items.sort(hasNumeric ? sortNumber : sortString);
 
-  tfList.appendChild(createfilterOptionForAll(columnIndex));
-  tfList.appendChild(createFormsForOptions(columnIndex, items));
-  tfList.appendChild(createTextArea(columnIndex));
-  tfList.appendChild(createButtonArea(columnIndex));
+  dropDown.appendChild(createfilterOptionForAll(columnIndex));
+  dropDown.appendChild(createFormsForOptions(columnIndex, items));
+  dropDown.appendChild(createTextArea(columnIndex));
+  dropDown.appendChild(createButtonArea(columnIndex));
 
   div.appendChild(createSvgButton(columnIndex));
-  div.appendChild(tfList);
+  div.appendChild(dropDown);
 
   return div;
 }
@@ -96,12 +92,12 @@ const createDropDown = (columnIndex) => {
  * @returns {SVGSVGElement} SVG要素
  */
 const createSvgButton = (columnIndex) => {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.classList.add('tfImg');
-  svg.id = `filterButton_${columnIndex}`;
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.classList.add("svg-button");
+  svg.id = `filter-button-${columnIndex}`;
   svg.innerHTML = '<path d="M0 0 L9 0 L6 4 L6 8 L3 8 L3 4Z"></path>';
-  svg.addEventListener('click', () => {
-    tFilterCloseOpen(columnIndex);
+  svg.addEventListener("click", () => {
+    openDropDown(columnIndex);
   });
 
   return svg;
@@ -113,20 +109,20 @@ const createSvgButton = (columnIndex) => {
  * @returns {HTMLDivElement} div要素
  */
 const createfilterOptionForAll = (columnIndex) => {
-  const div = document.createElement('div');
-  div.classList.add('filterOptionWrapper');
+  const div = document.createElement("div");
+  div.classList.add("filter-option-wrapper");
 
-  const input = document.createElement('input');
-  input.type = 'checkbox';
-  input.id = `filterOptionAll_${columnIndex}`;
+  const input = document.createElement("input");
+  input.type = "checkbox";
+  input.id = `filter-option-all-${columnIndex}`;
   input.checked = true;
-  input.addEventListener('click', () => {
+  input.addEventListener("click", () => {
     checkAll(columnIndex);
   });
 
-  const label = document.createElement('label');
+  const label = document.createElement("label");
   label.htmlFor = input.id;
-  label.textContent = '(All)';
+  label.textContent = "(All)";
 
   div.appendChild(input);
   div.appendChild(label);
@@ -141,26 +137,26 @@ const createfilterOptionForAll = (columnIndex) => {
  * @returns {HTMLFormElement} form要素(子要素に各フィルタオプションを持つ)
  */
 const createFormsForOptions = (columnIndex, items) => {
-  const form = document.createElement('form');
-  form.name = `form_${columnIndex}`;
+  const form = document.createElement("form");
+  form.name = `form-${columnIndex}`;
 
   const uniqueItems = Array.from(new Set(items.map(item => trim(item)))); // 重複を除く
   uniqueItems.forEach((item, itemIndex) => {
-    const div = document.createElement('div');
-    div.classList.add('filterOptionWrapper');
+    const div = document.createElement("div");
+    div.classList.add("filter-option-wrapper");
 
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-    input.id = `option_${columnIndex}_${itemIndex}`;
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.id = `option-${columnIndex}-${itemIndex}`;
     input.value = item;
     input.checked = true;
-    input.addEventListener('click', () => {
+    input.addEventListener("click", () => {
       updataFilterOptions(columnIndex);
     });
 
-    const label = document.createElement('label');
+    const label = document.createElement("label");
     label.htmlFor = input.id;
-    label.textContent = item === '' ? '(empty cell)' : item;
+    label.textContent = item === "" ? "(empty cell)" : item;
 
     div.appendChild(input);
     div.appendChild(label);
@@ -177,13 +173,13 @@ const createFormsForOptions = (columnIndex, items) => {
  * @returns {HTMLDivElement} div要素
  */
 const createTextArea = (columnIndex) => {
-  const div = document.createElement('div');
-  div.className = 'textArea';
+  const div = document.createElement("div");
+  div.className = "text-area";
 
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = 'By Text';
-  input.id = `textArea_${columnIndex}`;
+  const input = document.createElement("input");
+  input.type = "text";
+  input.placeholder = "By Text";
+  input.id = `text-area-${columnIndex}`;
 
   div.appendChild(input);
 
@@ -196,18 +192,18 @@ const createTextArea = (columnIndex) => {
  * @returns {HTMLDivElement} div要素
  */
 const createButtonArea = (columnIndex) => {
-  const div = document.createElement('div');
-  div.classList.add('tfBtnArea');
+  const div = document.createElement("div");
+  div.classList.add("svg-button-wrapper");
 
-  const okButton = document.createElement('input');
-  okButton.type = 'button';
-  okButton.value = 'Apply';
-  okButton.addEventListener('click', applyFilter);
+  const okButton = document.createElement("input");
+  okButton.type = "button";
+  okButton.value = "Apply";
+  okButton.addEventListener("click", applyFilter);
 
-  const cancelButton = document.createElement('input');
-  cancelButton.type = 'button';
-  cancelButton.value = 'Cancel';
-  cancelButton.addEventListener('click', () => {
+  const cancelButton = document.createElement("input");
+  cancelButton.type = "button";
+  cancelButton.value = "Cancel";
+  cancelButton.addEventListener("click", () => {
     closeDropdown(columnIndex);
   });
 
@@ -221,17 +217,104 @@ const createButtonArea = (columnIndex) => {
 //  イベント
 //===============================================================
 /**
+ * ドロップダウンを開く関数
+ * @param {Number} columnIndex 
+ */
+const openDropDown = (columnIndex) => {
+  closeAllDropDown();
+
+  document.querySelector(`#drop-down_${columnIndex}`).style.display = "";
+  saveState(columnIndex);
+};
+
+/**
+ * 全ドロップダウンを閉じる関数
+ */
+const closeAllDropDown = () => {
+  const columnKeys = Object.keys(tableData[0]);
+  
+  columnKeys.forEach((_, index) => {
+    document.getElementById(`drop-down_${index}`).style.display = "none";
+  }); 
+}
+
+/**
+ * フィルタを適用する関数
+ */
+const applyFilter = () => {
+  const table = document.querySelector("table");
+  if (!table) {
+    console.error("テーブル要素がありません");
+    return;
+  }
+  const rows = Array.from(table.rows);
+  const startRow = 1
+
+  rows.forEach(row => {
+    if (row.getAttribute("unvisible") !== null) {
+      row.removeAttribute("unvisible");
+    }
+  });
+
+  // 列をループ
+  for (let columnIndex = 0; columnIndex < Object.keys(tableData[0]).length; columnIndex++) {
+    const allOption = document.querySelector(`#filter-option-all-${columnIndex}`);
+    const checkedOptions = new Set();
+    const filterButton = document.querySelector(`#filter-button-${columnIndex}`);
+    const textArea = document.querySelector(`#text-area-${columnIndex}`);
+    const forms = document.forms[`form-${columnIndex}`];
+
+    Array.from(forms.elements).forEach(element => {
+      if (element.type === "checkbox" && element.checked) {
+        checkedOptions.add(element.value);
+      }
+    });
+
+    if ((allOption.checked) && (trim(textArea.value) == "")) {
+      filterButton.style.backgroundColor = "";
+      continue; // 次の列の処理へ
+    }
+
+    // 行をループ
+    for (let rowIndex = startRow; rowIndex < rows.length; rowIndex++) {
+      const cellValue = trim(tableData[rowIndex - 1][columnIndex]);
+      if (!allOption.checked && !checkedOptions.has(cellValue)) {
+          rows[rowIndex].setAttribute("unvisible", "");
+      }
+
+      const pattern = new RegExp(textArea.value);
+      if (textArea.value !== "" && !cellValue.match(pattern)) {
+          rows[rowIndex].setAttribute("unvisible", "");
+      }
+    }
+    filterButton.style.backgroundColor = "#ffff00"; // Yellow
+  }
+
+  // 全ドロップダウンを非表示にする
+  closeAllDropDown();
+}
+
+/**
+ * ドロップダウンを閉じる際の処理を行う関数
+ * @param {Number} columnIndex 列番号
+ */
+const closeDropdown = (columnIndex) => {
+  loadState(columnIndex);
+  document.getElementById(`drop-down_${columnIndex}`).style.display = "none";
+}
+
+/**
  * フィルタオプションのチェック状態を更新する関数
  * @param {Number} columnIndex 列番号
  */
 const updataFilterOptions = (columnIndex) => {
-  const options = Array.from(document.forms[`form_${columnIndex}`].elements);
-  const allOption = document.querySelector(`#filterOptionAll_${columnIndex}`);
+  const options = Array.from(document.forms[`form-${columnIndex}`].elements);
+  const allOption = document.querySelector(`#filter-option-all-${columnIndex}`);
 
   let uncheckedCount = 0;
 
   options.forEach(option => {
-    if (option.type === 'checkbox') {
+    if (option.type === "checkbox") {
       if (option.checked) {;} else { uncheckedCount++; }
     }
   });
@@ -245,128 +328,67 @@ const updataFilterOptions = (columnIndex) => {
 }
 
 /**
- * ドロップダウンを閉じる際の処理を行う関数
+ * Allチェックボックスの状態を各選択肢に反映する関数
  * @param {Number} columnIndex 列番号
  */
-const closeDropdown = (columnIndex) => {
-  tFilterSave(columnIndex, 'load');
-  tFilterCloseOpen('');
-}
+const checkAll = (columnIndex) => {
+  const allOption = document.getElementById(`filter-option-all-${columnIndex}`).checked;
+  const forms = document.forms[`form-${columnIndex}`].elements;
 
-function applyFilter() {
-  const table = document.querySelector("table");
-  if (!table) {
-    console.error("テーブル要素がありません");
-    return;
-  }
-  const rows = Array.from(table.rows);
-  const startRow = 1
-
-  rows.forEach(row => {
-    if (row.getAttribute('cmanFilterNone') !== null) {
-      row.removeAttribute('cmanFilterNone');
+  Array.from(forms).forEach(element => {
+    if (element.type === "checkbox") {
+      element.checked = allOption;
     }
   });
+};
 
-  // 列をループ
-  for (let columnIndex = 0; columnIndex < Object.keys(tableData[0]).length; columnIndex++) {
-    const allOption = document.querySelector(`#filterOptionAll_${columnIndex}`);
-    const checkedOptions = new Set();
-    const filterButton = document.querySelector(`#filterButton_${columnIndex}`);
-    const textArea = document.querySelector(`#textArea_${columnIndex}`);
-    const forms = document.forms[`form_${columnIndex}`];
+/**
+ * フィルタ状態を保存する関数
+ * @param {Number} columnIndex 列番号
+ */
+const saveState = (columnIndex) => {
+  const allCheckbox = document.querySelector(`#filter-option-all-${columnIndex}`);
+  filterState[allCheckbox.id] = allCheckbox.checked;
+  const form = document.forms[`form-${columnIndex}`];
+  const textArea = document.getElementById(`text-area-${columnIndex}`);
 
-    Array.from(forms.elements).forEach(element => {
-      if (element.type === 'checkbox' && element.checked) {
-        checkedOptions.add(element.value);
-      }
-    });
-
-    if ((allOption.checked) && (trim(textArea.value) == '')) {
-      filterButton.style.backgroundColor = '';
-      continue; // 次の列の処理へ
+  Array.from(form.elements).forEach(element => {
+    if (element.type === "checkbox") {
+      filterState[element.id] = element.checked;
     }
+  });
+  filterState[textArea.id] = textArea.value;
+};
 
-    // 行をループ
-    for (let rowIndex = startRow; rowIndex < rows.length; rowIndex++) {
-      const cellValue = trim(tableData[rowIndex - 1][columnIndex]); // todo
-      if (!allOption.checked && !(checkedOptions.has(cellValue))) {
-          rows[rowIndex].setAttribute('cmanFilterNone', '');
-      }
+/**
+ * フィルタ状態を読み込む関数
+ * @param {Number} columnIndex 列番号
+ */
+const loadState = (columnIndex) => {
+  const allCheckbox = document.querySelector(`#filter-option-all-${columnIndex}`);
+  filterState[allCheckbox.id] = allCheckbox.checked;
+  const form = document.forms[`form-${columnIndex}`];
+  const textArea = document.getElementById(`text-area-${columnIndex}`);
 
-      if (textArea.value != '') {
-        const reg = new RegExp(textArea.value);
-        if (!cellValue.match(reg)) {
-          rows[rowIndex].setAttribute('cmanFilterNone', '');
-        }
-      }
+  allCheckbox.checked = filterState[allCheckbox.id];
+  Array.from(form.elements).forEach(element => {
+    if (element.type === "checkbox") {
+      element.checked = filterState[element.id];
     }
-    filterButton.style.backgroundColor = '#ffff00';
-  }
-  tFilterCloseOpen('');
-}
-
-function tFilterSave(argCol, argFunc) {
-  const wAllCheck = document.getElementById(`filterOptionAll_${argCol}`);
-  if (argFunc == 'save') {
-    filterState[wAllCheck.id] = wAllCheck.checked;
-  } else {
-    wAllCheck.checked = filterState[wAllCheck.id];
-  }
-
-  const wForm = document.forms[`form_${argCol}`];
-  for (let i = 0; i < wForm.elements.length; i++) {
-    if (wForm.elements[i].type == 'checkbox') {
-      if (argFunc == 'save') {
-        filterState[wForm.elements[i].id] = wForm.elements[i].checked;
-      } else {
-        wForm.elements[i].checked = filterState[wForm.elements[i].id];
-      }
-    }
-  }
-
-  const wStrInput = document.getElementById(`textArea_${argCol}`);
-  if (argFunc == 'save') {
-    filterState[wStrInput.id] = wStrInput.value;
-  } else {
-    wStrInput.value = filterState[wStrInput.id];
-  }
-}
-
-const tFilterCloseOpen = (argCol) => {
-  for (let i = 0; i < Object.keys(tableData[0]).length; i++) { // todo
-    document.getElementById("tfList_" + i).style.display = 'none';
-  }
-
-  if (argCol !== '') {
-    const dropDown = document.getElementById(`tfList_${argCol}`);
-    dropDown.style.display = '';
-
-    tFilterSave(argCol, 'save');
-  }
-}
-
-const checkAll = (argCol) => {
-  const wChecked = document.getElementById(`filterOptionAll_${argCol}`).checked;
-  const wForm = document.forms[`form_${argCol}`];
-
-  for (let i = 0; i < wForm.elements.length; i++) {
-    if (wForm.elements[i].type == 'checkbox') {
-      wForm.elements[i].checked = wChecked;
-    }
-  }
-}
+  });
+  textArea.value = filterState[textArea.id];
+};
 
 //===============================================================
 //  ユーティリティ
 //===============================================================
-const sortNumA = (a, b) => {
-  a = parseInt(a.replace(/,/g, ''));
-  b = parseInt(b.replace(/,/g, ''));
+const sortNumber = (a, b) => {
+  a = parseInt(a.replace(/,/g, ""));
+  b = parseInt(b.replace(/,/g, ""));
   return a - b;
 }
 
-const sortStrA = (a, b) => {
+const sortString = (a, b) => {
   a = a.toString().toLowerCase();
   b = b.toString().toLowerCase();
   if (a < b) return -1;
@@ -374,9 +396,6 @@ const sortStrA = (a, b) => {
   return 0;
 }
 
-const trim = (argStr) => {
-  let rcStr = argStr;
-  rcStr = rcStr.replace(/^[\s\u3000\r\n]+/g, '');
-  rcStr = rcStr.replace(/[\s\u3000\r\n]+$/g, '');
-  return rcStr;
-}
+const trim = (string) => {
+  return string.replace(/^[\s\u3000\r\n]+|[\s\u3000\r\n]+$/g, "");
+};
