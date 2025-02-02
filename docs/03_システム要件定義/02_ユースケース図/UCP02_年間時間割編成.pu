@@ -1,6 +1,5 @@
 @startuml usecase diagram
 left to right direction
-
 actor 教務
 
 package "UCP02 年間時間割編成" {
