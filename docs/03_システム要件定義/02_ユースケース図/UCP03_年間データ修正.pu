@@ -1,6 +1,5 @@
 @startuml usecase diagram
 left to right direction
-
 actor 教務
 
 package "UCP03 年間データ修正" {

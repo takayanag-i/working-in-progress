@@ -1,6 +1,5 @@
 @startuml usecase diagram
 left to right direction
-
 actor 教務
 
 package "UCP01 年間データ登録" {
