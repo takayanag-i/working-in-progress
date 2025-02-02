@@ -2,8 +2,7 @@
 left to right direction
 
 :教務:
-
-    package [UCP01]年間データ登録 {
+    package [UCP01]年間データの登録 {
         教務--->([UC0101] 曜日時限を設定する)
         教務--->([UC0102] 教員情報を登録する)
         教務--->([UC0103] 教員の勤怠を登録する)
@@ -14,5 +13,4 @@ left to right direction
         ([UC0105] カリキュラムを登録する) ..> ([UC0107] ブロックを追加する) : include
         ([UC0105] カリキュラムを登録する) ..> ([UC0106] 学級を登録する) :  include
     }
-
 @enduml
