@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="filter.css">
+<link rel="stylesheet" href="https://takayanag-i.github.io/working-in-progress/lib/filter.css">
 # サンプル
 
 ## 人物一覧
@@ -13,4 +13,4 @@
 | 多田美優 | 大阪府   | 女性 |
 | 西野祐希 | 福井県   | 男性 |
 
-<script src="filter.js"></script>
+<script src="https://takayanag-i.github.io/working-in-progress/lib/filter.js"></script>
