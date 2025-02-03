@@ -234,7 +234,7 @@ const closeAllDropDown = () => {
   const columnKeys = Object.keys(tableData[0]);
   
   columnKeys.forEach((_, index) => {
-    document.getElementById(`drop-down_${index}`).style.display = "none";
+    document.querySelector(`#drop-down_${index}`).style.display = "none";
   }); 
 }
 
@@ -247,8 +247,8 @@ const applyFilter = () => {
     console.error("テーブル要素がありません");
     return;
   }
-  const rows = Array.from(table.rows);
-  const startRow = 1
+  const rows = Array.from(table.rows).slice(1); // ヘッダ行は除く
+  const columnCount = Object.keys(tableData?.[0] || {}).length;
 
   rows.forEach(row => {
     if (row.getAttribute("unvisible") !== null) {
@@ -257,36 +257,37 @@ const applyFilter = () => {
   });
 
   // 列をループ
-  for (let columnIndex = 0; columnIndex < Object.keys(tableData[0]).length; columnIndex++) {
+  for (let columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+    // DOM取得
     const allOption = document.querySelector(`#filter-option-all-${columnIndex}`);
-    const checkedOptions = new Set();
     const filterButton = document.querySelector(`#filter-button-${columnIndex}`);
     const textArea = document.querySelector(`#text-area-${columnIndex}`);
     const forms = document.forms[`form-${columnIndex}`];
 
-    Array.from(forms.elements).forEach(element => {
-      if (element.type === "checkbox" && element.checked) {
-        checkedOptions.add(element.value);
-      }
-    });
+    // チェックされたオプションを取得
+    const checkedOptions = new Set(
+      Array.from(forms.elements)
+        .filter(el => el.type === "checkbox" && el.checked)
+        .map(el => el.value)
+    );
+    // テキストエリアの値を取得
+    const textValue = trim(textArea.value);
+    const pattern = new RegExp(textValue);
 
-    if ((allOption.checked) && (trim(textArea.value) == "")) {
+    if ((allOption?.checked ?? true) && !textValue) {
+      // (All)が選択されている または テキストエリアが空の場合
       filterButton.style.backgroundColor = "";
       continue; // 次の列の処理へ
     }
 
     // 行をループ
-    for (let rowIndex = startRow; rowIndex < rows.length; rowIndex++) {
-      const cellValue = trim(tableData[rowIndex - 1][columnIndex]);
-      if (!allOption.checked && !checkedOptions.has(cellValue)) {
+    rows.forEach((row, rowIndex) => {
+      const cellValue = trim(tableData[rowIndex][columnIndex]);
+      if (!checkedOptions.has(cellValue) || !cellValue.match(pattern)){
           rows[rowIndex].setAttribute("unvisible", "");
       }
+    });
 
-      const pattern = new RegExp(textArea.value);
-      if (textArea.value !== "" && !cellValue.match(pattern)) {
-          rows[rowIndex].setAttribute("unvisible", "");
-      }
-    }
     filterButton.style.backgroundColor = "#ffff00"; // Yellow
   }
 
@@ -300,7 +301,7 @@ const applyFilter = () => {
  */
 const closeDropdown = (columnIndex) => {
   loadState(columnIndex);
-  document.getElementById(`drop-down_${columnIndex}`).style.display = "none";
+  document.querySelector(`#drop-down_${columnIndex}`).style.display = "none";
 }
 
 /**
@@ -332,7 +333,7 @@ const updataFilterOptions = (columnIndex) => {
  * @param {Number} columnIndex 列番号
  */
 const checkAll = (columnIndex) => {
-  const allOption = document.getElementById(`filter-option-all-${columnIndex}`).checked;
+  const allOption = document.querySelector(`#filter-option-all-${columnIndex}`).checked;
   const forms = document.forms[`form-${columnIndex}`].elements;
 
   Array.from(forms).forEach(element => {
@@ -350,7 +351,7 @@ const saveState = (columnIndex) => {
   const allCheckbox = document.querySelector(`#filter-option-all-${columnIndex}`);
   filterState[allCheckbox.id] = allCheckbox.checked;
   const form = document.forms[`form-${columnIndex}`];
-  const textArea = document.getElementById(`text-area-${columnIndex}`);
+  const textArea = document.querySelector(`#text-area-${columnIndex}`);
 
   Array.from(form.elements).forEach(element => {
     if (element.type === "checkbox") {
@@ -368,7 +369,7 @@ const loadState = (columnIndex) => {
   const allCheckbox = document.querySelector(`#filter-option-all-${columnIndex}`);
   filterState[allCheckbox.id] = allCheckbox.checked;
   const form = document.forms[`form-${columnIndex}`];
-  const textArea = document.getElementById(`text-area-${columnIndex}`);
+  const textArea = document.querySelector(`#text-area-${columnIndex}`);
 
   allCheckbox.checked = filterState[allCheckbox.id];
   Array.from(form.elements).forEach(element => {
