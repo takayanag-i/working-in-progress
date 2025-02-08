@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapi"
+name = "timetable-fastapi"
 version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
@@ -12,6 +12,8 @@ pandas = "^2.2.3"
 pulp = "^2.9.0"
 openpyxl = "^3.1.5"
 azure-cosmos = "^4.7.0"
+fastapi = "^0.115.8"
+uvicorn = "^0.34.0"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"
