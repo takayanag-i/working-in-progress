@@ -16,9 +16,6 @@ poetry.lock
 # cosmos
 emulatorcert.crt
 
-# vscode
-.vscode/
-
 # pytest
 .coverage
 coverage.xml
