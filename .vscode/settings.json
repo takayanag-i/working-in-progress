@@ -12,21 +12,24 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
         "editor.formatOnSave": true,
-      },
-      "autopep8.args": [
+    },
+    "autopep8.args": [
         "--ignore=E501" // E501:行長(➡️自動改行防止させない)
-      ],
-
+    ],
     // jupyter
     "jupyter.askForKernelRestart": false,
-
     // unit test
     "python.testing.pytestArgs": [
-        "tests", "--cov=src", "--cov-report", "xml"
+        "tests",
+        "--cov=src",
+        "--cov-report",
+        "xml"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "python.experiments.optInto": ["pythonTestAdapter"],
+    "python.experiments.optInto": [
+        "pythonTestAdapter"
+    ],
     //-----------
     // markdown, uml
     //-----------
@@ -36,4 +39,13 @@
     },
     "plantuml.exportSubFolder": false,
     "plantuml.exportIncludeFolderHeirarchy": false,
+    //-----------
+    // java
+    //-----------
+    "java.project.sourcePaths": [
+        "spring/src/main/java"
+    ],
+    "java.project.outputPath": "spring/bin",
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.configuration.updateBuildConfiguration": "interactive",
 }
