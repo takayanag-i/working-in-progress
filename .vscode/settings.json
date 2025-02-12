@@ -39,6 +39,7 @@
     },
     "plantuml.exportSubFolder": false,
     "plantuml.exportIncludeFolderHeirarchy": false,
+    "editor.tabSize": 2,
     //-----------
     // java
     //-----------
