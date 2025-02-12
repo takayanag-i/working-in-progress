@@ -1,4 +1,4 @@
-# Homeroom Document
+# Homeroom Schema
 
 ## JSON Data Example
 
@@ -30,7 +30,7 @@
 
 ## Object Structure
 
-### Homeroom Document
+### Homeroom Schema
 
 | Key         | Business Name | Data Type       | Required | Description                            |
 | ----------- | ------------- | --------------- | -------- | -------------------------------------- |
