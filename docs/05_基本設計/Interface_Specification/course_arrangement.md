@@ -49,12 +49,12 @@
 
 ### Course Arrangement
 
-| Key           | Business Name   | Data Type       | Required | Description                                                                                  |
-| ------------- | --------------- | --------------- | -------- | -------------------------------------------------------------------------------------------- |
-| `id`          | ID              | String          | Y        | Required by Cosmos DB.                                                                       |
-| `docType`     | Document Type   | String          | Y        | Specifies the type of document. For homeroom schedules, this should be `course_arrangement`. |
-| `ttid`        | Timetable ID    | String          | Y        | **Partition Key**. Identifies Timetable.                                                     |
-| `curriculums` | Curriculum List | Array\<Object\> | Y        | Contains at least one curriculum object.                                                     |
+| Key           | Business Name   | Data Type       | Required | Description                              |
+| ------------- | --------------- | --------------- | -------- | ---------------------------------------- |
+| `id`          | ID              | String          | Y        | Required by Cosmos DB.                   |
+| `docType`     | Document Type   | String          | Y        |                                          |
+| `ttid`        | Timetable ID    | String          | Y        | **Partition Key**. I                     |
+| `curriculums` | Curriculum List | Array\<Object\> | Y        | Contains at least one curriculum object. |
 
 ### Curriculum
 
