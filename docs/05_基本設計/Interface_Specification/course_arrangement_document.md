@@ -47,7 +47,7 @@
 
 ## Object Structure
 
-### Course Arrangement
+### Course Arrangement Document
 
 | Key           | Business Name   | Data Type       | Required | Description                              |
 | ------------- | --------------- | --------------- | -------- | ---------------------------------------- |

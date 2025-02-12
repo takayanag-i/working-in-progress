@@ -11,11 +11,11 @@
     {
       "name": "2-4",
       "schedule": {
-          "Mon": 6,
-          "Tues": 6,
-          "Wednes": 5,
-          "Thurs": 6,
-          "Fri": 6
+          "mon": 6,
+          "tue": 6,
+          "wed": 5,
+          "thu": 6,
+          "fri": 6
       }
     },
     {
@@ -30,7 +30,7 @@
 
 ## Object Structure
 
-### Homeroom Schedule
+### Homeroom Document
 
 | Key         | Business Name | Data Type       | Required | Description                            |
 | ----------- | ------------- | --------------- | -------- | -------------------------------------- |
@@ -50,12 +50,12 @@
 
 | Key   | Business Name | Data Type | Required | Description |
 | ----- | ------------- | --------- | -------- | ----------- |
-| `Mon` | Monday        | Number    | N        |             |
-| `Tue` | Tuesday       | Number    | N        |             |
-| `Wed` | Wednesday     | Number    | N        |             |
-| `Thu` | Thursday      | Number    | N        |             |
-| `Fri` | Friday        | Number    | N        |             |
-| `Sat` | Saturday      | Number    | N        |             |
-| `Sun` | Sunday        | Number    | N        |             |
+| `mon` | Monday        | Number    | N        |             |
+| `tue` | Tuesday       | Number    | N        |             |
+| `wed` | Wednesday     | Number    | N        |             |
+| `thu` | Thursday      | Number    | N        |             |
+| `fri` | Friday        | Number    | N        |             |
+| `sat` | Saturday      | Number    | N        |             |
+| `sun` | Sunday        | Number    | N        |             |
 
 ---
