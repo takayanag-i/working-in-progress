@@ -1,11 +1,11 @@
-# Course List
+# Course Document
 
 ## JSON Data Example
 
 ```json
 {
   "id": "12345678",
-  "docType": "course_list",
+  "docType": "course",
   "ttid": "sry_2025_001",
   "courses": [
     {
@@ -26,7 +26,7 @@
       "name": "3物理5",
       "subject": "3物理",
       "credits": 3,
-      "details": [
+      "courseDetails": [
         {
           "instructor": "滝沢",
           "room": "視聴覚"

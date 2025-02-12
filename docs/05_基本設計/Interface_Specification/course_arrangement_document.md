@@ -1,4 +1,4 @@
-# Course Arrangement
+# Course Arrangement Document
 
 ## JSON Data Example
 
