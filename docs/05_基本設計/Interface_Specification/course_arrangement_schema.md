@@ -1,4 +1,4 @@
-# Course Arrangement Document
+# Course Arrangement Schema
 
 ## JSON Data Example
 
@@ -47,7 +47,7 @@
 
 ## Object Structure
 
-### Course Arrangement Document
+### Course Arrangement Schema
 
 | Key           | Business Name   | Data Type       | Required | Description                              |
 | ------------- | --------------- | --------------- | -------- | ---------------------------------------- |

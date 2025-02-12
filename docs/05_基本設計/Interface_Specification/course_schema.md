@@ -1,4 +1,4 @@
-# Course Document
+# Course Schema
 
 ## JSON Data Example
 
@@ -40,7 +40,7 @@
 
 ## Object Structure
 
-### Course Document
+### Course Schema
 
 | Key       | Business Name | Data Type       | Required | Description                          |
 | --------- | ------------- | --------------- | -------- | ------------------------------------ |

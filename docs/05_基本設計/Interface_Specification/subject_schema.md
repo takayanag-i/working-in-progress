@@ -1,4 +1,4 @@
-# Subjects
+# Subject Schema
 
 ## JSON Data Example
 
@@ -27,7 +27,7 @@
 
 ## Object Structure
 
-### Subject Document
+### Subject Schema
 
 | Key        | Business Name | Data Type       | Required | Description                           |
 | ---------- | ------------- | --------------- | -------- | ------------------------------------- |
