@@ -5,7 +5,7 @@
 ```json
 {
   "id": "12345678",
-  "docType": "subject",
+  "docType": "subject_schema",
   "ttid": "sry_2025_001",
   "subjects": [
     {
@@ -38,11 +38,11 @@
 
 ### Subject
 
-| Key          | Business Name | Data Type | Required | Description                                       |
-| ------------ | ------------- | --------- | -------- | ------------------------------------------------- |
-| `discipline` | Discipline    | String    | Y        |                                                   |
-| `grade`      | Grade         | String    | Y        |                                                   |
-| `name`       | Subject Name  | String    | Y        | Combination of `grade` and `name` must be unique. |
-| `credits`    | Credits       | Number    | Y        |                                                   |
+| Key          | Business Name     | Data Type | Required | Description                                       |
+| ------------ | ----------------- | --------- | -------- | ------------------------------------------------- |
+| `discipline` | Discipline Name   | String    | Y        |                                                   |
+| `grade`      | Grade             | String    | Y        |                                                   |
+| `name`       | Subject Name      | String    | Y        | Combination of `grade` and `name` must be unique. |
+| `credits`    | Number of Credits | Number    | Y        |                                                   |
 
 ---

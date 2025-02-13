@@ -5,7 +5,7 @@
 ```json
 {
   "id": "12345678",
-  "docType": "homeroom",
+  "docType": "homeroom_schema",
   "ttid": "sry_2025_001",
   "homerooms": [
     {
