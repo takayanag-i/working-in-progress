@@ -5,7 +5,7 @@
 ```json
 {
   "id": "12345678",
-  "docType": "course_arrangement",
+  "docType": "course_arrangement_schema",
   "ttid": "sry_2025_001",
   "curriculums": [
     {
@@ -15,7 +15,6 @@
           "name": "2-4共通",
           "lanes": [
             {
-              "index": 1,
               "courses": ["2論国4", "2古探4"]
             },
           ]
@@ -24,11 +23,11 @@
           "name": "2-4歴史",
           "lanes": [
             {
-              "index": 1,
+              "name": "世界史",
               "courses": ["2世探"]
             },
             {
-              "index": 2,
+              "name": "日本史",
               "courses": ["2日探34"]
             }
           ]
@@ -72,11 +71,11 @@
 
 ### Lane
 
-| Key       | Business Name | Data Type       | Required | Description                                                               |
-| --------- | ------------- | --------------- | -------- | ------------------------------------------------------------------------- |
-| `index`   | Lane Index    | Number          | Y        | 1-indexed (starting from 1 within each block). Represents the lane order. |
-| `courses` | Course List   | Array\<String\> | Y        | Contains at least one course ID.                                          |
-| -         | Course ID     | String          | Y        |                                                                           |
+| Key       | Business Name | Data Type       | Required | Description                      |
+| --------- | ------------- | --------------- | -------- | -------------------------------- |
+| `name`    | Lane Name     | String          | N        |                                  |
+| `courses` | Course List   | Array\<String\> | Y        | Contains at least one course ID. |
+| -         | Course ID     | String          | Y        |                                  |
 
 ---
 

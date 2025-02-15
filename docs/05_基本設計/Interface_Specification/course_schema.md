@@ -5,7 +5,7 @@
 ```json
 {
   "id": "12345678",
-  "docType": "course",
+  "docType": "course_schema",
   "ttid": "sry_2025_001",
   "courses": [
     {
@@ -51,18 +51,18 @@
 
 ### Course
 
-| Key       | Business Name | Data Type       | Required | Description                                 |
-| --------- | ------------- | --------------- | -------- | ------------------------------------------- |
-| `name`    | Course Name   | String          | Y        |                                             |
-| `subject` | Subject       | String          | Y        |                                             |
-| `credits` | Credits       | Number          | Y        |                                             |
-| `details` | Details       | Array\<Object\> | Y        | Contains at least one course detail object. |
+| Key       | Business Name     | Data Type       | Required | Description                                 |
+| --------- | ----------------- | --------------- | -------- | ------------------------------------------- |
+| `name`    | Course Name       | String          | Y        |                                             |
+| `subject` | Subject Name      | String          | Y        |                                             |
+| `credits` | Number of Credits | Number          | Y        |                                             |
+| `details` | Course Details    | Array\<Object\> | Y        | Contains at least one course detail object. |
 
 ### Course Detail
 
-| Key          | Business Name | Data Type | Required | Description |
-| ------------ | ------------- | --------- | -------- | ----------- |
-| `instructor` | Instructor    | String    | Y        |             |
-| `room`       | Room          | String    | N        |             |
+| Key          | Business Name   | Data Type | Required | Description |
+| ------------ | --------------- | --------- | -------- | ----------- |
+| `instructor` | Instructor Name | String    | Y        |             |
+| `room`       | Classroom       | String    | N        |             |
 
 ---
