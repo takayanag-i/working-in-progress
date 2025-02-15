@@ -20,5 +20,6 @@
 | VW-M007 | 制約設定アシスタントモーダル | モーダル |
 | VW-M008 | 編成失敗通知モーダル         | モーダル |
 | VW-M009 | アーカイブ確認モーダル       | モーダル |
+| VW-C001 | サイドメニュー               | 共通UI   |
 
 <script src="https://takayanag-i.github.io/working-in-progress/lib/filter.js"></script>
