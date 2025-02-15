@@ -13,7 +13,7 @@
       "name": "中田",
       "discipline": "地歴公民",
       "classCount": 8,
-      "attendance": [
+      "slots": [
         { "day": "mon", "period": 1, "available": true },
         { "day": "mon", "period": 2, "available": true },
         { "day": "mon", "period": 3, "available": true },
@@ -31,7 +31,7 @@
       "name": "菅原",
       "discipline": "数学",
       "classCount": 17,
-      "attendance": [
+      "slots": [
         ...
       ]
     }
@@ -52,19 +52,19 @@
 
 ### Instructor
 
-| Key          | Business Name         | Data Type       | Required | Description                 |
-| ------------ | --------------------- | --------------- | -------- | --------------------------- |
-| `name`       | Instructor Name       | String          | Y        |                             |
-| `discipline` | Subject Name          | String          | Y        |                             |
-| `classCount` | Class Count           | Number          | Y        | Number of Assigned Classes. |
-| `attendance` | Instructor Attendance | Array\<Object\> | Y        |                             |
+| Key          | Business Name          | Data Type       | Required | Description                                     |
+| ------------ | ---------------------- | --------------- | -------- | ----------------------------------------------- |
+| `name`       | Instructor Name        | String          | Y        |                                                 |
+| `discipline` | Subject Name           | String          | Y        |                                                 |
+| `classCount` | Class Count            | Number          | Y        | Number of Assigned Classes.                     |
+| `slots`      | Availability Slot List | Array\<Object\> | Y        | Contains at least one availability slot object. |
 
-### Instructor Attendance
+### Availability Slot
 
 | Key         | Business Name | Data Type | Required | Description |
 | ----------- | ------------- | --------- | -------- | ----------- |
 | `day`       | Day of Week   | String    | Y        |             |
-| `period`    | Period        | String    | Y        |             |
-| `available` | Day of Week   | Boolean   | Y        |             |
+| `period`    | Period        | Number    | Y        |             |
+| `available` | Availability  | Boolean   | Y        |             |
 
 ---
