@@ -10,13 +10,16 @@
   "homerooms": [
     {
       "name": "2-4",
-      "schedule": {
-          "mon": 6,
-          "tue": 6,
-          "wed": 5,
-          "thu": 6,
-          "fri": 6
-      }
+      "schedule": [
+        {
+          "day": "mon",
+          "lastPeriod": 6
+        },
+        {
+          "day": "tue",
+          "lastPeriod": 7
+        }
+      ]
     },
     {
       "name": "2-5",
@@ -48,14 +51,10 @@
 
 ### Schedule
 
-| Key   | Business Name | Data Type | Required | Description |
-| ----- | ------------- | --------- | -------- | ----------- |
-| `mon` | Monday        | Number    | N        |             |
-| `tue` | Tuesday       | Number    | N        |             |
-| `wed` | Wednesday     | Number    | N        |             |
-| `thu` | Thursday      | Number    | N        |             |
-| `fri` | Friday        | Number    | N        |             |
-| `sat` | Saturday      | Number    | N        |             |
-| `sun` | Sunday        | Number    | N        |             |
+| Key          | Business Name   | Data Type | Required | Description |
+| ------------ | --------------- | --------- | -------- | ----------- |
+| `day`        | Day of the Week | String    | Y        |             |
+| `lastPeriod` | Last Period     | Number    | Y        |             |
 
 ---
+````
