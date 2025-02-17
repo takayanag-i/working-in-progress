@@ -53,7 +53,7 @@
 | `id`          | ID              | String          | Y        | Required by Cosmos DB.                   |
 | `docType`     | Document Type   | String          | Y        |                                          |
 | `ttid`        | Timetable ID    | String          | Y        | **Partition Key**. I                     |
-| `curriculums` | Curriculum List | Array\<Object\> | Y        | Contains at least one curriculum object. |
+| `curriculums` | Curriculum List | Array\<Object\> | Y        | Contains at least one Curriculum object. |
 
 ### Curriculum
 
@@ -67,14 +67,14 @@
 | Key     | Business Name | Data Type       | Required | Description                        |
 | ------- | ------------- | --------------- | -------- | ---------------------------------- |
 | `name`  | Block Name    | String          | Y        |                                    |
-| `lanes` | Lane List     | Array\<Object\> | Y        | Contains at least one lane object. |
+| `lanes` | Lane List     | Array\<Object\> | Y        | Contains at least one Lane object. |
 
 ### Lane
 
 | Key       | Business Name | Data Type       | Required | Description                      |
 | --------- | ------------- | --------------- | -------- | -------------------------------- |
 | `name`    | Lane Name     | String          | N        |                                  |
-| `courses` | Course List   | Array\<String\> | Y        | Contains at least one course ID. |
+| `courses` | Course List   | Array\<String\> | Y        | Contains at least one Course ID. |
 | -         | Course ID     | String          | Y        |                                  |
 
 ---
