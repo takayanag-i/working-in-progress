@@ -23,11 +23,9 @@
           "name": "2-4歴史",
           "lanes": [
             {
-              "name": "世界史",
               "courses": ["2世探"]
             },
             {
-              "name": "日本史",
               "courses": ["2日探34"]
             }
           ]
@@ -48,34 +46,57 @@
 
 ### Course Arrangement Schema
 
-| Key           | Business Name   | Data Type       | Required | Description                              |
-| ------------- | --------------- | --------------- | -------- | ---------------------------------------- |
-| `id`          | ID              | String          | Y        | Required by Cosmos DB.                   |
-| `docType`     | Document Type   | String          | Y        |                                          |
-| `ttid`        | Timetable ID    | String          | Y        | **Partition Key**. I                     |
-| `curriculums` | Curriculum List | Array\<Object\> | Y        | Contains at least one Curriculum object. |
+| Key           | Data Type       | Required |
+| ------------- | --------------- | -------- |
+| `id`          | String          | Y        |
+| `docType`     | String          | Y        |
+| `ttid`        | String          | Y        |
+| `curriculums` | Array\<Object\> | Y        |
+
+#### `id`
+- Must be an 8-digit number.
+
+#### `docType`
+- Must be `"course_arrangement_schema"`.
+
+#### `ttid`
+- **Partition Key.**
+- Must follow the pattern `^[a-z]{3}_[0-9]{4}_[0-9]{3}$`, representing {School Code}\_{Year}\_{Sequential Number}.
+
+#### `curriculums`
+- Must contain at least one Curriculum object.
 
 ### Curriculum
 
-| Key        | Business Name | Data Type       | Required | Description                         |
-| ---------- | ------------- | --------------- | -------- | ----------------------------------- |
-| `homeroom` | Homeroom      | String          | Y        |                                     |
-| `blocks`   | Block List    | Array\<Object\> | Y        | Contains at least one Block object. |
+| Key        | Data Type       | Required |
+| ---------- | --------------- | -------- |
+| `homeroom` | String          | Y        |
+| `blocks`   | Array\<Object\> | Y        |
+
+#### `homeroom`
+- Must be 5 characters or fewer, using only letters and hyphens (-).
+#### `blocks`
+- Must contain at least one Block object.
 
 ### Block
 
-| Key     | Business Name | Data Type       | Required | Description                        |
-| ------- | ------------- | --------------- | -------- | ---------------------------------- |
-| `name`  | Block Name    | String          | Y        |                                    |
-| `lanes` | Lane List     | Array\<Object\> | Y        | Contains at least one Lane object. |
+| Key     | Data Type       | Required |
+| ------- | --------------- | -------- |
+| `name`  | String          | Y        |
+| `lanes` | Array\<Object\> | Y        |
+
+#### `name`
+- Must be 8 characters or fewer, using only letters and hyphens (-).
+
+#### `lanes`
+- Must contain at least one Lane object.
 
 ### Lane
 
-| Key       | Business Name | Data Type       | Required | Description                      |
-| --------- | ------------- | --------------- | -------- | -------------------------------- |
-| `name`    | Lane Name     | String          | N        |                                  |
-| `courses` | Course List   | Array\<String\> | Y        | Contains at least one Course ID. |
-| -         | Course ID     | String          | Y        |                                  |
+| Key       | Data Type       | Required |
+| --------- | --------------- | -------- |
+| `courses` | Array\<String\> | Y        |
 
----
-
+#### `courses`
+- Must contain at least one course name.
+- Each course name must be 5 characters or fewer and contain only letters (no symbols allowed).
