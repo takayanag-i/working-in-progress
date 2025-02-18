@@ -1,0 +1,14 @@
+site_name: Timetable Docs
+
+repo_url: https://github.com/takayanag-i/working-in-progress
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+
+exclude_docs: |
+  lib/
+
+nav:
+  - Home: index.md
+  - SS:
+    - Usecase: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
