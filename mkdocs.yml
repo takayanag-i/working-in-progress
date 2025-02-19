@@ -1,4 +1,6 @@
 site_name: Timetable Docs
+theme:
+  name: material
 
 repo_url: https://github.com/takayanag-i/working-in-progress
 edit_uri: edit/main/docs/
@@ -10,5 +12,8 @@ exclude_docs: |
 
 nav:
   - Home: index.md
-  - SS:
-    - Usecase: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
+  - システム要件:
+    - ユースケース: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
+  - 基本設計:
+    - インターフェース:
+      - Course Arrangement Schema: 05_基本設計/Interface_Specification/course_arrangement_schema.md

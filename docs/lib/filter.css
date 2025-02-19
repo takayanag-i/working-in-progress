@@ -5,7 +5,7 @@
 .svg-button{
   display    : inline-block;
   width      : 8px;
-  height     : 8px;
+  height     : 8px !important;
   background : #eee;
   border     : 1px solid #777;
   margin     : 1px 3px;
