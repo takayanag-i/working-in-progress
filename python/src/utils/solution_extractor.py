@@ -1,4 +1,2 @@
-class SolutionExtractor:
-    @staticmethod
-    def extract_solution(model) -> dict:
-        pass
+def extract_solution(model) -> dict:
+    pass

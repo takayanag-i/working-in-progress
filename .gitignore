@@ -1,5 +1,6 @@
 # KJ
 testdata.xlsx
+python/tests/resources/sample01
 
 # jupyter notebook
 *.ipynb
