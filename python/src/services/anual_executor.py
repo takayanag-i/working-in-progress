@@ -1,7 +1,7 @@
 from common.constants import ConstraintType
 from cruds.anual_data_repository import AnulalDataRepository
 from opts.anual_model import AnualModel
-from utils.solution_extractor import extract_solution
+from opts.solution_extractor import extract_solution
 
 
 class AnualExcecutor:
