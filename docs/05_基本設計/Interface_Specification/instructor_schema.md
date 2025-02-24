@@ -43,28 +43,62 @@
 
 ### Instructor Schema
 
-| Key           | Business Name   | Data Type       | Required | Description                              |
-| ------------- | --------------- | --------------- | -------- | ---------------------------------------- |
-| `id`          | ID              | String          | Y        | Required by Cosmos DB.                   |
-| `docType`     | Document Type   | String          | Y        |                                          |
-| `ttid`        | Timetable ID    | String          | Y        | **Partition Key**.                       |
-| `instructors` | Instructor List | Array\<Object\> | Y        | Contains at least one Instrcutor object. |
+| Key           | Data Type      | Required |
+| ------------- | -------------- | -------- |
+| `id`          | String         | Y        |
+| `docType`     | String         | Y        |
+| `ttid`        | String         | Y        |
+| `instructors` | Array<Object\> | Y        |
+
+#### `id`
+- Must be an 8-digit number.
+
+#### `docType`
+- Must be `"instructor_schema"`.
+
+#### `ttid`
+- **Partition Key.**
+- Must follow the pattern `^[a-z]{3}_[0-9]{4}_[0-9]{3}$`, representing {School Code}\_{Year}\_{Sequential Number}.
+
+#### `instructors`
+- Must contain at least one Instructor object.
 
 ### Instructor
 
-| Key          | Business Name          | Data Type       | Required | Description                                     |
-| ------------ | ---------------------- | --------------- | -------- | ----------------------------------------------- |
-| `name`       | Instructor Name        | String          | Y        |                                                 |
-| `discipline` | Subject Name           | String          | Y        |                                                 |
-| `classCount` | Class Count            | Number          | Y        | Number of Assigned Classes.                     |
-| `slots`      | Availability Slot List | Array\<Object\> | Y        | Contains at least one availability slot object. |
+| Key          | Data Type      | Required |
+| ------------ | -------------- | -------- |
+| `name`       | String         | Y        |
+| `discipline` | String         | Y        |
+| `classCount` | Number         | Y        |
+| `slots`      | Array<Object\> | Y        |
+
+#### `name`
+- Must be a non-empty string.
+
+#### `discipline`
+- Must be a non-empty string.
+
+#### `classCount`
+- Must be a positive integer.
+
+#### `slots`
+- Must contain at least one Availability Slot object.
 
 ### Availability Slot
 
-| Key         | Business Name | Data Type | Required | Description |
-| ----------- | ------------- | --------- | -------- | ----------- |
-| `day`       | Day of Week   | String    | Y        |             |
-| `period`    | Period        | Number    | Y        |             |
-| `available` | Availability  | Boolean   | Y        |             |
+| Key         | Data Type | Required |
+| ----------- | --------- | -------- |
+| `day`       | String    | Y        |
+| `period`    | Number    | Y        |
+| `available` | Boolean   | Y        |
+
+#### `day`
+- Must be a valid day of the week abbreviation (e.g., "mon", "tue").
+
+#### `period`
+- Must be a positive integer.
+
+#### `available`
+- Must be a boolean value.
 
 ---
