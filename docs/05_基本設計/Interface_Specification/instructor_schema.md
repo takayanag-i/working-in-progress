@@ -12,7 +12,7 @@
     {
       "name": "中田",
       "discipline": "地歴公民",
-      "classCount": 8,
+      "credits": 8,
       "slots": [
         { "day": "mon", "period": 1, "available": true },
         { "day": "mon", "period": 2, "available": true },
@@ -30,7 +30,7 @@
     {
       "name": "菅原",
       "discipline": "数学",
-      "classCount": 17,
+      "credits": 17,
       "slots": [
         ...
       ]
@@ -69,7 +69,7 @@
 | ------------ | -------------- | -------- |
 | `name`       | String         | Y        |
 | `discipline` | String         | Y        |
-| `classCount` | Number         | Y        |
+| `credits`    | Number         | Y        |
 | `slots`      | Array<Object\> | Y        |
 
 #### `name`
@@ -78,7 +78,7 @@
 #### `discipline`
 - Must be a non-empty string.
 
-#### `classCount`
+#### `credits`
 - Must be a positive integer.
 
 #### `slots`
