@@ -1,7 +1,7 @@
 import pulp
 import math
 
-from pkgs.optmdl.lp_model import LpModel
+from python.src.lp.lp_model import LpModel
 
 def add_homeroom_constraints(model: LpModel) -> LpModel:
     """

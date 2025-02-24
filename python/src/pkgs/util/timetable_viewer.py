@@ -1,6 +1,6 @@
 import pandas as pd
 
-from pkgs.optmdl.lp_model import LpModel
+from python.src.lp.lp_model import LpModel
 
 def display_result_by_homeroom(model: LpModel, h: str) -> pd.DataFrame:
     """
