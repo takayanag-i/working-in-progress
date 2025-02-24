@@ -1,4 +1,4 @@
-# Course Arrangement Schema
+# Curriculum Schema
 
 ## JSON Data Example
 
@@ -44,14 +44,14 @@
 
 ## Object Structure
 
-### Course Arrangement Schema
+### Curriculum Schema
 
-| Key           | Data Type       | Required |
-| ------------- | --------------- | -------- |
-| `id`          | String          | Y        |
-| `docType`     | String          | Y        |
-| `ttid`        | String          | Y        |
-| `curriculums` | Array\<Object\> | Y        |
+| Key           | Data Type      | Required |
+| ------------- | -------------- | -------- |
+| `id`          | String         | Y        |
+| `docType`     | String         | Y        |
+| `ttid`        | String         | Y        |
+| `curriculums` | Array<Object\> | Y        |
 
 #### `id`
 - Must be an 8-digit number.
@@ -68,10 +68,10 @@
 
 ### Curriculum
 
-| Key        | Data Type       | Required |
-| ---------- | --------------- | -------- |
-| `homeroom` | String          | Y        |
-| `blocks`   | Array\<Object\> | Y        |
+| Key        | Data Type      | Required |
+| ---------- | -------------- | -------- |
+| `homeroom` | String         | Y        |
+| `blocks`   | Array<Object\> | Y        |
 
 #### `homeroom`
 - Must be 5 characters or fewer, using only letters and hyphens (-).
@@ -80,10 +80,10 @@
 
 ### Block
 
-| Key     | Data Type       | Required |
-| ------- | --------------- | -------- |
-| `name`  | String          | Y        |
-| `lanes` | Array\<Object\> | Y        |
+| Key     | Data Type      | Required |
+| ------- | -------------- | -------- |
+| `name`  | String         | Y        |
+| `lanes` | Array<Object\> | Y        |
 
 #### `name`
 - Must be 8 characters or fewer, using only letters and hyphens (-).
@@ -93,9 +93,9 @@
 
 ### Lane
 
-| Key       | Data Type       | Required |
-| --------- | --------------- | -------- |
-| `courses` | Array\<String\> | Y        |
+| Key       | Data Type      | Required |
+| --------- | -------------- | -------- |
+| `courses` | Array<String\> | Y        |
 
 #### `courses`
 - Must contain at least one course name.
