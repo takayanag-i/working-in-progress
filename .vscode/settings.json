@@ -12,10 +12,14 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
         "editor.formatOnSave": true,
-        "editor.tabSize": 2,
+        "editor.tabSize": 4,
     },
     "autopep8.args": [
         "--ignore=E501" // E501:行長(➡️自動改行防止させない)
+    ],
+    // path
+    "python.analysis.extraPaths": [
+        "./python/src/",
     ],
     // jupyter
     "jupyter.askForKernelRestart": false,

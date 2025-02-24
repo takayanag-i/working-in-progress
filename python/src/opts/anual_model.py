@@ -1,9 +1,9 @@
 import pulp
 
-from python.src.opts.anual_data import AnualData
+from .anual_data import AnualData
 
 
-class AnualSolver:
+class AnualModel:
     """
     与えられたサンプルデータで問題を解くクラス
     """
