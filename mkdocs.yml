@@ -16,4 +16,5 @@ nav:
     - ユースケース: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
   - 基本設計:
     - インターフェース:
-      - Course Arrangement Schema: 05_基本設計/Interface_Specification/curriculum_schema.md
+      - Curriculum Schema: 05_基本設計/Interface_Specification/curriculum_schema.md
+      - Homeroom Schema: 05_基本設計/Interface_Specification/homeroom_schema.md
