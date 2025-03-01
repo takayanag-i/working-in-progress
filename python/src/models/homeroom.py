@@ -2,14 +2,14 @@ from pydantic import BaseModel
 from typing import List
 
 
-class Schedule(BaseModel):
+class Day(BaseModel):
     day: str
     lastPeriod: int
 
 
 class Homeroom(BaseModel):
     name: str
-    schedule: List[Schedule]
+    schedule: List[Day]
 
 
 class HomeroomSchema(BaseModel):

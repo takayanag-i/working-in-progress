@@ -1,18 +1,17 @@
-def convert_json_to_schedule_dict(json_data: dict) -> dict:
+from models.homeroom import HomeroomSchema
+
+
+def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) -> dict:
     result = {}
 
-    # JSON データから homerooms を取得
-    for homeroom in json_data.get("homerooms", []):
-        name = homeroom["name"]
-        schedule = homeroom["schedule"]
+    for homeroom in homeroom_schema.homerooms:
+        name = homeroom.name
+        schedule = homeroom.schedule
 
-        # 各曜日の最終時限をもとに動的にリストを作成
-        day_schedule = {
-            day_data["day"].capitalize(): list(range(1, day_data["lastPeriod"] + 1))
-            for day_data in schedule
+        list = {
+            day["day"]: list(range(1, day["lastPeriod"])) for day in schedule
         }
 
-        # 辞書に追加
-        result[name] = day_schedule
+        result[name] = list
 
     return result
