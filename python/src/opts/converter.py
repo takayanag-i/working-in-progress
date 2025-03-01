@@ -6,12 +6,12 @@ def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) ->
 
     for homeroom in homeroom_schema.homerooms:
         name = homeroom.name
-        schedule = homeroom.schedule
+        slots = homeroom.slots
 
-        list = {
-            day["day"]: list(range(1, day["lastPeriod"])) for day in schedule
+        slots_dict = {
+            slot.day: list(range(1, slot.last_period)) for slot in slots
         }
 
-        result[name] = list
+        result[name] = slots_dict
 
     return result
