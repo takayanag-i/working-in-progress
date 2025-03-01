@@ -60,15 +60,15 @@
 | Key        | Data Type      | Required |
 | ---------- | -------------- | -------- |
 | `name`     | String         | Y        |
-| `schedule` | Array<Object\> | Y        |
+| `daySchedules` | Array<Object\> | Y        |
 
 #### `name`
 - Must be 5 characters or fewer, using only letters and hyphens (-).
 
-#### `schedule`
-- Must contain at least one Schedule object.
+#### `daySchedule`
+- Must contain at least one Day Schedule object.
 
-### Schedule
+### Day Schedule
 
 | Key          | Data Type | Required |
 | ------------ | --------- | -------- |
