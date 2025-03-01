@@ -1,6 +1,7 @@
 import pandas as pd
 
-from python.src.lp.lp_model import LpModel
+from .lp.lp_model import LpModel
+
 
 def display_result_by_homeroom(model: LpModel, h: str) -> pd.DataFrame:
     """
@@ -10,7 +11,7 @@ def display_result_by_homeroom(model: LpModel, h: str) -> pd.DataFrame:
         h -- 学級名
     """
 
-    result_df = pd.DataFrame(columns = [i for i in range(1,8)], index = model.dto.day_of_week)
+    result_df = pd.DataFrame(columns=[i for i in range(1, 8)], index=model.dto.day_of_week)
 
     # 時間割結果を表示する
     for d in model.dto.day_of_week:
@@ -27,6 +28,7 @@ def display_result_by_homeroom(model: LpModel, h: str) -> pd.DataFrame:
                 result_df.at[d, p] = '/'.join(courses_in_period)
 
     return result_df
+
 
 def display_result_all_homerooms(model: LpModel) -> pd.DataFrame:
     """
@@ -62,6 +64,7 @@ def display_result_all_homerooms(model: LpModel) -> pd.DataFrame:
 
     return timetable_df
 
+
 def display_result_all_teachers(model: LpModel) -> pd.DataFrame:
     """
     すべての教員の結果を表示する
@@ -88,6 +91,6 @@ def display_result_all_teachers(model: LpModel) -> pd.DataFrame:
                         for c in lane:
                             for t in model.dto.course_teacher_dict[c]:
                                 if model.x[h, d, p, c].value() == 1:
-                                        timetable_df.at[t, f'{d} {p}'] = c
+                                    timetable_df.at[t, f'{d} {p}'] = c
 
     return timetable_df

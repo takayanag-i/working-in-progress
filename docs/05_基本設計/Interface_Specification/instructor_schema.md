@@ -82,9 +82,9 @@
 - Must be a positive integer.
 
 #### `slots`
-- Must contain at least one Availability Slot object.
+- Must contain at least one Slot object.
 
-### Availability Slot
+### Slot
 
 | Key         | Data Type | Required |
 | ----------- | --------- | -------- |

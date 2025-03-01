@@ -10,7 +10,7 @@
   "homerooms": [
     {
       "name": "2-4",
-      "schedule": [
+      "slots": [
         {
           "day": "mon",
           "lastPeriod": 6
@@ -23,7 +23,7 @@
     },
     {
       "name": "2-5",
-      "schedule":{
+      "slots":{
         ...
       }
     }
@@ -60,15 +60,15 @@
 | Key        | Data Type      | Required |
 | ---------- | -------------- | -------- |
 | `name`     | String         | Y        |
-| `daySchedules` | Array<Object\> | Y        |
+| `slots` | Array<Object\> | Y        |
 
 #### `name`
 - Must be 5 characters or fewer, using only letters and hyphens (-).
 
-#### `daySchedule`
-- Must contain at least one Day Schedule object.
+#### `slots`
+- Must contain at least one Slot object.
 
-### Day Schedule
+### Slot
 
 | Key          | Data Type | Required |
 | ------------ | --------- | -------- |
