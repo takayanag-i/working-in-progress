@@ -25,19 +25,41 @@
 
 ### Room Schema
 
-| Key       | Business Name | Data Type       | Required | Description                        |
-| --------- | ------------- | --------------- | -------- | ---------------------------------- |
-| `id`      | ID            | String          | Y        | Required by Cosmos DB.             |
-| `docType` | Document Type | String          | Y        |                                    |
-| `ttid`    | Timetable ID  | String          | Y        | **Partition Key**.                 |
-| `rooms`   | Room List     | Array\<Object\> | Y        | Contains at least one room object. |
+| Key       | Data Type      | Required |
+| --------- | -------------- | -------- |
+| `id`      | String         | Y        |
+| `docType` | String         | Y        |
+| `ttid`    | String         | Y        |
+| `rooms`   | Array<Object\> | Y        |
+
+#### `id`
+- Must be an 8-digit number.
+
+#### `docType`
+- Must be `"room_schema"`.
+
+#### `ttid`
+- **Partition Key.**
+- Must follow the pattern `^[a-z]{3}_[0-9]{4}_[0-9]{3}$`, representing {School Code}\_{Year}\_{Sequential Number}.
+
+#### `rooms`
+- Must contain at least one Room object.
 
 ### Room
 
-| Key                | Business Name           | Data Type | Required | Description                          |
-| ------------------ | ----------------------- | --------- | -------- | ------------------------------------ |
-| `discipline`       | Discipline              | String    | N        | Discipline associated with the room. |
-| `name`             | Room Name               | String    | Y        | Name of the room.                    |
-| `consectiveChange` | Consecutive Room Change | Boolean   | Y        | Indicates if the room is continuous. |
+| Key                | Data Type | Required |
+| ------------------ | --------- | -------- |
+| `discipline`       | String    | N        |
+| `name`             | String    | Y        |
+| `consectiveChange` | Boolean   | Y        |
+
+#### `discipline`
+- Must be a non-empty string if provided.
+
+#### `name`
+- Must be a non-empty string.
+
+#### `consectiveChange`
+- Must be a boolean value.
 
 ---

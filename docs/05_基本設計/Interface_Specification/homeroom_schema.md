@@ -35,26 +35,50 @@
 
 ### Homeroom Schema
 
-| Key         | Business Name | Data Type       | Required | Description                            |
-| ----------- | ------------- | --------------- | -------- | -------------------------------------- |
-| `id`        | ID            | String          | Y        | Required by Cosmos DB.                 |
-| `docType`   | Document Type | String          | Y        |                                        |
-| `ttid`      | Timetable ID  | String          | Y        | **Partition Key**.                     |
-| `homerooms` | Homeroom List | Array\<Object\> | Y        | Contains at least one homeroom object. |
+| Key         | Data Type      | Required |
+| ----------- | -------------- | -------- |
+| `id`        | String         | Y        |
+| `docType`   | String         | Y        |
+| `ttid`      | String         | Y        |
+| `homerooms` | Array<Object\> | Y        |
+
+#### `id`
+- Must be an 8-digit number.
+
+#### `docType`
+- Must be `"homeroom_schema"`.
+
+#### `ttid`
+- **Partition Key.**
+- Must follow the pattern `^[a-z]{3}_[0-9]{4}_[0-9]{3}$`, representing {School Code}\_{Year}\_{Sequential Number}.
+
+#### `homerooms`
+- Must contain at least one Homeroom object.
 
 ### Homeroom
 
-| Key        | Business Name | Data Type | Required | Description |
-| ---------- | ------------- | --------- | -------- | ----------- |
-| `name`     | Homeroom Name | String    | Y        |             |
-| `schedule` | Schedule      | Object    | Y        |             |
+| Key        | Data Type      | Required |
+| ---------- | -------------- | -------- |
+| `name`     | String         | Y        |
+| `daySchedules` | Array<Object\> | Y        |
 
-### Schedule
+#### `name`
+- Must be 5 characters or fewer, using only letters and hyphens (-).
 
-| Key          | Business Name   | Data Type | Required | Description |
-| ------------ | --------------- | --------- | -------- | ----------- |
-| `day`        | Day of the Week | String    | Y        |             |
-| `lastPeriod` | Last Period     | Number    | Y        |             |
+#### `daySchedule`
+- Must contain at least one Day Schedule object.
+
+### Day Schedule
+
+| Key          | Data Type | Required |
+| ------------ | --------- | -------- |
+| `day`        | String    | Y        |
+| `lastPeriod` | Number    | Y        |
+
+#### `day`
+- Must be a valid day of the week abbreviation (e.g., "mon", "tue").
+
+#### `lastPeriod`
+- Must be a positive integer.
 
 ---
-````
