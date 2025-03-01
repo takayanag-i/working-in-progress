@@ -1,4 +1,5 @@
 from models.homeroom import HomeroomSchema
+from src.models.schedule import ScheduleSchema
 
 
 def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) -> dict:
@@ -15,3 +16,9 @@ def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) ->
         result[name] = slots_dict
 
     return result
+
+
+def convert_schedule_schema_to_day_list(schedule: ScheduleSchema) -> list:
+    available_days = [slot.day for slot in schedule.slots if slot.available]
+
+    return list(dict.fromkeys(available_days))
