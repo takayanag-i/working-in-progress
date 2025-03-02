@@ -4,26 +4,11 @@ from opts.anual_model import AnualModel
 
 
 class CourseConstraint(ConstraintBase):
-    """
-    A concrete implementation of the ConstraintBase class for course constraints.
-    """
 
-    def __init__(self, id: str = None):
-        """
-        Initializes a new instance of the Course class.
+    def __init__(self):
+        super().__init__(ConstraintType.COURSE)
 
-        Args:
-            id (str, optional): Unique identifier for the constraint. If not provided, a new UUID will be generated.
-        """
-        super().__init__(ConstraintType.COURSE, id)
-
-    def apply(self, model: AnualModel):
-        """
-        Applies the course constraint to the given model.
-
-        Args:
-            model (AnualSolver): The model to which the constraint will be applied.
-        """
+    def apply(self, model: AnualModel) -> AnualModel:
         for c in model.dto.course_list:
             for d in model.dto.day_of_week:
                 for p in range(1, 8):  # For each period
@@ -38,3 +23,4 @@ class CourseConstraint(ConstraintBase):
                             model.prob += (
                                 model.x[first_class, d, p, c] == model.x[h, d, p, c]
                             )
+        return model

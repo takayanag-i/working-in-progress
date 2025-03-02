@@ -5,11 +5,11 @@ import pulp
 
 
 class CoursesPerDayConstraint(ConstraintBase):
-    def __init__(self, twice_course_list: list, id: str = None):
-        super().__init__(ConstraintType.COURSES_PER_DAY, id)
+    def __init__(self, twice_course_list: list):
+        super().__init__(ConstraintType.COURSES_PER_DAY)
         self.twice_course_list = twice_course_list
 
-    def apply(self, model: AnualModel):
+    def apply(self, model: AnualModel) -> AnualModel:
         for h in model.dto.homeroom_list:
             for c in model.dto.course_list:
                 max = 2 if c in self.twice_course_list else 1
@@ -19,3 +19,4 @@ class CoursesPerDayConstraint(ConstraintBase):
                     ]
                     if valid_x:
                         model.prob += pulp.lpSum(valid_x) <= max
+        return model

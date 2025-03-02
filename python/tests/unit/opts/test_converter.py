@@ -36,7 +36,9 @@ def sample_schedule_schema():
 
 
 def test_convert_homeroom_schema_to_schedule_dict(sample_homeroom_schema):
-    expected_result = {
+
+    result = convert_homeroom_schema_to_schedule_dict(sample_homeroom_schema)
+    assert result == {
         "2-4": {
             "mon": [1, 2, 3, 4, 5, 6],
             "tue": [1, 2, 3, 4, 5, 6, 7]
@@ -45,9 +47,6 @@ def test_convert_homeroom_schema_to_schedule_dict(sample_homeroom_schema):
             "wed": [1, 2, 3, 4, 5]
         }
     }
-
-    result = convert_homeroom_schema_to_schedule_dict(sample_homeroom_schema)
-    assert result == expected_result
 
 
 def test_convert_schedule_schema_to_day_list(sample_schedule_schema):

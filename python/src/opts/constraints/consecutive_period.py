@@ -6,12 +6,12 @@ import math
 
 
 class ConsecutivePeriodConstraint(ConstraintBase):
-    def __init__(self, course: str, credit: int, id: str = None):
-        super().__init__(ConstraintType.CONSECUTIVE_PERIOD, id)
+    def __init__(self, course: str, credit: int):
+        super().__init__(ConstraintType.CONSECUTIVE_PERIOD)
         self.course = course
         self.credit = credit
 
-    def apply(self, model: AnualModel):
+    def apply(self, model: AnualModel) -> AnualModel:
         for h in model.dto.homeroom_list:
             consecutive_list = []
             for d in model.dto.day_of_week:
@@ -34,3 +34,5 @@ class ConsecutivePeriodConstraint(ConstraintBase):
                             model.x[h, d, p3, self.course] <= 2
             if consecutive_list:
                 model.prob += pulp.lpSum(consecutive_list) == math.floor(self.credit / 2)
+
+        return model
