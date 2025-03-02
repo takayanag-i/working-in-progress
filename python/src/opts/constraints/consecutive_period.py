@@ -1,5 +1,4 @@
-from constraints.base import ConstraintBase
-from common.constants import ConstraintType
+from opts.constraints.base import ConstraintBase
 from opts.anual_model import AnualModel
 import pulp
 import math
@@ -7,7 +6,6 @@ import math
 
 class ConsecutivePeriodConstraint(ConstraintBase):
     def __init__(self, course: str, credit: int):
-        super().__init__(ConstraintType.CONSECUTIVE_PERIOD)
         self.course = course
         self.credit = credit
 

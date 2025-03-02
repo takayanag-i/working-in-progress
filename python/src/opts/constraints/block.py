@@ -1,14 +1,9 @@
-from constraints.base import ConstraintBase
-from common.constants import ConstraintType
+from opts.constraints.base import ConstraintBase
 from opts.anual_model import AnualModel
 import pulp
 
 
 class BlockConstraint(ConstraintBase):
-
-    def __init__(self, id: str = None):
-        super().__init__(ConstraintType.BLOCK, id)
-
     def apply(self, model: AnualModel):
         for h in model.dto.homeroom_list:
             for d in model.dto.day_of_week:

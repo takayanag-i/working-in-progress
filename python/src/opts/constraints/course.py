@@ -1,13 +1,8 @@
-from constraints.base import ConstraintBase
-from common.constants import ConstraintType
+from opts.constraints.base import ConstraintBase
 from opts.anual_model import AnualModel
 
 
 class CourseConstraint(ConstraintBase):
-
-    def __init__(self):
-        super().__init__(ConstraintType.COURSE)
-
     def apply(self, model: AnualModel) -> AnualModel:
         for c in model.dto.course_list:
             for d in model.dto.day_of_week:

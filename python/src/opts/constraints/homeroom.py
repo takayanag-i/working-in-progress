@@ -1,13 +1,9 @@
-from constraints.base import ConstraintBase
-from common.constants import ConstraintType
+from opts.constraints.base import ConstraintBase
 from opts.anual_model import AnualModel
 import pulp
 
 
 class HomeroomConstraint(ConstraintBase):
-    def __init__(self):
-        super().__init__(ConstraintType.HOMEROOM)
-
     def apply(self, model: AnualModel) -> AnualModel:
         for h in model.dto.homeroom_list:
             for d in model.dto.day_of_week:

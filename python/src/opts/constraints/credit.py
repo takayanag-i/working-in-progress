@@ -1,12 +1,10 @@
-from constraints.base import ConstraintBase
-from common.constants import ConstraintType
+from opts.constraints.base import ConstraintBase
 from opts.anual_model import AnualModel
 import pulp
 
 
 class CreditConstraint(ConstraintBase):
     def __init__(self, course_credit_dict: dict):
-        super().__init__(ConstraintType.CREDIT)
         self.course_credit_dict = course_credit_dict
 
     def apply(self, model: AnualModel) -> AnualModel:

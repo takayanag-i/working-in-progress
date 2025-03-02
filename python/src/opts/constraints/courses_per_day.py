@@ -1,12 +1,10 @@
-from constraints.base import ConstraintBase
-from common.constants import ConstraintType
+from opts.constraints.base import ConstraintBase
 from opts.anual_model import AnualModel
 import pulp
 
 
 class CoursesPerDayConstraint(ConstraintBase):
     def __init__(self, twice_course_list: list):
-        super().__init__(ConstraintType.COURSES_PER_DAY)
         self.twice_course_list = twice_course_list
 
     def apply(self, model: AnualModel) -> AnualModel:
