@@ -23,7 +23,7 @@ def apply_all(model: AnualModel, constraints: List[ConstraintBase]) -> AnualMode
 
 
 def solve(model: AnualModel) -> Tuple[AnualModel, int]:
-    status = model.prob.solve()
+    status = model.problem.solve()
     return model, status
 
 
