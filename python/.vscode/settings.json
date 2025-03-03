@@ -16,7 +16,7 @@
     ],
     // path
     "python.analysis.extraPaths": [
-        "./src/",
+        "./src/", "./tests/"
     ],
     // jupyter
     "jupyter.askForKernelRestart": false,

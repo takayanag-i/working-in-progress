@@ -6,5 +6,5 @@ from models.course import Course
 
 class CourseRepository(ABC):
     @abstractmethod
-    def find_by_course_id(self) -> Optional[List[Course]]:
+    def find_by_ttid(self) -> Optional[List[Course]]:
         pass
