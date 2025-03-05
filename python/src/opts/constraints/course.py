@@ -4,11 +4,11 @@ from opts.anual_model import AnualModel
 
 class CourseConstraint(ConstraintBase):
     def apply(self, model: AnualModel) -> AnualModel:
-        for c in model.dto.C:
-            for d in model.dto.D:
+        for c in model.data.C:
+            for d in model.data.D:
                 for p in range(1, 8):  # For each period
                     related_classes = [
-                        h for h in model.dto.H
+                        h for h in model.data.H
                         if (h, d, p, c) in model.x  # Only consider classes with defined variables
                     ]
 

@@ -8,12 +8,12 @@ class CoursesPerDayConstraint(ConstraintBase):
         self.twice_course_list = twice_course_list
 
     def apply(self, model: AnualModel) -> AnualModel:
-        for h in model.dto.H:
-            for c in model.dto.C:
+        for h in model.data.H:
+            for c in model.data.C:
                 max = 2 if c in self.twice_course_list else 1
-                for d in model.dto.D:
+                for d in model.data.D:
                     valid_x = [
-                        model.x[h, d, p, c] for p in model.dto.periods[h][d] if (h, d, p, c) in model.x
+                        model.x[h, d, p, c] for p in model.data.periods[h][d] if (h, d, p, c) in model.x
                     ]
                     if valid_x:
                         model.problem += pulp.lpSum(valid_x) <= max

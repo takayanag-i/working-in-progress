@@ -9,11 +9,11 @@ readme = "README.md"
 python = "^3.12"
 openai = "^1.52.0"
 pandas = "^2.2.3"
-pulp = "^2.9.0"
 openpyxl = "^3.1.5"
 azure-cosmos = "^4.7.0"
 fastapi = "^0.115.8"
 uvicorn = "^0.34.0"
+pulp = "^3.0.2"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"

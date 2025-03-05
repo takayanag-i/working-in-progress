@@ -34,7 +34,7 @@ def convert_course_schema_to_course_list(schema: CourseSchema) -> list:
     )
 
 
-def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) -> dict:
+def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) -> Dict[str, Dict[str, List[int]]]:
     """{学級: スロット}辞書"""
     return {
         homeroom.name: {

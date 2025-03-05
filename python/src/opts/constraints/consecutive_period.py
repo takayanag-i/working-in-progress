@@ -10,10 +10,10 @@ class ConsecutivePeriodConstraint(ConstraintBase):
         self.credit = credit
 
     def apply(self, model: AnualModel) -> AnualModel:
-        for h in model.dto.H:
+        for h in model.data.H:
             consecutive_list = []
-            for d in model.dto.D:
-                periods = sorted(model.dto.periods[h][d])
+            for d in model.data.D:
+                periods = sorted(model.data.periods[h][d])
                 for i in range(len(periods) - 1):
                     p1, p2 = periods[i], periods[i + 1]
                     if (h, d, p1, self.course) in model.x and (h, d, p2, self.course) in model.x:
