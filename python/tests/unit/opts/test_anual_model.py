@@ -24,7 +24,10 @@ def test_define_variables_x(sample_anual_data):
     assert set(model.x.keys()) == set(expected_x_keys)
     for key in expected_x_keys:
         assert isinstance(model.x[key], pulp.LpVariable)
-        assert model.x[key].cat == pulp.LpBinary
+        # cat='Binary'の確認
+        assert model.x[key].upBound == 1
+        assert model.x[key].lowBound == 0
+        assert model.x[key].cat == pulp.LpInteger
 
 
 def test_define_variables_y(sample_anual_data):
@@ -34,5 +37,5 @@ def test_define_variables_y(sample_anual_data):
     expected_y_keys = [("mon", 1, "I1")]
     assert set(model.y.keys()) == set(expected_y_keys)
     for key in expected_y_keys:
-        assert isinstance(model.y[key], pulp.LpAffineExpression)  # lpSum の戻り値は LpAffineExpression
+        assert isinstance(model.y[key], pulp.LpAffineExpression)
         assert len(model.y[key].terms) == 1  # 期待される項数の確認

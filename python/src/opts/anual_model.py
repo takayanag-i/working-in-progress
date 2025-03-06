@@ -5,13 +5,15 @@ from typing import List, Dict, Optional
 
 
 class AnualData(BaseModel):
-    H: Optional[List[str]] = None
-    D: Optional[List[str]] = None
-    C: Optional[List[str]] = None
-    I: Optional[List[str]] = None
-    periods: Optional[Dict[str, Dict[str, List[int]]]] = None
-    curriculums: Optional[Dict[str, List[List[List[str]]]]] = None
-    course_details: Optional[Dict[str, List[str]]] = None
+    H: Optional[List[str]]
+    D: Optional[List[str]]
+    C: Optional[List[str]]
+    I: Optional[List[str]]
+    periods: Optional[Dict[str, Dict[str, List[int]]]]
+    curriculums: Optional[Dict[str, List[List[List[str]]]]]
+    course_details: Optional[Dict[str, List[str]]]
+
+    max_period: int = None
 
 
 class AnualModel:
@@ -21,7 +23,8 @@ class AnualModel:
         self.x = {}
         self.y = {}
 
-        self.define_variables()  # 変数の定義
+        self.data.max_period = self.get_max_period()
+        self.define_variables()
 
     def define_variables(self) -> None:
         """変数を定義する"""
@@ -57,6 +60,14 @@ class AnualModel:
 
             # 任意のd, p, iに対して
             for d in self.data.D
-            for p in range(1, 8)
+            for p in range(1, self.data.max_period + 1)
             for i in self.data.I
         }
+
+    def get_max_period(self) -> int:
+        """最大の時限数"""
+        return max(
+            max(period)
+            for day in self.data.periods.values()
+            for period in day.values()
+        )
