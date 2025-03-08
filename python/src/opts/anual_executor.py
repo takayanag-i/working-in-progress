@@ -2,7 +2,6 @@ from exceptions.opts import ConstraintError, OptimizationError
 from models.constraint import ConstraintSchema
 from opts.anual_model import AnualModel
 from opts.constraints.base import ConstraintBase
-from opts.solution_extractor import extract_solution
 from opts.constraints.mapping import CONSTRAINT_TYPES
 from pulp import LpStatusOptimal
 from typing import List, Tuple
@@ -26,7 +25,7 @@ def solve(model: AnualModel) -> Tuple[AnualModel, int]:
     return model, status
 
 
-def execute(model: AnualModel, constraint_schemas: List[ConstraintSchema]) -> dict:
+def execute(model: AnualModel, constraint_schemas: List[ConstraintSchema]):
     constraints = get_constraints(constraint_schemas)
     if not constraints:
         raise ConstraintError("No valid constraints provided")
@@ -38,4 +37,4 @@ def execute(model: AnualModel, constraint_schemas: List[ConstraintSchema]) -> di
     if status != LpStatusOptimal:
         raise OptimizationError(status)
 
-    return extract_solution(model)
+    return model
