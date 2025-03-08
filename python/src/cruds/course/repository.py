@@ -9,5 +9,5 @@ class CourseRepositoryImpl(CourseRepository):
     def __init__(self, cosmos: CosmosClient):
         self.cosmos = cosmos
 
-    def find_by_course_id(self) -> Optional[List[Dict]]:
+    def find_by_ttid(self) -> Optional[List[Dict]]:
         pass

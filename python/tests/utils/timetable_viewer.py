@@ -1,24 +1,16 @@
 import pandas as pd
 
-from .lp.lp_model import LpModel
+from opts.anual_model import AnualModel
 
 
-def display_result_by_homeroom(model: LpModel, h: str) -> pd.DataFrame:
-    """
-    学級を指定して結果を表示する
+def display_result_by_homeroom(model: AnualModel, h: str) -> pd.DataFrame:
+    result_df = pd.DataFrame(columns=[i for i in range(1, 8)], index=model.data.D)
 
-    Arguments:
-        h -- 学級名
-    """
-
-    result_df = pd.DataFrame(columns=[i for i in range(1, 8)], index=model.dto.day_of_week)
-
-    # 時間割結果を表示する
-    for d in model.dto.day_of_week:
-        for p in model.dto.schedule[h][d]:
+    for d in model.data.D:
+        for p in model.data.periods[h][d]:
             # 複数の講座を一時的に保持するリスト
             courses_in_period = []
-            for block in model.dto.curriculum_dict[h]:
+            for block in model.data.curriculums[h]:
                 for lane in block:
                     for c in lane:
                         if model.x[h, d, p, c].value() == 1:
@@ -30,14 +22,7 @@ def display_result_by_homeroom(model: LpModel, h: str) -> pd.DataFrame:
     return result_df
 
 
-def display_result_all_homerooms(model: LpModel) -> pd.DataFrame:
-    """
-    すべての学級の結果を表示する
-
-    Arguments:
-        model(SampleModel) -- 解が求められたモデル
-    """
-
+def display_result_all_homerooms(model: AnualModel) -> pd.DataFrame:
     # 月曜日から金曜日の1時間目から7時間目までのカラムを作成
     periods = [f'{d} {p}' for d in model.dto.day_of_week for p in range(1, 8)]
 
@@ -65,14 +50,7 @@ def display_result_all_homerooms(model: LpModel) -> pd.DataFrame:
     return timetable_df
 
 
-def display_result_all_teachers(model: LpModel) -> pd.DataFrame:
-    """
-    すべての教員の結果を表示する
-
-    Arguments:
-        model(SampleModel) -- 解が求められたモデル
-    """
-
+def display_result_all_teachers(model: AnualModel) -> pd.DataFrame:
     # 月曜日から金曜日の1時間目から7時間目までのカラムを作成
     periods = [f'{d} {p}' for d in model.dto.day_of_week for p in range(1, 8)]
 

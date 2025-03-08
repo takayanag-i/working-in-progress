@@ -6,5 +6,5 @@ from models.curriculum import Curriculum
 
 class CurriculumRepository(ABC):
     @abstractmethod
-    def find_by_id(self) -> Optional[List[Curriculum]]:
+    def find_by_ttid(self) -> Optional[List[Curriculum]]:
         pass

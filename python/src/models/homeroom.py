@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import List
 
 
@@ -6,16 +6,14 @@ class Slot(BaseModel):
     day: str
     last_period: int = Field(..., alias="lastPeriod")
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 class Homeroom(BaseModel):
     name: str
-    slots: List[Slot] = Field(..., alias="slots")
+    slots: List[Slot]
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 class HomeroomSchema(BaseModel):
@@ -24,5 +22,4 @@ class HomeroomSchema(BaseModel):
     ttid: str
     homerooms: List[Homeroom]
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
