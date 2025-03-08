@@ -1,4 +1,4 @@
-from functools import reduce
+from exceptions.opts import ConstraintError, OptimizationError
 from models.constraint import ConstraintSchema
 from opts.anual_model import AnualModel
 from opts.constraints.base import ConstraintBase
@@ -10,16 +10,15 @@ from typing import List, Tuple
 
 def get_constraints(schemas: List[ConstraintSchema]) -> List[ConstraintBase]:
     return [
-        type(**schema.parameters) for schema in schemas
-        if (type := CONSTRAINT_TYPES.get(schema.constraint_type.upper()))
-    ]
+        CONSTRAINT_TYPES[schema.constraint_type.upper()](**schema.parameters)
+        for schema in schemas
+    ]  # todo: key error handling
 
 
 def apply_all(model: AnualModel, constraints: List[ConstraintBase]) -> AnualModel:
-    def apply_constraints(model: AnualModel, constraint: ConstraintBase) -> AnualModel:
-        return constraint.apply(model)
-
-    return reduce(apply_constraints, constraints, model)
+    for constraint in constraints:
+        model = constraint.apply(model)
+    return model
 
 
 def solve(model: AnualModel) -> Tuple[AnualModel, int]:
@@ -29,11 +28,14 @@ def solve(model: AnualModel) -> Tuple[AnualModel, int]:
 
 def execute(model: AnualModel, constraint_schemas: List[ConstraintSchema]) -> dict:
     constraints = get_constraints(constraint_schemas)
+    if not constraints:
+        raise ConstraintError("No valid constraints provided")
+
     model = apply_all(model, constraints)
 
     model, status = solve(model)
 
     if status != LpStatusOptimal:
-        return {"status": "error", "message": f"Solver failed with status {status}"}
+        raise OptimizationError(status)
 
     return extract_solution(model)

@@ -2,6 +2,9 @@
 testdata.xlsx
 python/tests/resources/sample01
 
+# env
+.env
+
 # jupyter notebook
 *.ipynb
 

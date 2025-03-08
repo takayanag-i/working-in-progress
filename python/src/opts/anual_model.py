@@ -1,7 +1,12 @@
+import os
 import pulp
 
+from dotenv import load_dotenv
 from pydantic import BaseModel
 from typing import List, Dict, Optional
+
+load_dotenv()
+cbc_path = os.getenv("CBC_PATH")
 
 
 class AnualData(BaseModel):
@@ -20,6 +25,7 @@ class AnualModel:
     def __init__(self, data: AnualData):
         self.data = data
         self.problem = pulp.LpProblem("sample", pulp.LpMinimize)
+        self.problem.setSolver(pulp.COIN_CMD(path=cbc_path, msg=True))
         self.x = {}
         self.y = {}
 
@@ -27,8 +33,6 @@ class AnualModel:
         self.define_variables()
 
     def define_variables(self) -> None:
-        """変数を定義する"""
-
         # xの定義
         self.x = {
             (h, d, p, c): pulp.LpVariable(name=f"x_{h}_{d}_{p}_{c}", cat=pulp.LpBinary)
