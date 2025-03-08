@@ -1,21 +1,16 @@
-//===============================================================
-//  グローバル定数・変数
-//===============================================================
 /** @type {Object} */
 const filterState = {}; // フィルタリストの状態
 
 /** @type {Array<Object>} */
 let tableData = [];
 
-//===============================================================
 //  オンロードでフィルタ機能を初期化
-//===============================================================
 window.onload = () => {
   initFilter();
 }
 
 /**
- * フィルターの初期化関数
+ * フィルタの初期化
  */
 const initFilter = () => {
   const table = document.querySelector("table");
@@ -35,8 +30,8 @@ const initFilter = () => {
 }
 
 /**
- * テーブルデータを取得する関数
- * @param {HTMLTableElement} table - テーブル要素
+ * テーブルデータを取得する
+ * @param {HTMLTableElement} table テーブル要素
  * @returns {Array<Object>} テーブルデータの配列
  */
 const getTableData = (table) => {
@@ -54,8 +49,8 @@ const getTableData = (table) => {
 }
 
 /**
- * フィルタ用のドロップダウンを生成する関数
- * @param {Number} columnIndex 
+ * フィルタ用のドロップダウンを生成する
+ * @param {Number} columnIndex 列番号
  * @returns {HTMLDivElement} ドロップダウンDOM
  */
 const createDropDown = (columnIndex) => {
@@ -132,8 +127,8 @@ const createfilterOptionForAll = (columnIndex) => {
 
 /**
  * フィルタオプション群を生成する
- * @param {Number} columnIndex 
- * @param {Array<String|Number>} items 
+ * @param {Number} columnIndex 列番号
+ * @param {Array<String|Number>} items オプションのリスト
  * @returns {HTMLFormElement} form要素(子要素に各フィルタオプションを持つ)
  */
 const createFormsForOptions = (columnIndex, items) => {
@@ -169,7 +164,7 @@ const createFormsForOptions = (columnIndex, items) => {
 
 /**
  * 文字列抽出用のテキストエリアを生成する
- * @param {Number} columnIndex 
+ * @param {Number} columnIndex 列番号
  * @returns {HTMLDivElement} div要素
  */
 const createTextArea = (columnIndex) => {
@@ -188,7 +183,7 @@ const createTextArea = (columnIndex) => {
 
 /**
  * Applyボタンを生成する
- * @param {Number} columnIndex 
+ * @param {Number} columnIndex 列番号
  * @returns {HTMLDivElement} div要素
  */
 const createButtonArea = (columnIndex) => {
@@ -217,8 +212,8 @@ const createButtonArea = (columnIndex) => {
 //  イベント
 //===============================================================
 /**
- * ドロップダウンを開く関数
- * @param {Number} columnIndex 
+ * ドロップダウンを開く
+ * @param {Number} columnIndex 列番号
  */
 const openDropDown = (columnIndex) => {
   closeAllDropDown();
@@ -228,7 +223,7 @@ const openDropDown = (columnIndex) => {
 };
 
 /**
- * 全ドロップダウンを閉じる関数
+ * 全ドロップダウンを閉じる
  */
 const closeAllDropDown = () => {
   const columnKeys = Object.keys(tableData[0]);
@@ -239,7 +234,7 @@ const closeAllDropDown = () => {
 }
 
 /**
- * フィルタを適用する関数
+ * フィルタを適用する
  */
 const applyFilter = () => {
   const table = document.querySelector("table");
@@ -296,7 +291,7 @@ const applyFilter = () => {
 }
 
 /**
- * ドロップダウンを閉じる際の処理を行う関数
+ * ドロップダウンを閉じる際の処理を行う
  * @param {Number} columnIndex 列番号
  */
 const closeDropdown = (columnIndex) => {
@@ -305,7 +300,7 @@ const closeDropdown = (columnIndex) => {
 }
 
 /**
- * フィルタオプションのチェック状態を更新する関数
+ * フィルタオプションのチェック状態を更新する
  * @param {Number} columnIndex 列番号
  */
 const updataFilterOptions = (columnIndex) => {
@@ -329,7 +324,7 @@ const updataFilterOptions = (columnIndex) => {
 }
 
 /**
- * Allチェックボックスの状態を各選択肢に反映する関数
+ * Allチェックボックスの状態を各選択肢に反映する
  * @param {Number} columnIndex 列番号
  */
 const checkAll = (columnIndex) => {
@@ -344,7 +339,7 @@ const checkAll = (columnIndex) => {
 };
 
 /**
- * フィルタ状態を保存する関数
+ * フィルタ状態を保存する
  * @param {Number} columnIndex 列番号
  */
 const saveState = (columnIndex) => {
@@ -362,7 +357,7 @@ const saveState = (columnIndex) => {
 };
 
 /**
- * フィルタ状態を読み込む関数
+ * フィルタ状態を読み込む
  * @param {Number} columnIndex 列番号
  */
 const loadState = (columnIndex) => {

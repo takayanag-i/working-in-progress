@@ -1,0 +1,20 @@
+site_name: Timetable Docs
+theme:
+  name: material
+
+repo_url: https://github.com/takayanag-i/working-in-progress
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+
+exclude_docs: |
+  lib/
+
+nav:
+  - Home: index.md
+  - システム要件:
+    - ユースケース: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
+  - 基本設計:
+    - インターフェース:
+      - Curriculum Schema: 05_基本設計/Interface_Specification/curriculum_schema.md
+      - Homeroom Schema: 05_基本設計/Interface_Specification/homeroom_schema.md

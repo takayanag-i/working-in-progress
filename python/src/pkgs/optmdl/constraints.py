@@ -1,7 +1,8 @@
 import pulp
 import math
 
-from pkgs.optmdl.lp_model import LpModel
+from .lp.lp_model import LpModel
+
 
 def add_homeroom_constraints(model: LpModel) -> LpModel:
     """
@@ -18,8 +19,9 @@ def add_homeroom_constraints(model: LpModel) -> LpModel:
     for h in model.dto.homeroom_list:
         for d in model.dto.day_of_week:
             for p in model.dto.schedule[h][d]:
-                    model.prob += pulp.lpSum([model.x[h,d,p,c] for block in model.dto.curriculum_dict[h] for lane in block for c in lane]) >= 1
+                model.prob += pulp.lpSum([model.x[h, d, p, c] for block in model.dto.curriculum_dict[h] for lane in block for c in lane]) >= 1
     return model
+
 
 def add_course_credit_constraints(
     model: LpModel, course_credit_dict: dict
@@ -63,10 +65,11 @@ def add_block_constraints(model: LpModel) -> LpModel:
             for p in model.dto.schedule[h][d]:
                 for block in model.dto.curriculum_dict[h]:
                     if len(block) > 1:  # 複数レーンのあるブロックのみ
-                        sums_of_x_in_lanes = [pulp.lpSum([model.x[h,d,p,c] for c in lane]) for lane in block]
-                        for i in range(1, len(sums_of_x_in_lanes)): # lem(block) > 1 を満たすlaneの数だけ
+                        sums_of_x_in_lanes = [pulp.lpSum([model.x[h, d, p, c] for c in lane]) for lane in block]
+                        for i in range(1, len(sums_of_x_in_lanes)):  # lem(block) > 1 を満たすlaneの数だけ
                             model.prob += sums_of_x_in_lanes[0] == sums_of_x_in_lanes[i]
     return model
+
 
 def add_teacher_constraints(model: LpModel) -> LpModel:
     """
@@ -83,8 +86,9 @@ def add_teacher_constraints(model: LpModel) -> LpModel:
     for d in model.dto.day_of_week:
         for p in range(1, 8):
             for t in model.dto.teacher_list:
-                model.prob += model.y[d,p,t] <= 1
+                model.prob += model.y[d, p, t] <= 1
     return model
+
 
 def add_course_constraints(model: LpModel) -> LpModel:
     """
@@ -115,6 +119,7 @@ def add_course_constraints(model: LpModel) -> LpModel:
                             model.x[first_class, d, p, c] == model.x[h, d, p, c]
                         )
     return model
+
 
 def add_consective_period_constraints(model: LpModel, course: str, credit: int) -> LpModel:
     """
@@ -161,6 +166,7 @@ def add_consective_period_constraints(model: LpModel, course: str, credit: int) 
             model.prob += pulp.lpSum(consective_list) == math.floor(credit / 2)
 
     return model
+
 
 def add_courses_per_day_constraints(model: LpModel, twice_course_list: list) -> LpModel:
     """

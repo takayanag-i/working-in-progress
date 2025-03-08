@@ -1,0 +1,49 @@
+{
+    //-----------
+    // markdown,
+    //-----------
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+    },
+    //-----------
+    // UML
+    //-----------
+    "plantuml.exportSubFolder": false,
+    "plantuml.exportIncludeFolderHeirarchy": false,
+    //-----------
+    // java
+    //-----------
+    "java.project.sourcePaths": [
+        "spring/src/main/java"
+    ],
+    "java.project.outputPath": "spring/bin",
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    //-----------
+    // yaml
+    //-----------
+    "[yaml]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "keep",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        }
+    },
+    "yaml.schemas": {
+        "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+    },
+    "yaml.customTags": [
+        "!ENV scalar",
+        "!ENV sequence",
+        "!relative scalar",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.to_svg",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
+        "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format",
+        "tag:yaml.org,2002:python/object/apply:pymdownx.slugs.slugify mapping"
+    ]
+}

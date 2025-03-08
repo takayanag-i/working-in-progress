@@ -1,5 +1,9 @@
 # KJ
 testdata.xlsx
+python/tests/resources/sample01
+
+# env
+.env
 
 # jupyter notebook
 *.ipynb
@@ -15,9 +19,6 @@ poetry.lock
 
 # cosmos
 emulatorcert.crt
-
-# vscode
-.vscode/
 
 # pytest
 .coverage
