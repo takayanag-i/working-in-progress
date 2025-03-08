@@ -11,6 +11,6 @@
 | AP006 | 科目API           | `/api/subjects`            | POST         |          |          |
 | AP007 | カリキュラムAPI   | `/api/curriculums`         | POST         |          |          |
 | AP008 | 講座API           | `/api/courses`             | POST         |          |          |
-| 未定  | 年間時間割編成API | `/api/solver/`             | POST         |          |          |
+| 未定  | 年間時間割API | `/api/solutions/`             | POST         |          |          |
 
 <script src="https://takayanag-i.github.io/working-in-progress/lib/filter.js"></script>
