@@ -9,6 +9,11 @@ load_dotenv()
 cbc_path = os.getenv("CBC_PATH")
 
 
+class CourseDetail(BaseModel):
+    instructors: List[str]
+    credits: int
+
+
 class AnualData(BaseModel):
     H: Optional[List[str]]
     D: Optional[List[str]]
@@ -16,7 +21,7 @@ class AnualData(BaseModel):
     I: Optional[List[str]]
     periods: Optional[Dict[str, Dict[str, List[int]]]]
     curriculums: Optional[Dict[str, List[List[List[str]]]]]
-    course_details: Optional[Dict[str, List[str]]]
+    course_details: Optional[Dict[str, CourseDetail]]
 
     max_period: int = None
 

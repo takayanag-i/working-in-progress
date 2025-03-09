@@ -12,9 +12,16 @@ exclude_docs: |
 
 nav:
   - Home: index.md
-  - システム要件:
-    - ユースケース: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
-  - 基本設計:
-    - インターフェース:
+  - SS(システム要件):
+    - Usecases: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
+  - SD(基本設計):
+    - Insterface Specification:
+      - Course Schema: 05_基本設計/Interface_Specification/course_schema.md
       - Curriculum Schema: 05_基本設計/Interface_Specification/curriculum_schema.md
       - Homeroom Schema: 05_基本設計/Interface_Specification/homeroom_schema.md
+      - Instructor Schema: 05_基本設計/Interface_Specification/instructor_schema.md
+      - Room Schema: 05_基本設計/Interface_Specification/room_schema.md
+      - Subject Schema: 05_基本設計/Interface_Specification/subject_schema.md
+    - Mathematical Model Specification:
+      - Constraints:
+        - Block Constraint: 05_基本設計/Maethmatical_Model_Specification/constraints/block_constraint.md
