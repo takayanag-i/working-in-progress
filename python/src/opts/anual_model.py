@@ -27,6 +27,15 @@ class AnualData(BaseModel):
 
 
 class AnualModel:
+    """時間割の最適化モデルを管理するクラス。
+
+    Attributes:
+        data (AnualData): 時間割の元データ。
+        problem (pulp.LpProblem): 線形最適化問題の定義。
+        x (Dict[Tuple[str, str, int, str], pulp.LpVariable]): 学級・曜日・時限・講座ごとの変数。
+        y (Dict[Tuple[str, str, int], pulp.LpAffineExpression]): 教員ごとの授業数を表す式。
+    """
+
     def __init__(self, data: AnualData):
         self.data = data
         self.problem = pulp.LpProblem("sample", pulp.LpMinimize)

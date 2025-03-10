@@ -19,8 +19,15 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 
+plugins:
+- mkdocstrings:
+    handlers:
+      python:
+        paths: [python]  # actually not needed, default
+
 nav:
   - Home: index.md
+  - Test: test.md
   - SS(システム要件):
     - Usecases: 03_システム要件定義/01_ユースケース一覧/ユースケース一覧.md
   - SD(基本設計):
