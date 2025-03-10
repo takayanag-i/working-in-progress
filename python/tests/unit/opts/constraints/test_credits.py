@@ -6,7 +6,9 @@ def test_credit_constraint(mock_anual_model):
     model = credit_constraint.apply(mock_anual_model)
 
     actual_constraints = [
-        constraint.toDict() for constraint in model.problem.constraints.values()
+        (d["name"], d["value"], v.toDict()["constant"])
+        for v in model.problem.constraints.values()
+        for d in v.toDict()["coefficients"]
     ]
 
-    pass
+    assert len(actual_constraints) == 24, "数が合わない"

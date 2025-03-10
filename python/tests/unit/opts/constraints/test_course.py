@@ -29,7 +29,6 @@ def test_course_constraint(mock_anual_model):
         for constraint in model.problem.constraints.values()
     ]
 
-    # 制約が追加されていることを確認
     assert len(actual_constraints) == 10, "数が合わない"
 
     for expected in expected_constraints:
