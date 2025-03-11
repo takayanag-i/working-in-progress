@@ -23,7 +23,7 @@ plugins:
 - mkdocstrings:
     handlers:
       python:
-        paths: [../python]
+        paths: [python]
 
 nav:
   - Home: index.md
