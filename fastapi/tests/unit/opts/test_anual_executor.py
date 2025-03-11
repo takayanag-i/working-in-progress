@@ -67,8 +67,14 @@ def sample_anual_data():
             "H2": [[["C1", "C2"]]]
         },
         course_details={
-            "C1": ["I1"],
-            "C2": ["I1", "I2"]
+            "C1": {
+                "instructors": ["I1"],
+                "credits": 1
+            },
+            "C2": {
+                "instructors": ["I1", "I2"],
+                "credits": 1
+            },
         }
     )
 

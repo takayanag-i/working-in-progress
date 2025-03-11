@@ -1,0 +1,2854 @@
+{
+  "id": "12345678",
+  "docType": "course_schema",
+  "ttid": "sry_2025_001",
+  "courses": [
+    {
+      "name": "1現国1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        }
+      ]
+    },
+    {
+      "name": "1現国2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        }
+      ]
+    },
+    {
+      "name": "1現国3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        }
+      ]
+    },
+    {
+      "name": "1現国4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "1現国5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "1現国6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "1現国7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "1言文1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "1言文2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "1言文3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "1言文4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        }
+      ]
+    },
+    {
+      "name": "1言文5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        }
+      ]
+    },
+    {
+      "name": "1言文6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        }
+      ]
+    },
+    {
+      "name": "1言文7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        },
+        {
+          "instructor": "荒木"
+        }
+      ]
+    },
+    {
+      "name": "2論国1",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "木田"
+        }
+      ]
+    },
+    {
+      "name": "2論国2",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "木田"
+        }
+      ]
+    },
+    {
+      "name": "2論国3",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "磯貝"
+        }
+      ]
+    },
+    {
+      "name": "2論国4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "磯貝"
+        }
+      ]
+    },
+    {
+      "name": "2論国理5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "藤友"
+        }
+      ]
+    },
+    {
+      "name": "2論国理6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "藤友"
+        }
+      ]
+    },
+    {
+      "name": "2論国理7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "藤友"
+        }
+      ]
+    },
+    {
+      "name": "2古典1",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "磯貝"
+        }
+      ]
+    },
+    {
+      "name": "2古典2",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "磯貝"
+        }
+      ]
+    },
+    {
+      "name": "2古典3",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "木田"
+        }
+      ]
+    },
+    {
+      "name": "2古典4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "木田"
+        }
+      ]
+    },
+    {
+      "name": "2古典理5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "藤友"
+        },
+        {
+          "instructor": "木田"
+        }
+      ]
+    },
+    {
+      "name": "2古典理6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "磯貝"
+        },
+        {
+          "instructor": "藤友"
+        }
+      ]
+    },
+    {
+      "name": "2古典理7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "磯貝"
+        },
+        {
+          "instructor": "木田"
+        }
+      ]
+    },
+    {
+      "name": "3現文1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "古川"
+        }
+      ]
+    },
+    {
+      "name": "3現文2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "古川"
+        }
+      ]
+    },
+    {
+      "name": "3現文3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "塚本"
+        }
+      ]
+    },
+    {
+      "name": "3現文4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "塚本"
+        }
+      ]
+    },
+    {
+      "name": "3現文5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "塚本"
+        }
+      ]
+    },
+    {
+      "name": "3現文6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "古川"
+        }
+      ]
+    },
+    {
+      "name": "3古典理4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "藤友"
+        }
+      ]
+    },
+    {
+      "name": "3古典理5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "古川"
+        },
+        {
+          "instructor": "藤友"
+        }
+      ]
+    },
+    {
+      "name": "3古典理6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "塚本"
+        },
+        {
+          "instructor": "藤友"
+        }
+      ]
+    },
+    {
+      "name": "3古典1",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "塚本"
+        }
+      ]
+    },
+    {
+      "name": "3古典2",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "塚本"
+        }
+      ]
+    },
+    {
+      "name": "3古典3",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "古川"
+        }
+      ]
+    },
+    {
+      "name": "3古典4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "古川"
+        }
+      ]
+    },
+    {
+      "name": "3A国探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "光武"
+        }
+      ]
+    },
+    {
+      "name": "3B国探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "光武"
+        }
+      ]
+    },
+    {
+      "name": "3C国探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "光武"
+        }
+      ]
+    },
+    {
+      "name": "1歴総1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "1歴総2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "1歴総3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "1歴総4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "1歴総5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "1歴総6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "1歴総7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2地総1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "合田"
+        }
+      ]
+    },
+    {
+      "name": "2地総2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "登日"
+        }
+      ]
+    },
+    {
+      "name": "2地総3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "登日"
+        }
+      ]
+    },
+    {
+      "name": "2地総4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "登日"
+        }
+      ]
+    },
+    {
+      "name": "2地総5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "合田"
+        }
+      ]
+    },
+    {
+      "name": "2地総6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "竹内"
+        }
+      ]
+    },
+    {
+      "name": "2地総7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "合田"
+        }
+      ]
+    },
+    {
+      "name": "2公政1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "2公政2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "2公政3",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "2公政4",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "2公政5",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "2公政6",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "2公政7",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "西田"
+        }
+      ]
+    },
+    {
+      "name": "2公倫1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2公倫2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2公倫3",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2公倫4",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2公倫5",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2公倫6",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2公倫7",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "福谷"
+        }
+      ]
+    },
+    {
+      "name": "2世探",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "合田"
+        }
+      ]
+    },
+    {
+      "name": "2日探1",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "竹内"
+        }
+      ]
+    },
+    {
+      "name": "2日探2",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "竹内"
+        }
+      ]
+    },
+    {
+      "name": "2日探34",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "竹内"
+        }
+      ]
+    },
+    {
+      "name": "3世B1",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "光島"
+        }
+      ]
+    },
+    {
+      "name": "3世B3",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "光島"
+        }
+      ]
+    },
+    {
+      "name": "3日B1",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "楢原"
+        }
+      ]
+    },
+    {
+      "name": "3日B2",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "楢原"
+        }
+      ]
+    },
+    {
+      "name": "3日B34",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "楢原"
+        }
+      ]
+    },
+    {
+      "name": "3地B4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "中村博"
+        }
+      ]
+    },
+    {
+      "name": "3地B5",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "中村博"
+        }
+      ]
+    },
+    {
+      "name": "3地B6",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "中村博"
+        }
+      ]
+    },
+    {
+      "name": "3A世探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "光島"
+        }
+      ]
+    },
+    {
+      "name": "3A日探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楢原"
+        }
+      ]
+    },
+    {
+      "name": "3B政経",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "光島"
+        }
+      ]
+    },
+    {
+      "name": "3C倫理",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "石野"
+        }
+      ]
+    },
+    {
+      "name": "3C政経",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "光島"
+        }
+      ]
+    },
+    {
+      "name": "3C日探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "楢原"
+        }
+      ]
+    },
+    {
+      "name": "3D倫理",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "石野"
+        }
+      ]
+    },
+    {
+      "name": "3D政経",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "光島"
+        }
+      ]
+    },
+    {
+      "name": "1数Ⅰ1",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "中村周"
+        }
+      ]
+    },
+    {
+      "name": "1数Ⅰ2",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "豊後"
+        }
+      ]
+    },
+    {
+      "name": "1数Ⅰ3",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "森川"
+        }
+      ]
+    },
+    {
+      "name": "1数Ⅰ4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "豊後"
+        }
+      ]
+    },
+    {
+      "name": "1数Ⅰ5",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "森川"
+        }
+      ]
+    },
+    {
+      "name": "1数Ⅰ6",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "豊後"
+        }
+      ]
+    },
+    {
+      "name": "1数Ⅰ7",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "森川"
+        },
+        {
+          "instructor": "福富"
+        }
+      ]
+    },
+    {
+      "name": "1数Ａ1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "豊後"
+        }
+      ]
+    },
+    {
+      "name": "1数Ａ2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "森川"
+        }
+      ]
+    },
+    {
+      "name": "1数Ａ3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "外山"
+        }
+      ]
+    },
+    {
+      "name": "1数Ａ4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "森川"
+        }
+      ]
+    },
+    {
+      "name": "1数Ａ5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "豊後"
+        }
+      ]
+    },
+    {
+      "name": "1数Ａ6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "森川"
+        }
+      ]
+    },
+    {
+      "name": "1数Ａ7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "豊後"
+        },
+        {
+          "instructor": "外山"
+        }
+      ]
+    },
+    {
+      "name": "2数Ⅱ文1",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "中村周"
+        }
+      ]
+    },
+    {
+      "name": "2数Ⅱ文2",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "碓永"
+        }
+      ]
+    },
+    {
+      "name": "2数Ⅱ文3",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "吉行"
+        }
+      ]
+    },
+    {
+      "name": "2数Ⅱ文4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "外山"
+        }
+      ]
+    },
+    {
+      "name": "2数Ⅱ理5",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "碓永"
+        }
+      ]
+    },
+    {
+      "name": "2数Ⅱ理6",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "吉行"
+        }
+      ]
+    },
+    {
+      "name": "2数Ⅱ理7",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "碓永"
+        },
+        {
+          "instructor": "吉行"
+        }
+      ]
+    },
+    {
+      "name": "2数Ｂ1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "吉行"
+        }
+      ]
+    },
+    {
+      "name": "2数Ｂ2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "吉行"
+        }
+      ]
+    },
+    {
+      "name": "2数Ｂ3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "碓永"
+        }
+      ]
+    },
+    {
+      "name": "2数Ｂ4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "碓永"
+        }
+      ]
+    },
+    {
+      "name": "2数Ｂ5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "野島"
+        }
+      ]
+    },
+    {
+      "name": "2数Ｂ6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "野島"
+        }
+      ]
+    },
+    {
+      "name": "2数Ｂ7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "中村周"
+        },
+        {
+          "instructor": "野島"
+        }
+      ]
+    },
+    {
+      "name": "3数Ⅱ12",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中勇"
+        },
+        {
+          "instructor": "新居"
+        },
+        {
+          "instructor": "野島"
+        }
+      ]
+    },
+    {
+      "name": "3数Ⅱ34",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中勇"
+        },
+        {
+          "instructor": "新居"
+        },
+        {
+          "instructor": "野島"
+        }
+      ]
+    },
+    {
+      "name": "3数Ⅲ45",
+      "credits": 5,
+      "courseDetails": [
+        {
+          "instructor": "田中勇"
+        },
+        {
+          "instructor": "中村周"
+        },
+        {
+          "instructor": "福富"
+        }
+      ]
+    },
+    {
+      "name": "3数Ⅲ6",
+      "credits": 5,
+      "courseDetails": [
+        {
+          "instructor": "田中勇"
+        },
+        {
+          "instructor": "新居"
+        }
+      ]
+    },
+    {
+      "name": "3数探Ⅲ45",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "新居"
+        },
+        {
+          "instructor": "田中勇"
+        },
+        {
+          "instructor": "外山"
+        }
+      ]
+    },
+    {
+      "name": "3数探Ⅲ6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "新居"
+        },
+        {
+          "instructor": "外山"
+        }
+      ]
+    },
+    {
+      "name": "3A数探Ⅱ",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "外山"
+        }
+      ]
+    },
+    {
+      "name": "3B数探Ⅱ",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "新居"
+        }
+      ]
+    },
+    {
+      "name": "3D数探Ⅰ",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "外山"
+        }
+      ]
+    },
+    {
+      "name": "1物基1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "大平"
+        }
+      ]
+    },
+    {
+      "name": "1物基2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "大平"
+        }
+      ]
+    },
+    {
+      "name": "1物基3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "杉木"
+        }
+      ]
+    },
+    {
+      "name": "1物基4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "杉木"
+        }
+      ]
+    },
+    {
+      "name": "1物基5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "平賀"
+        }
+      ]
+    },
+    {
+      "name": "1物基6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "平賀"
+        }
+      ]
+    },
+    {
+      "name": "1物基7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "平賀"
+        }
+      ]
+    },
+    {
+      "name": "1化基1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "吉田"
+        }
+      ]
+    },
+    {
+      "name": "1化基2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "吉田"
+        }
+      ]
+    },
+    {
+      "name": "1化基3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "高柳"
+        }
+      ]
+    },
+    {
+      "name": "1化基4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "高柳"
+        }
+      ]
+    },
+    {
+      "name": "1化基5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "高柳"
+        }
+      ]
+    },
+    {
+      "name": "1化基6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "吉田"
+        }
+      ]
+    },
+    {
+      "name": "1化基7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "吉田"
+        }
+      ]
+    },
+    {
+      "name": "1生基1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "石川"
+        }
+      ]
+    },
+    {
+      "name": "1生基2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "石川"
+        }
+      ]
+    },
+    {
+      "name": "1生基3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "1生基4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "1生基5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "1生基6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "1生基7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "2化学5",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "前平"
+        },
+        {
+          "instructor": "須河内"
+        }
+      ]
+    },
+    {
+      "name": "2化学6",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "前平"
+        },
+        {
+          "instructor": "須河内"
+        }
+      ]
+    },
+    {
+      "name": "2化学7",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "前平"
+        },
+        {
+          "instructor": "須河内"
+        }
+      ]
+    },
+    {
+      "name": "2物理5",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "杉木"
+        }
+      ]
+    },
+    {
+      "name": "2物理6",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "平賀"
+        }
+      ]
+    },
+    {
+      "name": "2物理7",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "平賀"
+        }
+      ]
+    },
+    {
+      "name": "2生物56",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "石川"
+        }
+      ]
+    },
+    {
+      "name": "2生物7",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "石川"
+        }
+      ]
+    },
+    {
+      "name": "2生物文",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "石川"
+        }
+      ]
+    },
+    {
+      "name": "2化研Ⅰ1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "前平"
+        }
+      ]
+    },
+    {
+      "name": "2化研Ⅰ2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "前平"
+        }
+      ]
+    },
+    {
+      "name": "2化研Ⅰ3",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "前平"
+        }
+      ]
+    },
+    {
+      "name": "2化研Ⅰ4",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "前平"
+        }
+      ]
+    },
+    {
+      "name": "2生研Ⅰ1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "2生研Ⅰ2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "2生研Ⅰ3",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "2生研Ⅰ4",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "3物理4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "杉木"
+        }
+      ]
+    },
+    {
+      "name": "3物理5",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "杉木"
+        }
+      ]
+    },
+    {
+      "name": "3物理6",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "杉木"
+        }
+      ]
+    },
+    {
+      "name": "3生物5",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "3生物6",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "3生物文",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "3生研Ⅱ1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "3生研Ⅱ2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "3生研Ⅱ34",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "白神"
+        }
+      ]
+    },
+    {
+      "name": "3化研Ⅱ1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "笠田"
+        }
+      ]
+    },
+    {
+      "name": "3化研Ⅱ2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "笠田"
+        }
+      ]
+    },
+    {
+      "name": "3化研Ⅱ34",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "笠田"
+        }
+      ]
+    },
+    {
+      "name": "3化学4",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "笠田"
+        }
+      ]
+    },
+    {
+      "name": "3化学5",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "笠田"
+        },
+        {
+          "instructor": "吉田"
+        }
+      ]
+    },
+    {
+      "name": "3化学6",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "笠田"
+        },
+        {
+          "instructor": "吉田"
+        }
+      ]
+    },
+    {
+      "name": "3物探",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "杉木"
+        }
+      ]
+    },
+    {
+      "name": "3生探",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "石川"
+        }
+      ]
+    },
+    {
+      "name": "3化探",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "笠田"
+        },
+        {
+          "instructor": "高柳"
+        }
+      ]
+    },
+    {
+      "name": "3D生物",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中伸"
+        }
+      ]
+    },
+    {
+      "name": "1理探基",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "豊後"
+        },
+        {
+          "instructor": "森川"
+        },
+        {
+          "instructor": "平賀"
+        },
+        {
+          "instructor": "石川"
+        },
+        {
+          "instructor": "白神"
+        },
+        {
+          "instructor": "高野"
+        },
+        {
+          "instructor": "田中小"
+        },
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "2探求Ⅰ",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        },
+        {
+          "instructor": "藤友"
+        },
+        {
+          "instructor": "磯貝"
+        },
+        {
+          "instructor": "古川"
+        },
+        {
+          "instructor": "竹内"
+        },
+        {
+          "instructor": "西田"
+        },
+        {
+          "instructor": "合田"
+        },
+        {
+          "instructor": "中村周"
+        },
+        {
+          "instructor": "外山"
+        },
+        {
+          "instructor": "吉行"
+        },
+        {
+          "instructor": "前平"
+        },
+        {
+          "instructor": "石川"
+        },
+        {
+          "instructor": "平賀"
+        },
+        {
+          "instructor": "田中伸"
+        },
+        {
+          "instructor": "植村"
+        },
+        {
+          "instructor": "高橋"
+        },
+        {
+          "instructor": "吉山"
+        },
+        {
+          "instructor": "濱谷"
+        },
+        {
+          "instructor": "松本"
+        },
+        {
+          "instructor": "大井"
+        },
+        {
+          "instructor": "田中小"
+        },
+        {
+          "instructor": "白井"
+        }
+      ]
+    },
+    {
+      "name": "2理探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "碓永"
+        },
+        {
+          "instructor": "中村周"
+        },
+        {
+          "instructor": "前平"
+        },
+        {
+          "instructor": "石川"
+        },
+        {
+          "instructor": "平賀"
+        },
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "3探求Ⅱ",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "楠"
+        },
+        {
+          "instructor": "塚本"
+        },
+        {
+          "instructor": "楢原"
+        },
+        {
+          "instructor": "合田"
+        },
+        {
+          "instructor": "新居"
+        },
+        {
+          "instructor": "外山"
+        },
+        {
+          "instructor": "白神"
+        },
+        {
+          "instructor": "田中伸"
+        },
+        {
+          "instructor": "入江"
+        },
+        {
+          "instructor": "大井"
+        },
+        {
+          "instructor": "松本"
+        },
+        {
+          "instructor": "吉山"
+        },
+        {
+          "instructor": "田中小"
+        }
+      ]
+    },
+    {
+      "name": "1体育1267",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "白井"
+        },
+        {
+          "instructor": "岡本"
+        },
+        {
+          "instructor": "高野"
+        },
+        {
+          "instructor": "山内"
+        },
+        {
+          "instructor": "増井"
+        },
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "1体育345",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "岡本"
+        },
+        {
+          "instructor": "白井"
+        },
+        {
+          "instructor": "高野"
+        },
+        {
+          "instructor": "山内"
+        },
+        {
+          "instructor": "山崎"
+        },
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "1保健1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "白井"
+        }
+      ]
+    },
+    {
+      "name": "1保健2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "1保健3",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "山内"
+        }
+      ]
+    },
+    {
+      "name": "1保健4",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "高野"
+        }
+      ]
+    },
+    {
+      "name": "1保健5",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "高野"
+        }
+      ]
+    },
+    {
+      "name": "1保健6",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "1保健7",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "白井"
+        }
+      ]
+    },
+    {
+      "name": "2体育1267",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "岡本"
+        },
+        {
+          "instructor": "白井"
+        },
+        {
+          "instructor": "山崎"
+        },
+        {
+          "instructor": "増井"
+        },
+        {
+          "instructor": "山内"
+        },
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "2体育345",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "岡本"
+        },
+        {
+          "instructor": "山崎"
+        },
+        {
+          "instructor": "高野"
+        },
+        {
+          "instructor": "増井"
+        },
+        {
+          "instructor": "山内"
+        },
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "2保健1",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "山崎"
+        }
+      ]
+    },
+    {
+      "name": "2保健2",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "増井"
+        }
+      ]
+    },
+    {
+      "name": "2保健3",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "2保健4",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "2保健5",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "佐々木"
+        }
+      ]
+    },
+    {
+      "name": "2保健6",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "増井"
+        }
+      ]
+    },
+    {
+      "name": "2保健7",
+      "credits": 1,
+      "courseDetails": [
+        {
+          "instructor": "山崎"
+        }
+      ]
+    },
+    {
+      "name": "3体育126",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "白井"
+        },
+        {
+          "instructor": "岡本"
+        },
+        {
+          "instructor": "山崎"
+        },
+        {
+          "instructor": "増井"
+        },
+        {
+          "instructor": "山内"
+        },
+        {
+          "instructor": "高野"
+        }
+      ]
+    },
+    {
+      "name": "3体育345",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "白井"
+        },
+        {
+          "instructor": "岡本"
+        },
+        {
+          "instructor": "山崎"
+        },
+        {
+          "instructor": "増井"
+        },
+        {
+          "instructor": "山内"
+        },
+        {
+          "instructor": "高野"
+        }
+      ]
+    },
+    {
+      "name": "1音楽Ⅰ1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "植村"
+        }
+      ]
+    },
+    {
+      "name": "1音楽Ⅰ23",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "植村"
+        }
+      ]
+    },
+    {
+      "name": "1音楽Ⅰ45",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "植村"
+        }
+      ]
+    },
+    {
+      "name": "1音楽Ⅰ67",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "植村"
+        }
+      ]
+    },
+    {
+      "name": "1美術Ⅰ23",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "日高"
+        }
+      ]
+    },
+    {
+      "name": "1美術Ⅰ45",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "日高"
+        }
+      ]
+    },
+    {
+      "name": "1美術Ⅰ67",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "日高"
+        }
+      ]
+    },
+    {
+      "name": "1書道Ⅰ23",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "下村"
+        }
+      ]
+    },
+    {
+      "name": "1書道Ⅰ45",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "下村"
+        }
+      ]
+    },
+    {
+      "name": "1書道Ⅰ67",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "下村"
+        }
+      ]
+    },
+    {
+      "name": "3B素描",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "日高"
+        }
+      ]
+    },
+    {
+      "name": "3B器楽",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "植村"
+        }
+      ]
+    },
+    {
+      "name": "1英コⅠ1",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "岩﨑"
+        }
+      ]
+    },
+    {
+      "name": "1英コⅠ2",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "入江"
+        }
+      ]
+    },
+    {
+      "name": "1英コⅠ3",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "岩﨑"
+        }
+      ]
+    },
+    {
+      "name": "1英コⅠ4",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "入江"
+        }
+      ]
+    },
+    {
+      "name": "1英コⅠ5",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "岩﨑"
+        }
+      ]
+    },
+    {
+      "name": "1英コⅠ6",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "岩﨑"
+        }
+      ]
+    },
+    {
+      "name": "1英コⅠ7",
+      "credits": 3,
+      "courseDetails": [
+        {
+          "instructor": "入江"
+        }
+      ]
+    },
+    {
+      "name": "1論表Ⅰ1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "入江"
+        }
+      ]
+    },
+    {
+      "name": "1論表Ⅰ2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "岩﨑"
+        }
+      ]
+    },
+    {
+      "name": "1論表Ⅰ3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "入江"
+        }
+      ]
+    },
+    {
+      "name": "1論表Ⅰ4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "橘田"
+        }
+      ]
+    },
+    {
+      "name": "1論表Ⅰ5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "橘田"
+        }
+      ]
+    },
+    {
+      "name": "1論表Ⅰ6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "入江"
+        }
+      ]
+    },
+    {
+      "name": "1論表Ⅰ7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "橘田"
+        },
+        {
+          "instructor": "岩﨑"
+        }
+      ]
+    },
+    {
+      "name": "2英コⅡ1",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "吉山"
+        }
+      ]
+    },
+    {
+      "name": "2英コⅡ2",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "大井"
+        }
+      ]
+    },
+    {
+      "name": "2英コⅡ3",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "高橋"
+        }
+      ]
+    },
+    {
+      "name": "2英コⅡ4",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "高橋"
+        }
+      ]
+    },
+    {
+      "name": "2英コⅡ5",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "高橋"
+        }
+      ]
+    },
+    {
+      "name": "2英コⅡ6",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "大井"
+        }
+      ]
+    },
+    {
+      "name": "2英コⅡ7",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "吉山"
+        }
+      ]
+    },
+    {
+      "name": "2論表Ⅱ12",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "高橋"
+        },
+        {
+          "instructor": "吉山"
+        },
+        {
+          "instructor": "松本"
+        }
+      ]
+    },
+    {
+      "name": "2論表Ⅱ34",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "大井"
+        },
+        {
+          "instructor": "吉山"
+        },
+        {
+          "instructor": "松本"
+        }
+      ]
+    },
+    {
+      "name": "2論表Ⅱ56",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "大井"
+        },
+        {
+          "instructor": "吉山"
+        },
+        {
+          "instructor": "松本"
+        }
+      ]
+    },
+    {
+      "name": "2論表Ⅱ7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "大井"
+        },
+        {
+          "instructor": "高橋"
+        }
+      ]
+    },
+    {
+      "name": "3コ英Ⅲ1",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "松本"
+        }
+      ]
+    },
+    {
+      "name": "3コ英Ⅲ2",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "太田"
+        }
+      ]
+    },
+    {
+      "name": "3コ英Ⅲ3",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "太田"
+        }
+      ]
+    },
+    {
+      "name": "3コ英Ⅲ4",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "足立"
+        }
+      ]
+    },
+    {
+      "name": "3コ英Ⅲ5",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "足立"
+        }
+      ]
+    },
+    {
+      "name": "3コ英Ⅲ6",
+      "credits": 4,
+      "courseDetails": [
+        {
+          "instructor": "松本"
+        }
+      ]
+    },
+    {
+      "name": "3英表Ⅱ1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "太田"
+        },
+        {
+          "instructor": "足立"
+        }
+      ]
+    },
+    {
+      "name": "3英表Ⅱ2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "濱谷"
+        },
+        {
+          "instructor": "足立"
+        }
+      ]
+    },
+    {
+      "name": "3英表Ⅱ3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "濱谷"
+        },
+        {
+          "instructor": "足立"
+        }
+      ]
+    },
+    {
+      "name": "3英表Ⅱ4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "太田"
+        },
+        {
+          "instructor": "濱谷"
+        }
+      ]
+    },
+    {
+      "name": "3英表Ⅱ5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "太田"
+        },
+        {
+          "instructor": "濱谷"
+        }
+      ]
+    },
+    {
+      "name": "3英表Ⅱ6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "太田"
+        },
+        {
+          "instructor": "足立"
+        }
+      ]
+    },
+    {
+      "name": "3A英探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "濱谷"
+        }
+      ]
+    },
+    {
+      "name": "3B英探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "濱谷"
+        }
+      ]
+    },
+    {
+      "name": "3C英探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "濱谷"
+        }
+      ]
+    },
+    {
+      "name": "3D英探",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "濱谷"
+        }
+      ]
+    },
+    {
+      "name": "1家基1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中小"
+        }
+      ]
+    },
+    {
+      "name": "1家基2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "黒石"
+        }
+      ]
+    },
+    {
+      "name": "1家基3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中小"
+        }
+      ]
+    },
+    {
+      "name": "1家基4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中小"
+        }
+      ]
+    },
+    {
+      "name": "1家基5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "黒石"
+        }
+      ]
+    },
+    {
+      "name": "1家基6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中小"
+        }
+      ]
+    },
+    {
+      "name": "1家基7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中小"
+        }
+      ]
+    },
+    {
+      "name": "3保育",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "田中小"
+        }
+      ]
+    },
+    {
+      "name": "1情報Ⅰ1",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "1情報Ⅰ2",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "1情報Ⅰ3",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "1情報Ⅰ4",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "1情報Ⅰ5",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "1情報Ⅰ6",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "小田"
+        }
+      ]
+    },
+    {
+      "name": "1情報Ⅰ7",
+      "credits": 2,
+      "courseDetails": [
+        {
+          "instructor": "小田"
+        }
+      ]
+    }
+  ]
+}

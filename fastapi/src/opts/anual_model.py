@@ -9,6 +9,11 @@ load_dotenv()
 cbc_path = os.getenv("CBC_PATH")
 
 
+class CourseDetail(BaseModel):
+    instructors: List[str]
+    credits: int
+
+
 class AnualData(BaseModel):
     H: Optional[List[str]]
     D: Optional[List[str]]
@@ -16,12 +21,21 @@ class AnualData(BaseModel):
     I: Optional[List[str]]
     periods: Optional[Dict[str, Dict[str, List[int]]]]
     curriculums: Optional[Dict[str, List[List[List[str]]]]]
-    course_details: Optional[Dict[str, List[str]]]
+    course_details: Optional[Dict[str, CourseDetail]]
 
     max_period: int = None
 
 
 class AnualModel:
+    """時間割の最適化モデルを管理するクラス。
+
+    Attributes:
+        data (AnualData): 時間割の元データ。
+        problem (pulp.LpProblem): 線形最適化問題の定義。
+        x (Dict[Tuple[str, str, int, str], pulp.LpVariable]): 学級・曜日・時限・講座ごとの変数。
+        y (Dict[Tuple[str, str, int], pulp.LpAffineExpression]): 教員ごとの授業数を表す式。
+    """
+
     def __init__(self, data: AnualData):
         self.data = data
         self.problem = pulp.LpProblem("sample", pulp.LpMinimize)

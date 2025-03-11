@@ -34,7 +34,7 @@ def convert_course_schema_to_course_list(schema: CourseSchema) -> list:
     )
 
 
-def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) -> Dict[str, Dict[str, List[int]]]:
+def convert_homeroom_schema_to_periods(homeroom_schema: HomeroomSchema) -> Dict[str, Dict[str, List[int]]]:
     """{学級: スロット}辞書"""
     return {
         homeroom.name: {
@@ -45,7 +45,7 @@ def convert_homeroom_schema_to_schedule_dict(homeroom_schema: HomeroomSchema) ->
     }
 
 
-def convert_curriculum_schema_to_curriculum_dict(schema: CurriculumSchema) -> Dict[str, List[List[List[str]]]]:
+def convert_curriculum_schema_to_curriculums(schema: CurriculumSchema) -> Dict[str, List[List[List[str]]]]:
     """{学級: カリキュラム}辞書"""
     return {
         curriculum.homeroom: [
@@ -56,9 +56,13 @@ def convert_curriculum_schema_to_curriculum_dict(schema: CurriculumSchema) -> Di
     }
 
 
-def convert_course_schema_to_course_instructor_dict(course_schema: CourseSchema) -> Dict[str, List[str]]:
+def convert_course_schema_to_course_details(course_schema: CourseSchema) -> Dict[str, List[str]]:
     """{講座: 教員リスト}辞書"""
     return {
-        course.name: [detail.instructor for detail in course.details]
+        course.name:
+        {
+            "instructors": [detail.instructor for detail in course.details],
+            "credits": course.credits
+        }
         for course in course_schema.courses
     }
