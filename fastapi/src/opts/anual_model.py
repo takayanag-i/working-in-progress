@@ -47,6 +47,11 @@ class AnualModel:
         self.define_variables()
 
     def define_variables(self) -> None:
+        """変数ｘとｙを定義する。
+
+        - x[h, d, p, c]
+        - y[d, p, i]
+        """
         # xの定義
         self.x = {
             (h, d, p, c): pulp.LpVariable(name=f"x_{h}_{d}_{p}_{c}", cat=pulp.LpBinary)
