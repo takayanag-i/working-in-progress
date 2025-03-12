@@ -3,7 +3,11 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.post("api/solver/{timetable_id}")
-def solve(timetable_id: str):
-    return {"message": "解けました",
-            "時間割ID": timetable_id}
+@router.get("/api")
+def home():
+    return {"message": "ホームです"}
+
+
+@router.post("/api/solutions")
+def solve():
+    return {"message": "解けました"}

@@ -1,20 +1,15 @@
-version: "3.8"
-
 services:
   fastapi-app:
     build: ./fastapi
     ports:
       - "8000:8000"
     volumes:
-      - ./python:/app
-    environment:
-      - POETRY_VIRTUALENVS_CREATE=false
-    command: ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+      - .venv:/fastapi/.venv 
 
   docs:
-    build: ./docs
+    build:
+      context: .
+      dockerfile: docs/Dockerfile
     ports:
       - "8001:8001"
-    volumes:
-      - ./docs:/docs
     command: ["poetry", "run", "mkdocs", "serve", "--dev-addr=0.0.0.0:8001"]

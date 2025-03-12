@@ -23,7 +23,7 @@ plugins:
 - mkdocstrings:
     handlers:
       python:
-        paths: [../fastapi]
+        paths: [.]
 
 nav:
   - Home: index.md
