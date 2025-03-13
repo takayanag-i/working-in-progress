@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import List
 
 
-class Slot(BaseModel):
+class Day(BaseModel):
     day: str
     last_period: int = Field(..., alias="lastPeriod")
 
@@ -10,8 +10,8 @@ class Slot(BaseModel):
 
 
 class Homeroom(BaseModel):
-    name: str
-    slots: List[Slot]
+    homeroom: str
+    days: List[Day]
 
     model_config = ConfigDict(populate_by_name=True)
 

@@ -54,16 +54,16 @@
 #### `maxPeriods`
 - Max periods in a day within the schdule.
 
-### Slot
+### Day
 
 | Key         | Data Type | Required |
 | ----------- | --------- | -------- |
-| `name`      | String    | Y        |
+| `day`      | String    | Y        |
 | `available` | Boolean   | Y        |
 | `amPeriods` | Number    | N        |
 | `pmPeriods` | Number    | N        |
 
-#### `name`
+#### `day`
 - Must be a valid day of the week abbreviation (e.g., "mon", "tue").
 
 #### `available`

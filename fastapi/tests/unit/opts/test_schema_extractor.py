@@ -1,9 +1,9 @@
 import pytest
 from models.course import CourseSchema, Course, CourseDetail
 from models.curriculum import Block, Curriculum, CurriculumSchema, Lane
-from models.homeroom import HomeroomSchema, Homeroom, Slot as HomeroomSlot
-from models.instructor import Instructor, InstructorSchema, Slot as InstructorSlot
-from models.schedule import ScheduleSchema, Day as ScheduleSlot
+from models.homeroom import HomeroomSchema, Homeroom, Day as HomeroomDay
+from models.instructor import Instructor, InstructorSchema, Day as InstructorDay
+from models.schedule import ScheduleSchema, Day as ScheduleDay
 from opts.anual_data import CourseDetail as AnualCourseDetail
 from opts.schema_extractor import get_course_list, get_max_periods
 from opts.schema_extractor import get_curriculums
@@ -98,12 +98,12 @@ def sample_homeroom_schema():
         doc_type="",
         ttid="",
         homerooms=[
-            Homeroom(name="2-4",
-                     slots=[
-                         HomeroomSlot(day="mon", last_period=6),
-                         HomeroomSlot(day="tue", last_period=7)
+            Homeroom(homeroom="2-4",
+                     days=[
+                         HomeroomDay(day="mon", last_period=6),
+                         HomeroomDay(day="tue", last_period=7)
                      ]),
-            Homeroom(name="2-5", slots=[HomeroomSlot(day="wed", last_period=5)])
+            Homeroom(homeroom="2-5", days=[HomeroomDay(day="wed", last_period=5)])
         ]
     )
 
@@ -120,27 +120,27 @@ def sample_instructor_schema():
                 discipline="math",
                 credits=16,
                 slots=[
-                    InstructorSlot(day="mon", period=1, available=True),
-                    InstructorSlot(day="wed", period=2, available=True)
+                    InstructorDay(day="mon", period=1, available=True),
+                    InstructorDay(day="wed", period=2, available=True)
                 ]
             ),
             Instructor(
                 name="instructor2",
                 discipline="science",
                 credits=16,
-                slots=[InstructorSlot(day="tue", period=2, available=True)]
+                slots=[InstructorDay(day="tue", period=2, available=True)]
             ),
             Instructor(
                 name="instructor3",
                 discipline="history",
                 credits=16,
-                slots=[InstructorSlot(day="wed", period=3, available=True)]
+                slots=[InstructorDay(day="wed", period=3, available=True)]
             ),
             Instructor(
                 name="instructor4",
                 discipline="english",
                 credits=16,
-                slots=[InstructorSlot(day="thu", period=4, available=True)]
+                slots=[InstructorDay(day="thu", period=4, available=True)]
             )
         ]
     )
@@ -153,10 +153,10 @@ def sample_schedule_schema():
         doc_type="",
         ttid="",
         days=[
-            ScheduleSlot(name="mon", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(name="tue", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(name="wed", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(name="sat", available=False)
+            ScheduleDay(day="mon", available=True, am_periods=4, pm_periods=3),
+            ScheduleDay(day="tue", available=True, am_periods=4, pm_periods=3),
+            ScheduleDay(day="wed", available=True, am_periods=4, pm_periods=3),
+            ScheduleDay(day="sat", available=False)
         ],
         maxPeriods=3,
     )

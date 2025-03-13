@@ -7,7 +7,7 @@
       "name": "楠",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -174,7 +174,7 @@
       "name": "荒木",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -341,7 +341,7 @@
       "name": "磯貝",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -508,7 +508,7 @@
       "name": "木田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -675,7 +675,7 @@
       "name": "古川",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -842,7 +842,7 @@
       "name": "塚本",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -1009,7 +1009,7 @@
       "name": "藤友",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -1176,7 +1176,7 @@
       "name": "光武",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -1343,7 +1343,7 @@
       "name": "福谷",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -1510,7 +1510,7 @@
       "name": "竹内",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -1677,7 +1677,7 @@
       "name": "光島",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -1844,7 +1844,7 @@
       "name": "合田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -2011,7 +2011,7 @@
       "name": "西田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -2178,7 +2178,7 @@
       "name": "楢原",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -2345,7 +2345,7 @@
       "name": "中村博",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -2512,7 +2512,7 @@
       "name": "石野",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -2679,7 +2679,7 @@
       "name": "登日",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -2846,7 +2846,7 @@
       "name": "豊後",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -3013,7 +3013,7 @@
       "name": "森川",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -3180,7 +3180,7 @@
       "name": "碓永",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -3347,7 +3347,7 @@
       "name": "吉行",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -3514,7 +3514,7 @@
       "name": "田中勇",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -3681,7 +3681,7 @@
       "name": "新居",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -3848,7 +3848,7 @@
       "name": "外山",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -4015,7 +4015,7 @@
       "name": "中村周",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -4182,7 +4182,7 @@
       "name": "野島",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -4349,7 +4349,7 @@
       "name": "福富",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -4516,7 +4516,7 @@
       "name": "前平",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -4683,7 +4683,7 @@
       "name": "笠田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -4850,7 +4850,7 @@
       "name": "吉田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -5017,7 +5017,7 @@
       "name": "白神",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -5184,7 +5184,7 @@
       "name": "石川",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -5351,7 +5351,7 @@
       "name": "田中伸",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -5518,7 +5518,7 @@
       "name": "杉木",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -5685,7 +5685,7 @@
       "name": "平賀",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -5852,7 +5852,7 @@
       "name": "須河内",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -6019,7 +6019,7 @@
       "name": "高柳",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -6186,7 +6186,7 @@
       "name": "大平",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -6353,7 +6353,7 @@
       "name": "白井",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -6520,7 +6520,7 @@
       "name": "増井",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -6687,7 +6687,7 @@
       "name": "岡本",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -6854,7 +6854,7 @@
       "name": "高野",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -7021,7 +7021,7 @@
       "name": "山崎",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -7188,7 +7188,7 @@
       "name": "山内",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -7355,7 +7355,7 @@
       "name": "佐々木",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -7522,7 +7522,7 @@
       "name": "植村",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -7689,7 +7689,7 @@
       "name": "日高",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -7856,7 +7856,7 @@
       "name": "下村",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -8023,7 +8023,7 @@
       "name": "岩﨑",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -8190,7 +8190,7 @@
       "name": "入江",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -8357,7 +8357,7 @@
       "name": "高橋",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -8524,7 +8524,7 @@
       "name": "吉山",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -8691,7 +8691,7 @@
       "name": "足立",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -8858,7 +8858,7 @@
       "name": "太田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -9025,7 +9025,7 @@
       "name": "濱谷",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -9192,7 +9192,7 @@
       "name": "松本",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -9359,7 +9359,7 @@
       "name": "大井",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -9526,7 +9526,7 @@
       "name": "橘田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -9693,7 +9693,7 @@
       "name": "田中小",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -9860,7 +9860,7 @@
       "name": "黒石",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,
@@ -10027,7 +10027,7 @@
       "name": "小田",
       "discipline": "未設定",
       "credits": 17,
-      "slots": [
+      "days": [
         {
           "day": "mon",
           "period": 1,

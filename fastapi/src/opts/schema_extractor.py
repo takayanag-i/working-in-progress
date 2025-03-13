@@ -18,7 +18,7 @@ def get_day_list(schedule: ScheduleSchema) -> List[str]:
     """
     day_list = list(
         dict.fromkeys(
-            slot.name for slot in schedule.days
+            slot.day for slot in schedule.days
             if slot.available
         )
     )
@@ -97,9 +97,9 @@ def get_periods(homeroom_schema: HomeroomSchema) -> Dict[str, Dict[str, List[int
     """
 
     return {
-        homeroom.name: {
+        homeroom.homeroom: {
             slot.day: list(range(1, slot.last_period + 1))
-            for slot in homeroom.slots
+            for slot in homeroom.days
         }
         for homeroom in homeroom_schema.homerooms
     }

@@ -3,7 +3,7 @@ from typing import List
 
 
 class Day(BaseModel):
-    name: str
+    day: str
     available: bool
     am_periods: int = Field(None, alias="amPeriods")
     pm_periods: int = Field(None, alias="pmPeriods")
