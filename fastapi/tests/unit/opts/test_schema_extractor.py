@@ -119,7 +119,7 @@ def sample_instructor_schema():
                 name="instructor1",
                 discipline="math",
                 credits=16,
-                slots=[
+                days=[
                     InstructorDay(day="mon", period=1, available=True),
                     InstructorDay(day="wed", period=2, available=True)
                 ]
@@ -128,19 +128,19 @@ def sample_instructor_schema():
                 name="instructor2",
                 discipline="science",
                 credits=16,
-                slots=[InstructorDay(day="tue", period=2, available=True)]
+                days=[InstructorDay(day="tue", period=2, available=True)]
             ),
             Instructor(
                 name="instructor3",
                 discipline="history",
                 credits=16,
-                slots=[InstructorDay(day="wed", period=3, available=True)]
+                days=[InstructorDay(day="wed", period=3, available=True)]
             ),
             Instructor(
                 name="instructor4",
                 discipline="english",
                 credits=16,
-                slots=[InstructorDay(day="thu", period=4, available=True)]
+                days=[InstructorDay(day="thu", period=4, available=True)]
             )
         ]
     )

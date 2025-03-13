@@ -14,7 +14,7 @@ class Instructor(BaseModel):
     name: str
     discipline: str
     credits: int
-    slots: List[Day]
+    days: List[Day]
 
     model_config = ConfigDict(populate_by_name=True)
 
