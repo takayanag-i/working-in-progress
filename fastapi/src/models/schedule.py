@@ -16,5 +16,6 @@ class ScheduleSchema(BaseModel):
     doc_type: str = Field(..., alias="docType")
     ttid: str
     slots: List[Slot]
+    max_periods: int = Field(None, alias="maxPeriods")
 
     model_config = ConfigDict(populate_by_name=True)

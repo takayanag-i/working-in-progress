@@ -7,6 +7,7 @@
   "id": "12345678",
   "docType": "schedule_schema",
   "ttid": "sry_2025_001",
+  "maxPeriods": 7,
   "slots": [
     {
       "name": "mon",
@@ -35,6 +36,7 @@
 | `docType` | String         | Y        |
 | `ttid`    | String         | Y        |
 | `slots`    | Array<Object\> | Y        |
+| `maxPeriods`    | Number         | Y        |
 
 #### `id`
 - Must be an 8-digit number.
@@ -48,6 +50,9 @@
 
 #### `slots`
 - Must contain at least one Slot object.
+
+#### `maxPeriods`
+- Max periods in a day within the schdule.
 
 ### Slot
 

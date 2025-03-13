@@ -2,6 +2,7 @@
   "id": "12345678",
   "docType": "schedule_schema",
   "ttid": "sry_2025_001",
+  "maxPeriods": 7,
   "slots": [
     {
       "name": "mon",

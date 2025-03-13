@@ -2,32 +2,15 @@ import os
 import pulp
 
 from dotenv import load_dotenv
-from pydantic import BaseModel
-from typing import List, Dict, Optional
+
+from opts.anual_data import AnualData
 
 load_dotenv()
 cbc_path = os.getenv("CBC_PATH")
 
 
-class CourseDetail(BaseModel):
-    instructors: List[str]
-    credits: int
-
-
-class AnualData(BaseModel):
-    H: Optional[List[str]]
-    D: Optional[List[str]]
-    C: Optional[List[str]]
-    I: Optional[List[str]]
-    periods: Optional[Dict[str, Dict[str, List[int]]]]
-    curriculums: Optional[Dict[str, List[List[List[str]]]]]
-    course_details: Optional[Dict[str, CourseDetail]]
-
-    max_period: int = None
-
-
 class AnualModel:
-    """時間割の最適化モデルを管理するクラス。
+    """年間時間割の最適化モデルを管理するクラス。
 
     Attributes:
         data (AnualData): 時間割の元データ。
@@ -39,11 +22,11 @@ class AnualModel:
     def __init__(self, data: AnualData):
         self.data = data
         self.problem = pulp.LpProblem("sample", pulp.LpMinimize)
-        self.problem.setSolver(pulp.COIN_CMD(path=cbc_path, msg=True))
         self.x = {}
         self.y = {}
 
-        self.data.max_period = self.get_max_period()
+        self.data.max_periods = self.get_max_period()
+        self.problem.setSolver(pulp.COIN_CMD(path=cbc_path, msg=True))
         self.define_variables()
 
     def define_variables(self) -> None:
@@ -83,7 +66,7 @@ class AnualModel:
 
             # 任意のd, p, iに対して
             for d in self.data.D
-            for p in range(1, self.data.max_period + 1)
+            for p in range(1, self.data.max_periods + 1)
             for i in self.data.I
         }
 

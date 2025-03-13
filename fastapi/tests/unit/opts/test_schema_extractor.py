@@ -4,12 +4,13 @@ from models.curriculum import Block, Curriculum, CurriculumSchema, Lane
 from models.homeroom import HomeroomSchema, Homeroom, Slot as HomeroomSlot
 from models.instructor import Instructor, InstructorSchema, Slot as InstructorSlot
 from models.schedule import ScheduleSchema, Slot as ScheduleSlot
-from opts.converter import convert_course_schema_to_course_list
-from opts.converter import convert_curriculum_schema_to_curriculums
-from opts.converter import convert_homeroom_schema_to_periods
-from opts.converter import convert_schedule_schema_to_day_list
-from opts.converter import convert_course_schema_to_course_details
-from opts.converter import convert_instructor_schema_to_instructor_list
+from opts.anual_data import CourseDetail as AnualCourseDetail
+from opts.schema_extractor import get_course_list, get_max_periods
+from opts.schema_extractor import get_curriculums
+from opts.schema_extractor import get_periods
+from opts.schema_extractor import get_day_list
+from opts.schema_extractor import get_course_details
+from opts.schema_extractor import get_instructor_list
 
 
 @pytest.fixture
@@ -156,28 +157,34 @@ def sample_schedule_schema():
             ScheduleSlot(day="tue", available=True, am_periods=4, pm_periods=3),
             ScheduleSlot(day="wed", available=True, am_periods=4, pm_periods=3),
             ScheduleSlot(day="sat", available=False)
-        ]
+        ],
+        maxPeriods=3,
     )
 
 
-def test_convert_schedule_schema_to_day_list(sample_schedule_schema):
-    result = convert_schedule_schema_to_day_list(sample_schedule_schema)
-    assert result == ["mon", "tue", "wed"]
+def test_get_day_list(sample_schedule_schema):
+    result1 = get_day_list(sample_schedule_schema)
+    assert result1 == ["mon", "tue", "wed"]
 
 
-def test_convert_course_schema_to_course_list(sample_course_schema):
-    result = convert_course_schema_to_course_list(sample_course_schema)
+def test_get_max_periods(sample_schedule_schema):
+    result = get_max_periods(sample_schedule_schema)
+    assert result == 3
+
+
+def test_get_course_list(sample_course_schema):
+    result = get_course_list(sample_course_schema)
     assert result == ['math', 'science']
 
 
-def test_convert_instructor_schema_to_instructor_list(sample_instructor_schema):
-    result = convert_instructor_schema_to_instructor_list(sample_instructor_schema)
+def test_get_instructor_list(sample_instructor_schema):
+    result = get_instructor_list(sample_instructor_schema)
     assert result == ["instructor1", "instructor2", "instructor3", "instructor4"]
 
 
-def test_convert_homeroom_schema_to_periods(sample_homeroom_schema):
+def test_get_periods(sample_homeroom_schema):
 
-    result = convert_homeroom_schema_to_periods(sample_homeroom_schema)
+    result = get_periods(sample_homeroom_schema)
     assert result == {
         "2-4": {
             "mon": [1, 2, 3, 4, 5, 6],
@@ -189,8 +196,8 @@ def test_convert_homeroom_schema_to_periods(sample_homeroom_schema):
     }
 
 
-def test_convert_curriculum_schema_to_curriculums(sample_curriculum_schema):
-    result = convert_curriculum_schema_to_curriculums(sample_curriculum_schema)
+def test_get_curriculums(sample_curriculum_schema):
+    result = get_curriculums(sample_curriculum_schema)
     assert result == {
         "2-4": [
             [["math", "science"], ["history", "english"]],
@@ -203,15 +210,13 @@ def test_convert_curriculum_schema_to_curriculums(sample_curriculum_schema):
     }
 
 
-def test_convert_course_schema_to_course_details(sample_course_schema):
-    result = convert_course_schema_to_course_details(sample_course_schema)
+def test_get_course_details(sample_course_schema):
+    result = get_course_details(sample_course_schema)
     assert result == {
-        'math': {
-            'instructors': ['instructor1', 'instructor2'],
-            'credits': 1
-        },
-        'science': {
-            'instructors': ['instructor3', 'instructor4'],
-            'credits': 2
-        }
+        'math': AnualCourseDetail(
+            instructors=['instructor1', 'instructor2'],
+            credits=1),
+        'science': AnualCourseDetail(
+            instructors=['instructor3', 'instructor4'],
+            credits=2)
     }

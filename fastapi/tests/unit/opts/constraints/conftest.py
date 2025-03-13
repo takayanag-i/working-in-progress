@@ -15,6 +15,7 @@ def mock_anual_data():
             "H2": {"mon": [1, 2, 3], "tue": [1, 2]},
             "H3": {"mon": [1], "tue": [1]}
         },
+        max_periods=3,
         curriculums={
             "H1": [[["C1"], ["C2", "C3"]]],
             "H2": [[["C1", "C2"]]],

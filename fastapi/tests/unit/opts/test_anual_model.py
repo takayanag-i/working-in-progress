@@ -1,6 +1,6 @@
 import pytest
 import pulp
-from opts.anual_model import AnualData, AnualModel  # 実際のモジュール名に置き換えてください
+from opts.anual_model import AnualData, AnualModel
 
 
 @pytest.fixture
@@ -14,6 +14,7 @@ def sample_anual_data():
             "H1": {"mon": [1, 2], "tue": [1, 2]},
             "H2": {"mon": [1, 2, 3], "tue": [1, 2]}
         },
+        max_periods=3,
         curriculums={
             "H1": [[["C1"]], [["C2"]]],
             "H2": [[["C1", "C2"]]]
