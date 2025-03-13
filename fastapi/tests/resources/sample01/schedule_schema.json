@@ -3,7 +3,7 @@
   "docType": "schedule_schema",
   "ttid": "sry_2025_001",
   "maxPeriods": 7,
-  "slots": [
+  "days": [
     {
       "name": "mon",
       "available": true,

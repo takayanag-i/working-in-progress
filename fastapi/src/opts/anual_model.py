@@ -25,7 +25,6 @@ class AnualModel:
         self.x = {}
         self.y = {}
 
-        self.data.max_periods = self.get_max_period()
         self.problem.setSolver(pulp.COIN_CMD(path=cbc_path, msg=True))
         self.define_variables()
 
@@ -69,11 +68,3 @@ class AnualModel:
             for p in range(1, self.data.max_periods + 1)
             for i in self.data.I
         }
-
-    def get_max_period(self) -> int:
-        """最大の時限数"""
-        return max(
-            max(period)
-            for day in self.data.periods.values()
-            for period in day.values()
-        )

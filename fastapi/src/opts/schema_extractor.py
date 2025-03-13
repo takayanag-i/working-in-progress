@@ -18,7 +18,7 @@ def get_day_list(schedule: ScheduleSchema) -> List[str]:
     """
     day_list = list(
         dict.fromkeys(
-            slot.day for slot in schedule.slots
+            slot.name for slot in schedule.days
             if slot.available
         )
     )

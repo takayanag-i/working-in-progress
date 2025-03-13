@@ -3,7 +3,7 @@ from models.course import CourseSchema, Course, CourseDetail
 from models.curriculum import Block, Curriculum, CurriculumSchema, Lane
 from models.homeroom import HomeroomSchema, Homeroom, Slot as HomeroomSlot
 from models.instructor import Instructor, InstructorSchema, Slot as InstructorSlot
-from models.schedule import ScheduleSchema, Slot as ScheduleSlot
+from models.schedule import ScheduleSchema, Day as ScheduleSlot
 from opts.anual_data import CourseDetail as AnualCourseDetail
 from opts.schema_extractor import get_course_list, get_max_periods
 from opts.schema_extractor import get_curriculums
@@ -152,11 +152,11 @@ def sample_schedule_schema():
         id="",
         doc_type="",
         ttid="",
-        slots=[
-            ScheduleSlot(day="mon", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(day="tue", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(day="wed", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(day="sat", available=False)
+        days=[
+            ScheduleSlot(name="mon", available=True, am_periods=4, pm_periods=3),
+            ScheduleSlot(name="tue", available=True, am_periods=4, pm_periods=3),
+            ScheduleSlot(name="wed", available=True, am_periods=4, pm_periods=3),
+            ScheduleSlot(name="sat", available=False)
         ],
         maxPeriods=3,
     )

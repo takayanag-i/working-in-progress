@@ -8,7 +8,7 @@
   "docType": "schedule_schema",
   "ttid": "sry_2025_001",
   "maxPeriods": 7,
-  "slots": [
+  "days": [
     {
       "name": "mon",
       "available": true,
@@ -35,7 +35,7 @@
 | `id`      | String         | Y        |
 | `docType` | String         | Y        |
 | `ttid`    | String         | Y        |
-| `slots`    | Array<Object\> | Y        |
+| `days`    | Array<Object\> | Y        |
 | `maxPeriods`    | Number         | Y        |
 
 #### `id`
@@ -48,8 +48,8 @@
 - **Partition Key.**
 - Must follow the pattern `^[a-z]{3}_[0-9]{4}_[0-9]{3}$`, representing {School Code}\_{Year}\_{Sequential Number}.
 
-#### `slots`
-- Must contain at least one Slot object.
+#### `days`
+- Must contain at least one Day object.
 
 #### `maxPeriods`
 - Max periods in a day within the schdule.
@@ -58,12 +58,12 @@
 
 | Key         | Data Type | Required |
 | ----------- | --------- | -------- |
-| `day`      | String    | Y        |
+| `name`      | String    | Y        |
 | `available` | Boolean   | Y        |
 | `amPeriods` | Number    | N        |
 | `pmPeriods` | Number    | N        |
 
-#### `day`
+#### `name`
 - Must be a valid day of the week abbreviation (e.g., "mon", "tue").
 
 #### `available`
