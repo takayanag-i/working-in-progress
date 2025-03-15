@@ -24,7 +24,7 @@ def mock_anual_data():
         course_details={
             "C1": {
                 "instructors": ["I1"],
-                "credits": 1
+                "credits": 3
             },
             "C2": {
                 "instructors": ["I1", "I2"],

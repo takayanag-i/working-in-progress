@@ -1,6 +1,5 @@
 import os
 import pulp
-
 from dotenv import load_dotenv
 
 from opts.anual_data import AnualData
@@ -13,17 +12,24 @@ class AnualModel:
     """年間時間割の最適化モデルを管理するクラス。
 
     Attributes:
-        data (AnualData): 時間割の元データ。
-        problem (pulp.LpProblem): 線形最適化問題の定義。
-        x (Dict[Tuple[str, str, int, str], pulp.LpVariable]): 学級・曜日・時限・講座ごとの変数。
-        y (Dict[Tuple[str, str, int], pulp.LpAffineExpression]): 教員ごとの授業数を表す式。
+        data (AnualData): 年間時間割の元データ。
+        problem (pulp.LpProblem): 線形最適化問題のオブジェクト。
+        x (Dict[Tuple[str, str, int, str], pulp.LpVariable]): 学級h、曜日d、時限p、講座cの開講バイナリ x[h, d, p, c]。ｘ=1のとき開講、x=0のとき開講しない。
+        y (Dict[Tuple[str, str, int], pulp.LpAffineExpression]): 曜日d、時限pに教員iが担当する授業数 y[d, p, i]。
     """
 
     def __init__(self, data: AnualData):
+        """イニシャライザ
+
+        - 変数、関数を定義する。
+        - 環境にインストールされたソルバを指定する。
+
+        Arguments:
+            data (AnualData): 年間時間割の元データ
+        """
+
         self.data = data
         self.problem = pulp.LpProblem("sample", pulp.LpMinimize)
-        self.x = {}
-        self.y = {}
 
         self.problem.setSolver(pulp.COIN_CMD(path=cbc_path, msg=True))
         self.define_variables()
@@ -31,8 +37,8 @@ class AnualModel:
     def define_variables(self) -> None:
         """変数ｘとｙを定義する。
 
-        - x[h, d, p, c]
-        - y[d, p, i]
+        - x[h, d, p, c]を定義する。
+        - y[d, p, i]をxの関数として定義する。
         """
         # xの定義
         self.x = {
