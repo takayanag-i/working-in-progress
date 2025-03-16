@@ -8,20 +8,100 @@ def test_homeroom_constraint(mock_anual_model):
 
     expected_constraints = [
         {
-            "sense": pulp.LpConstraintEQ,
             "coefficients": [
                 {"name": "x_H1_mon_1_C1", "value": 1},
-                {"name": "x_H1_mon_2_C1", "value": 1},
-                {"name": "x_H1_tue_1_C1", "value": 1},
-                {"name": "x_H1_tue_2_C1", "value": 1},
+                {"name": "x_H1_mon_1_C2", "value": 1},
+                {"name": "x_H1_mon_1_C3", "value": 1},
             ],
-            "constant": -3,
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H1_mon_2_C1", "value": 1},
+                {"name": "x_H1_mon_2_C2", "value": 1},
+                {"name": "x_H1_mon_2_C3", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H1_tue_1_C1", "value": 1},
+                {"name": "x_H1_tue_1_C2", "value": 1},
+                {"name": "x_H1_tue_1_C3", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H1_tue_2_C1", "value": 1},
+                {"name": "x_H1_tue_2_C2", "value": 1},
+                {"name": "x_H1_tue_2_C3", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H2_mon_1_C1", "value": 1},
+                {"name": "x_H2_mon_1_C2", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H2_mon_2_C1", "value": 1},
+                {"name": "x_H2_mon_2_C2", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H2_mon_3_C1", "value": 1},
+                {"name": "x_H2_mon_3_C2", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H2_tue_1_C1", "value": 1},
+                {"name": "x_H2_tue_1_C2", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H2_tue_2_C1", "value": 1},
+                {"name": "x_H2_tue_2_C2", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "coefficients": [
+                {"name": "x_H3_mon_1_C1", "value": 1},
+            ],
+            "constant": -1,
+            "sense": pulp.LpConstraintGE,
+        },
+        {
+            "constant": -1,
+            "coefficients": [
+                {"name": "x_H3_tue_1_C1", "value": 1},
+            ],
+            "sense": pulp.LpConstraintGE,
         },
     ]
 
     actual_constraints = [v.toDict() for v in model.problem.constraints.values()]
 
-    assert len(actual_constraints) == 6, "数が合わない"
+    assert len(actual_constraints) == 11, "数が合わない"
 
     for expected, acutual in zip(expected_constraints, actual_constraints):
         assert expected["sense"] == acutual["sense"]

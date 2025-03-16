@@ -17,7 +17,7 @@ def mock_anual_data():
         },
         max_periods=3,
         curriculums={
-            "H1": [[["C1"], ["C2", "C3"]]],
+            "H1": [[["C1"], ["C2", "C3"]]],  # TODO: test_blockのためのレーン数が足りない
             "H2": [[["C1", "C2"]]],
             "H3": [[["C1"]]]
         },
