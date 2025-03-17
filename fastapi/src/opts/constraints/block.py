@@ -14,7 +14,7 @@ class BlockConstraint(ConstraintBase):
         constraints = [
             lane_sums[0] == lane_sum
             for h in model.data.H
-            for d in model.data.D  # todo: ここはmodel.data.Dではなくmodel.data.periods[h].keys()にしたい、または同等のデータの持ち方に変更
+            for d in model.data.D
             for p in model.data.periods[h][d]
             for block in model.data.curriculums[h]
             if len(block) > 1
