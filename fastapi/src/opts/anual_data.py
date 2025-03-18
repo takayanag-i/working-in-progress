@@ -10,6 +10,7 @@ class CourseDetail(BaseModel):
 class AnualData(BaseModel):
     H: Optional[List[str]]
     D: Optional[List[str]]
+    # Pdの作成
     C: Optional[List[str]]
     I: Optional[List[str]]
     periods: Optional[Dict[str, Dict[str, List[int]]]]
