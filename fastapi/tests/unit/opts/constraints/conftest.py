@@ -8,6 +8,7 @@ def mock_anual_data():
     return AnualData(
         H=["H1", "H2", "H3"],
         D=["mon", "tue"],
+        P=[1, 2, 3],
         C=["C1", "C2", "C3"],
         I=["I1", "I2"],
         periods={
@@ -15,7 +16,6 @@ def mock_anual_data():
             "H2": {"mon": [1, 2, 3], "tue": [1, 2]},
             "H3": {"mon": [1], "tue": [1]}
         },
-        max_periods=3,
         curriculums={
             "H1": [[["C1"], ["C2", "C3"]]],  # TODO: test_blockのためのレーン数が足りない
             "H2": [[["C1", "C2"]]],

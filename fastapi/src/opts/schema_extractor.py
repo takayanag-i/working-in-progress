@@ -8,7 +8,7 @@ from opts.anual_data import CourseDetail
 
 
 def get_day_list(schedule: ScheduleSchema) -> List[str]:
-    """ScheduleSchemaから利用可能な曜日のリストを取得する。
+    """ScheduleSchemaから曜日のリストを取得する。
 
     Args:
         schedule (ScheduleSchema)
@@ -16,27 +16,32 @@ def get_day_list(schedule: ScheduleSchema) -> List[str]:
     Returns:
         List[str]: 曜日リスト
     """
-    day_list = list(
+    return list(
         dict.fromkeys(
-            slot.day for slot in schedule.days
-            if slot.available
+            day.day for day in schedule.days
+            if day.available
         )
     )
 
-    return day_list
 
-
-def get_max_periods(schedule: ScheduleSchema) -> int:
+def get_period_list(schedule: ScheduleSchema) -> List[int]:
     """
-    ScheduleSchema内の最大時限数を取得する。
+    ScheduleSchemaからの時限リストを取得する。
 
     Args:
         schedule (ScheduleSchema)
 
     Returns:
-        int: 最大時限数
+        List[int]: 時限リスト
     """
-    return schedule.max_periods
+    return list(range(
+        1,
+        max(
+            (day.am_periods + day.pm_periods)
+            for day in schedule.days
+            if day.available
+        ) + 1
+    ))
 
 
 def get_instructor_list(schema: InstructorSchema) -> List[str]:

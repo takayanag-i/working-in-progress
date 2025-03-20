@@ -71,6 +71,6 @@ class AnualModel:
 
             # 任意のd, p, iに対して
             for d in self.data.D
-            for p in range(1, self.data.max_periods + 1)
+            for p in self.data.P
             for i in self.data.I
         }

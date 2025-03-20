@@ -1,0 +1,1 @@
+# LpAffineExpressionでいいか不明

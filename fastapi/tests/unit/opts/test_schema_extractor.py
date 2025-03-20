@@ -5,7 +5,7 @@ from models.homeroom import HomeroomSchema, Homeroom, Day as HomeroomDay
 from models.instructor import Instructor, InstructorSchema, Day as InstructorDay
 from models.schedule import ScheduleSchema, Day as ScheduleDay
 from opts.anual_data import CourseDetail as AnualCourseDetail
-from opts.schema_extractor import get_course_list, get_max_periods
+from opts.schema_extractor import get_course_list, get_period_list
 from opts.schema_extractor import get_curriculums
 from opts.schema_extractor import get_periods
 from opts.schema_extractor import get_day_list
@@ -158,7 +158,6 @@ def sample_schedule_schema():
             ScheduleDay(day="wed", available=True, am_periods=4, pm_periods=3),
             ScheduleDay(day="sat", available=False)
         ],
-        maxPeriods=3,
     )
 
 
@@ -167,9 +166,9 @@ def test_get_day_list(sample_schedule_schema):
     assert result1 == ["mon", "tue", "wed"]
 
 
-def test_get_max_periods(sample_schedule_schema):
-    result = get_max_periods(sample_schedule_schema)
-    assert result == 3
+def test_get_period_list(sample_schedule_schema):
+    result = get_period_list(sample_schedule_schema)
+    assert result == [1, 2, 3, 4, 5, 6, 7]
 
 
 def test_get_course_list(sample_course_schema):

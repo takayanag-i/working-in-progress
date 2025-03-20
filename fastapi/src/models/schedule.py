@@ -16,6 +16,5 @@ class ScheduleSchema(BaseModel):
     doc_type: str = Field(..., alias="docType")
     ttid: str
     days: List[Day]
-    max_periods: int = Field(None, alias="maxPeriods")
 
     model_config = ConfigDict(populate_by_name=True)

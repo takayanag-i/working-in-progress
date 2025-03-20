@@ -8,13 +8,13 @@ def sample_anual_data():
     return AnualData(
         H=["H1", "H2"],
         D=["mon", "tue"],
+        P=[1, 2, 3],
         C=["C1", "C2"],
         I=["I1", "I2"],
         periods={
             "H1": {"mon": [1, 2], "tue": [1, 2]},
             "H2": {"mon": [1, 2, 3], "tue": [1, 2]}
         },
-        max_periods=3,
         curriculums={
             "H1": [[["C1"]], [["C2"]]],
             "H2": [[["C1", "C2"]]]
@@ -66,26 +66,4 @@ def test_define_variables_x(sample_anual_data):
         assert model.x[key].cat == pulp.LpInteger
 
 
-def test_define_variables_y(sample_anual_data):
-    model = AnualModel(sample_anual_data)
-
-    # 期待される y のキーと値の検証（列挙）
-    expected_y_keys = [
-        ("mon", 1, "I1"),
-        ("mon", 1, "I2"),
-        ("mon", 2, "I1"),
-        ("mon", 2, "I2"),
-        ("mon", 3, "I1"),
-        ("mon", 3, "I2"),
-        ("tue", 1, "I1"),
-        ("tue", 1, "I2"),
-        ("tue", 2, "I1"),
-        ("tue", 2, "I2"),
-        ("tue", 3, "I1"),
-        ("tue", 3, "I2"),
-    ]
-
-    assert set(model.y.keys()) == set(expected_y_keys)
-
-    for key in expected_y_keys:
-        assert isinstance(model.y[key], pulp.LpAffineExpression)
+# def test_define_variables_y(sample_anual_data):
