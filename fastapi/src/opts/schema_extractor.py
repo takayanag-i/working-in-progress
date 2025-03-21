@@ -79,6 +79,23 @@ def get_course_list(schema: CourseSchema) -> List[str]:
     )
 
 
+def get_homeroom_list(schema: HomeroomSchema) -> List[str]:
+    """
+    HomeroomSchemaから学級リストを取得する。
+
+    Args:
+        schema (HomeroomSchema)
+
+    Returns:
+        List[str]: 学級リスト
+    """
+    return list(
+        dict.fromkeys(
+            homeroom.homeroom for homeroom in schema.homerooms
+        )
+    )
+
+
 def get_periods(homeroom_schema: HomeroomSchema) -> Dict[str, Dict[str, List[int]]]:
     """
     HomeroomSchemaから{学級:時限リスト}辞書を取得する。
@@ -103,8 +120,8 @@ def get_periods(homeroom_schema: HomeroomSchema) -> Dict[str, Dict[str, List[int
 
     return {
         homeroom.homeroom: {
-            slot.day: list(range(1, slot.last_period + 1))
-            for slot in homeroom.days
+            day.day: list(range(1, day.last_period + 1))
+            for day in homeroom.days
         }
         for homeroom in homeroom_schema.homerooms
     }

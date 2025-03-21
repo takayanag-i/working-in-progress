@@ -4,7 +4,7 @@
     "autoDocstring.docstringFormat": "pep257",
     "flake8.args": [
         "--max-line-length=120",
-        "--ignore=W503" // W503:演算子の前の改行、
+        "--ignore=W503,E741" // W503:演算子の前の改行、E741:変数名I
     ],
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8",
@@ -12,7 +12,7 @@
         "editor.tabSize": 4,
     },
     "autopep8.args": [
-        "--ignore=E501" // E501:行長(➡️自動改行防止させない)
+        "--ignore=E501" // E501:行長(自動改行防止させないため)
     ],
     // path
     "python.analysis.extraPaths": [
