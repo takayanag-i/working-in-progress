@@ -4,6 +4,12 @@ import pulp
 
 
 class BlockConstraint(ConstraintBase):
+    """ブロック制約
+
+    - 任意の学級の任意の曜日・時限で、任意のブロックに対して、ブロックの各レーンに含まれる講座の開講バイナリの総和はレーンどうしで互いに等しい。
+    - ブロックに含まれるレーンが1つだけの場合は、制約条件式を生成しない。
+    """
+
     def apply(self, model: AnualModel):
         constraints = [
             lane_sums[0] == lane_sum

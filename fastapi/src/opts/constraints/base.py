@@ -5,4 +5,4 @@ from opts.anual_model import AnualModel
 class ConstraintBase(ABC):
     @abstractmethod
     def apply(self, model: AnualModel) -> AnualModel:
-        pass
+        raise NotImplementedError()

@@ -7,15 +7,15 @@
   "id": "12345678",
   "docType": "schedule_schema",
   "ttid": "sry_2025_001",
-  "slots": [
+  "days": [
     {
-      "name": "mon",
+      "day": "mon",
       "available": true,
       "amPeriods": 4,
       "pmPeriods": 3
     },
     {
-      "name": "tue",
+      "day": "tue",
       "available": true,
       "amPeriods": 4,
       "pmPeriods": 3
@@ -34,7 +34,7 @@
 | `id`      | String         | Y        |
 | `docType` | String         | Y        |
 | `ttid`    | String         | Y        |
-| `slots`    | Array<Object\> | Y        |
+| `days`    | Array<Object\> | Y        |
 
 #### `id`
 - Must be an 8-digit number.
@@ -46,10 +46,10 @@
 - **Partition Key.**
 - Must follow the pattern `^[a-z]{3}_[0-9]{4}_[0-9]{3}$`, representing {School Code}\_{Year}\_{Sequential Number}.
 
-#### `slots`
-- Must contain at least one Slot object.
+#### `days`
+- Must contain at least one Day object.
 
-### Slot
+### Day
 
 | Key         | Data Type | Required |
 | ----------- | --------- | -------- |

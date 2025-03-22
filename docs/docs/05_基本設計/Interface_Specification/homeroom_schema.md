@@ -9,8 +9,8 @@
   "ttid": "sry_2025_001",
   "homerooms": [
     {
-      "name": "2-4",
-      "slots": [
+      "homeroom": "2-4",
+      "days": [
         {
           "day": "mon",
           "lastPeriod": 6
@@ -22,8 +22,8 @@
       ]
     },
     {
-      "name": "2-5",
-      "slots":{
+      "homeroom": "2-5",
+      "days":{
         ...
       }
     }
@@ -59,16 +59,16 @@
 
 | Key        | Data Type      | Required |
 | ---------- | -------------- | -------- |
-| `name`     | String         | Y        |
-| `slots` | Array<Object\> | Y        |
+| `homeroom`     | String         | Y        |
+| `days` | Array<Object\> | Y        |
 
 #### `name`
 - Must be 5 characters or fewer, using only letters and hyphens (-).
 
-#### `slots`
-- Must contain at least one Slot object.
+#### `days`
+- Must contain at least one Day object.
 
-### Slot
+### Day
 
 | Key          | Data Type | Required |
 | ------------ | --------- | -------- |

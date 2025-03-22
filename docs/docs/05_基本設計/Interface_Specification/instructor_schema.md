@@ -13,7 +13,7 @@
       "name": "中田",
       "discipline": "地歴公民",
       "credits": 8,
-      "slots": [
+      "days": [
         { "day": "mon", "period": 1, "available": true },
         { "day": "mon", "period": 2, "available": true },
         { "day": "mon", "period": 3, "available": true },
@@ -31,7 +31,7 @@
       "name": "菅原",
       "discipline": "数学",
       "credits": 17,
-      "slots": [
+      "days": [
         ...
       ]
     }
@@ -70,7 +70,7 @@
 | `name`       | String         | Y        |
 | `discipline` | String         | Y        |
 | `credits`    | Number         | Y        |
-| `slots`      | Array<Object\> | Y        |
+| `days`      | Array<Object\> | Y        |
 
 #### `name`
 - Must be a non-empty string.
@@ -81,10 +81,10 @@
 #### `credits`
 - Must be a positive integer.
 
-#### `slots`
-- Must contain at least one Slot object.
+#### `days`
+- Must contain at least one Day object.
 
-### Slot
+### Day
 
 | Key         | Data Type | Required |
 | ----------- | --------- | -------- |

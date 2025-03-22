@@ -2,7 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import List
 
 
-class Slot(BaseModel):
+class Day(BaseModel):
     day: str
     period: int
     available: bool
@@ -14,7 +14,7 @@ class Instructor(BaseModel):
     name: str
     discipline: str
     credits: int
-    slots: List[Slot]
+    days: List[Day]
 
     model_config = ConfigDict(populate_by_name=True)
 

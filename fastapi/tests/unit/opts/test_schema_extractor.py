@@ -1,15 +1,16 @@
 import pytest
 from models.course import CourseSchema, Course, CourseDetail
 from models.curriculum import Block, Curriculum, CurriculumSchema, Lane
-from models.homeroom import HomeroomSchema, Homeroom, Slot as HomeroomSlot
-from models.instructor import Instructor, InstructorSchema, Slot as InstructorSlot
-from models.schedule import ScheduleSchema, Slot as ScheduleSlot
-from opts.converter import convert_course_schema_to_course_list
-from opts.converter import convert_curriculum_schema_to_curriculums
-from opts.converter import convert_homeroom_schema_to_periods
-from opts.converter import convert_schedule_schema_to_day_list
-from opts.converter import convert_course_schema_to_course_details
-from opts.converter import convert_instructor_schema_to_instructor_list
+from models.homeroom import HomeroomSchema, Homeroom, Day as HomeroomDay
+from models.instructor import Instructor, InstructorSchema, Day as InstructorDay
+from models.schedule import ScheduleSchema, Day as ScheduleDay
+from opts.anual_data import CourseDetail as AnualCourseDetail
+from opts.schema_extractor import get_course_list, get_period_list
+from opts.schema_extractor import get_curriculums
+from opts.schema_extractor import get_periods
+from opts.schema_extractor import get_day_list
+from opts.schema_extractor import get_course_details
+from opts.schema_extractor import get_instructor_list
 
 
 @pytest.fixture
@@ -97,12 +98,12 @@ def sample_homeroom_schema():
         doc_type="",
         ttid="",
         homerooms=[
-            Homeroom(name="2-4",
-                     slots=[
-                         HomeroomSlot(day="mon", last_period=6),
-                         HomeroomSlot(day="tue", last_period=7)
+            Homeroom(homeroom="2-4",
+                     days=[
+                         HomeroomDay(day="mon", last_period=6),
+                         HomeroomDay(day="tue", last_period=7)
                      ]),
-            Homeroom(name="2-5", slots=[HomeroomSlot(day="wed", last_period=5)])
+            Homeroom(homeroom="2-5", days=[HomeroomDay(day="wed", last_period=5)])
         ]
     )
 
@@ -118,28 +119,28 @@ def sample_instructor_schema():
                 name="instructor1",
                 discipline="math",
                 credits=16,
-                slots=[
-                    InstructorSlot(day="mon", period=1, available=True),
-                    InstructorSlot(day="wed", period=2, available=True)
+                days=[
+                    InstructorDay(day="mon", period=1, available=True),
+                    InstructorDay(day="wed", period=2, available=True)
                 ]
             ),
             Instructor(
                 name="instructor2",
                 discipline="science",
                 credits=16,
-                slots=[InstructorSlot(day="tue", period=2, available=True)]
+                days=[InstructorDay(day="tue", period=2, available=True)]
             ),
             Instructor(
                 name="instructor3",
                 discipline="history",
                 credits=16,
-                slots=[InstructorSlot(day="wed", period=3, available=True)]
+                days=[InstructorDay(day="wed", period=3, available=True)]
             ),
             Instructor(
                 name="instructor4",
                 discipline="english",
                 credits=16,
-                slots=[InstructorSlot(day="thu", period=4, available=True)]
+                days=[InstructorDay(day="thu", period=4, available=True)]
             )
         ]
     )
@@ -151,33 +152,38 @@ def sample_schedule_schema():
         id="",
         doc_type="",
         ttid="",
-        slots=[
-            ScheduleSlot(day="mon", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(day="tue", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(day="wed", available=True, am_periods=4, pm_periods=3),
-            ScheduleSlot(day="sat", available=False)
-        ]
+        days=[
+            ScheduleDay(day="mon", available=True, am_periods=4, pm_periods=3),
+            ScheduleDay(day="tue", available=True, am_periods=4, pm_periods=3),
+            ScheduleDay(day="wed", available=True, am_periods=4, pm_periods=3),
+            ScheduleDay(day="sat", available=False)
+        ],
     )
 
 
-def test_convert_schedule_schema_to_day_list(sample_schedule_schema):
-    result = convert_schedule_schema_to_day_list(sample_schedule_schema)
-    assert result == ["mon", "tue", "wed"]
+def test_get_day_list(sample_schedule_schema):
+    result1 = get_day_list(sample_schedule_schema)
+    assert result1 == ["mon", "tue", "wed"]
 
 
-def test_convert_course_schema_to_course_list(sample_course_schema):
-    result = convert_course_schema_to_course_list(sample_course_schema)
+def test_get_period_list(sample_schedule_schema):
+    result = get_period_list(sample_schedule_schema)
+    assert result == [1, 2, 3, 4, 5, 6, 7]
+
+
+def test_get_course_list(sample_course_schema):
+    result = get_course_list(sample_course_schema)
     assert result == ['math', 'science']
 
 
-def test_convert_instructor_schema_to_instructor_list(sample_instructor_schema):
-    result = convert_instructor_schema_to_instructor_list(sample_instructor_schema)
+def test_get_instructor_list(sample_instructor_schema):
+    result = get_instructor_list(sample_instructor_schema)
     assert result == ["instructor1", "instructor2", "instructor3", "instructor4"]
 
 
-def test_convert_homeroom_schema_to_periods(sample_homeroom_schema):
+def test_get_periods(sample_homeroom_schema):
 
-    result = convert_homeroom_schema_to_periods(sample_homeroom_schema)
+    result = get_periods(sample_homeroom_schema)
     assert result == {
         "2-4": {
             "mon": [1, 2, 3, 4, 5, 6],
@@ -189,8 +195,8 @@ def test_convert_homeroom_schema_to_periods(sample_homeroom_schema):
     }
 
 
-def test_convert_curriculum_schema_to_curriculums(sample_curriculum_schema):
-    result = convert_curriculum_schema_to_curriculums(sample_curriculum_schema)
+def test_get_curriculums(sample_curriculum_schema):
+    result = get_curriculums(sample_curriculum_schema)
     assert result == {
         "2-4": [
             [["math", "science"], ["history", "english"]],
@@ -203,15 +209,13 @@ def test_convert_curriculum_schema_to_curriculums(sample_curriculum_schema):
     }
 
 
-def test_convert_course_schema_to_course_details(sample_course_schema):
-    result = convert_course_schema_to_course_details(sample_course_schema)
+def test_get_course_details(sample_course_schema):
+    result = get_course_details(sample_course_schema)
     assert result == {
-        'math': {
-            'instructors': ['instructor1', 'instructor2'],
-            'credits': 1
-        },
-        'science': {
-            'instructors': ['instructor3', 'instructor4'],
-            'credits': 2
-        }
+        'math': AnualCourseDetail(
+            instructors=['instructor1', 'instructor2'],
+            credits=1),
+        'science': AnualCourseDetail(
+            instructors=['instructor3', 'instructor4'],
+            credits=2)
     }

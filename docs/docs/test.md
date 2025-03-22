@@ -1,3 +1,3 @@
 # Reference
 
-::: src.opts.anual_model
+::: src.opts.anual_model.AnualModel

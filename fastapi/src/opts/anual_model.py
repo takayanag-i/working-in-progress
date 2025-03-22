@@ -1,52 +1,45 @@
 import os
 import pulp
-
 from dotenv import load_dotenv
-from pydantic import BaseModel
-from typing import List, Dict, Optional
+
+from opts.anual_data import AnualData
 
 load_dotenv()
 cbc_path = os.getenv("CBC_PATH")
 
 
-class CourseDetail(BaseModel):
-    instructors: List[str]
-    credits: int
-
-
-class AnualData(BaseModel):
-    H: Optional[List[str]]
-    D: Optional[List[str]]
-    C: Optional[List[str]]
-    I: Optional[List[str]]
-    periods: Optional[Dict[str, Dict[str, List[int]]]]
-    curriculums: Optional[Dict[str, List[List[List[str]]]]]
-    course_details: Optional[Dict[str, CourseDetail]]
-
-    max_period: int = None
-
-
 class AnualModel:
-    """時間割の最適化モデルを管理するクラス。
+    """年間時間割の最適化モデルを管理するクラス。
 
     Attributes:
-        data (AnualData): 時間割の元データ。
-        problem (pulp.LpProblem): 線形最適化問題の定義。
-        x (Dict[Tuple[str, str, int, str], pulp.LpVariable]): 学級・曜日・時限・講座ごとの変数。
-        y (Dict[Tuple[str, str, int], pulp.LpAffineExpression]): 教員ごとの授業数を表す式。
+        data (AnualData): 年間時間割の元データ。
+        problem (pulp.LpProblem): 線形最適化問題のオブジェクト。
+        x (Dict[Tuple[str, str, int, str], pulp.LpVariable]): 学級h、曜日d、時限p、講座cの開講バイナリ x[h, d, p, c]。ｘ=1のとき開講、x=0のとき開講しない。
+        y (Dict[Tuple[str, str, int], pulp.LpAffineExpression]): 曜日d、時限pに教員iが担当する授業数 y[d, p, i]。
     """
 
     def __init__(self, data: AnualData):
+        """イニシャライザ
+
+        - 変数、関数を定義する。
+        - 環境にインストールされたソルバを指定する。
+
+        Arguments:
+            data (AnualData): 年間時間割の元データ
+        """
+
         self.data = data
         self.problem = pulp.LpProblem("sample", pulp.LpMinimize)
-        self.problem.setSolver(pulp.COIN_CMD(path=cbc_path, msg=True))
-        self.x = {}
-        self.y = {}
 
-        self.data.max_period = self.get_max_period()
+        self.problem.setSolver(pulp.COIN_CMD(path=cbc_path, msg=True))
         self.define_variables()
 
     def define_variables(self) -> None:
+        """変数ｘとｙを定義する。
+
+        - x[h, d, p, c]を定義する。
+        - y[d, p, i]をxの関数として定義する。
+        """
         # xの定義
         self.x = {
             (h, d, p, c): pulp.LpVariable(name=f"x_{h}_{d}_{p}_{c}", cat=pulp.LpBinary)
@@ -78,14 +71,6 @@ class AnualModel:
 
             # 任意のd, p, iに対して
             for d in self.data.D
-            for p in range(1, self.data.max_period + 1)
+            for p in self.data.P
             for i in self.data.I
         }
-
-    def get_max_period(self) -> int:
-        """最大の時限数"""
-        return max(
-            max(period)
-            for day in self.data.periods.values()
-            for period in day.values()
-        )

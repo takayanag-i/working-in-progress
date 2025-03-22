@@ -2,43 +2,44 @@
   "id": "12345678",
   "docType": "schedule_schema",
   "ttid": "sry_2025_001",
-  "slots": [
+  "maxPeriods": 7,
+  "days": [
     {
-      "name": "mon",
+      "day": "mon",
       "available": true,
       "amPeriods": 4,
       "pmPeriods": 3
     },
     {
-      "name": "tue",
+      "day": "tue",
       "available": true,
       "amPeriods": 4,
       "pmPeriods": 3
     },
     {
-      "name": "wed",
+      "day": "wed",
       "available": true,
       "amPeriods": 4,
       "pmPeriods": 3
     },
     {
-      "name": "thu",
+      "day": "thu",
       "available": true,
       "amPeriods": 4,
       "pmPeriods": 3
     },
     {
-      "name": "fri",
+      "day": "fri",
       "available": true,
       "amPeriods": 4,
       "pmPeriods": 3
     },
     {
-      "name": "sat",
+      "day": "sat",
       "available": false
     },
     {
-      "name": "sun",
+      "day": "sun",
       "available": false
     }
   ]
