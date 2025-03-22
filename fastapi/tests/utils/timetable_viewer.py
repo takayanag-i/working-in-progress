@@ -24,21 +24,21 @@ def display_result_by_homeroom(model: AnualModel, h: str) -> pd.DataFrame:
 
 def display_result_all_homerooms(model: AnualModel) -> pd.DataFrame:
     # 月曜日から金曜日の1時間目から7時間目までのカラムを作成
-    periods = [f'{d} {p}' for d in model.dto.day_of_week for p in range(1, 8)]
+    periods = [f'{d} {p}' for d in model.data.D for p in model.data.P]
 
     # 学級名をインデックスに設定
-    index = list(model.dto.homeroom_list)
+    index = list(model.data.H)
 
     # 空のデータフレームを作成
     timetable_df = pd.DataFrame(index=index, columns=periods)
 
     # 各学級の時間割をデータフレームに挿入
     for h in index:
-        for d in model.dto.day_of_week:
-            for p in model.dto.schedule[h][d]:
+        for d in model.data.D:
+            for p in model.data.periods[h][d]:
                 # 複数の講座を一時的に保持するリスト
                 courses_in_period = []
-                for block in model.dto.curriculum_dict[h]:
+                for block in model.data.curriculums[h]:
                     for lane in block:
                         for c in lane:
                             if model.x[h, d, p, c].value() == 1:

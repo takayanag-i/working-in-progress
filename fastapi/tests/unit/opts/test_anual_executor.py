@@ -4,8 +4,8 @@ from exceptions.opts import ConstraintError, OptimizationError
 from models.constraint import ConstraintSchema
 from opts.anual_model import AnualModel, AnualData
 from opts.constraints.base import ConstraintBase
-from opts.constraints.mapping import CONSTRAINT_TYPES
-from opts.anual_executor import get_constraints, apply_all, execute
+from opts.constraints.mapping import CONSTRAINT_TYPES_BUILT_IN
+from opts.anual_executor import get_built_in_constraints, apply_constraints, execute
 
 
 class MockConstraint(ConstraintBase):
@@ -22,7 +22,7 @@ class MockConstraint(ConstraintBase):
 
 @pytest.fixture(autouse=True)
 def setup_mock_constraint():
-    CONSTRAINT_TYPES["MOCK"] = MockConstraint
+    CONSTRAINT_TYPES_BUILT_IN["MOCK"] = MockConstraint
 
 
 @pytest.fixture
@@ -89,14 +89,14 @@ def mock_model(sample_anual_data):
 
 
 def test_get_constraints_success(valid_constraint_schemas):
-    constraints = get_constraints(valid_constraint_schemas)
+    constraints = get_built_in_constraints(valid_constraint_schemas)
     assert len(constraints) == 1
     assert isinstance(constraints[0], MockConstraint)
 
 
 def test_apply_all(mock_model):
     constraints = [MockConstraint()]
-    mock_model = apply_all(mock_model, constraints)
+    mock_model = apply_constraints(mock_model, constraints)
 
     # 追加された制約を取得
     constraint_expressions = list(mock_model.problem.constraints.values())

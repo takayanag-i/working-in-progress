@@ -4,6 +4,7 @@ from cruds.curriculum.interface import CurriculumRepository
 from cruds.homeroom.interface import HomeroomRepository
 from cruds.instructor.interface import InstructorRepository
 from cruds.schedule.interface import ScheduleRepository
+from opts.anual_data import AnualData
 from opts.anual_model import AnualModel
 from opts.schema_extractor import (get_course_details,
                                    get_course_list,
@@ -41,24 +42,29 @@ class AnualSolverService:
         instructor_schema = self.instructor_repo.find_by_ttid(ttid)
         schedule_schema = self.schedule_repo.find_by_ttid(ttid)
 
-        model = AnualModel()
-        model.data.H = get_homeroom_list(homeroom_schema)
-        model.data.D = get_day_list(schedule_schema)
-        model.data.P = get_period_list(schedule_schema)
-        model.data.C = get_course_list(course_schema)
-        model.data.I = get_instructor_list(instructor_schema)
-        model.data.periods = get_periods(homeroom_schema)
-        model.data.curriculums = get_curriculums(curriculum_schema)
-        model.data.course_details = get_course_details(course_schema)
+        data = AnualData(
+            H=get_homeroom_list(homeroom_schema),
+            D=get_day_list(schedule_schema),
+            P=get_period_list(schedule_schema),
+            C=get_course_list(course_schema),
+            I=get_instructor_list(instructor_schema),
+            periods=get_periods(homeroom_schema),
+            curriculums=get_curriculums(curriculum_schema),
+            course_details=get_course_details(course_schema)
+        )
+
+        model = AnualModel(data)
 
         return model
 
     def create_anual_timetable(self, ttid: str):
-        constraint_schemas = self.constraint_repo.find_by_ttid(ttid)
+        # constraint_schemas = self.constraint_repo.find_by_ttid(ttid)
+        constraint_schemas = []
         model = self.bulid_anual_model(ttid)
+
         solution = execute(model, constraint_schemas)
 
-        return solution
+        return solution  # とりあえずAnulaModelを返すけど、後でスパースの形に変更する
 
     def insert(self, solution):
         pass

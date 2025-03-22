@@ -1,10 +1,13 @@
 import json
 import os
+from typing import List
+from cruds.constraint.interface import ConstraintRepository
 from cruds.course.interface import CourseRepository
 from cruds.curriculum.interface import CurriculumRepository
 from cruds.homeroom.interface import HomeroomRepository
 from cruds.instructor.interface import InstructorRepository
 from cruds.schedule.interface import ScheduleRepository
+from models.constraint import ConstraintSchema
 from models.course import CourseSchema
 from models.curriculum import CurriculumSchema
 from models.homeroom import HomeroomSchema
@@ -26,6 +29,11 @@ class BaseRepositoryMock:
         with open(file_path, "r") as file:
             data = json.load(file)
             return schema_class(**data)
+
+
+class ConstraintRepositoryMock(ConstraintRepository, BaseRepositoryMock):
+    def find_by_ttid(self, ttid: str) -> List[ConstraintSchema]:
+        pass
 
 
 class CourseRepositoryMock(CourseRepository, BaseRepositoryMock):

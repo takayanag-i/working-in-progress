@@ -7,12 +7,15 @@ from opts.constraints.consecutive_period import ConsecutivePeriodConstraint
 from opts.constraints.courses_per_day import CoursesPerDayConstraint
 
 
-CONSTRAINT_TYPES = {
+CONSTRAINT_TYPES_MANDATORY = {
     "HOMEROOM": HomeroomConstraint,
     "COURSE": CourseConstraint,
     "CREDIT": CreditConstraint,
     "BLOCK": BlockConstraint,
     "INSTRUCTOR": InstructorConstraint,
+}
+
+CONSTRAINT_TYPES_BUILT_IN = {
     "CONSECUTIVE_PERIOD": ConsecutivePeriodConstraint,
     "COURSES_PER_DAY": CoursesPerDayConstraint,
 }
